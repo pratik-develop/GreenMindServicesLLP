@@ -99,10 +99,13 @@ export async function POST(request: NextRequest) {
   }
 
   // ── 6. Rate limiting (Cloudflare KV + WAF fallback) ───────────────────────
-  // Use cf-connecting-ip ONLY — this is Cloudflare-injected and cannot be
-  // spoofed by the client. x-forwarded-for is client-controlled and MUST NOT
-  // be used for security decisions.
-  const ip = request.headers.get('cf-connecting-ip') || 'unknown'
+  // Cloudflare: cf-connecting-ip is injected by CF and cannot be spoofed.
+  // Vercel: x-forwarded-for is set by the Vercel edge proxy.
+  const ip =
+    request.headers.get('cf-connecting-ip') ||
+    request.headers.get('x-real-ip') ||
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+    'unknown'
   const kvNamespace: KVNamespace | undefined = (request as Request & { env?: { RATE_LIMIT_KV?: KVNamespace } }).env?.RATE_LIMIT_KV
   const allowed = await checkRateLimit(ip, kvNamespace)
   if (!allowed) {
