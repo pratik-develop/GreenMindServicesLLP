@@ -57,6 +57,9 @@ export async function getUrlFor() {
   return urlFor
 }
 
+// Export urlFor directly for backward compatibility
+export { urlFor }
+
 // ─── Typed helpers ────────────────────────────────────────────────────────────
 
 export interface SanityProject {
