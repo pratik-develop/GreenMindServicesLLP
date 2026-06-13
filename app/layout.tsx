@@ -9,6 +9,7 @@ import SkipLink from '@/components/SkipLink'
 import MobileCtaBar from '@/components/MobileCtaBar'
 import WhatsAppButton from '@/components/WhatsAppButton'
 import ScrollToTop from '@/components/ScrollToTop'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -134,6 +135,7 @@ export default function RootLayout({
         <MobileCtaBar />
         <WhatsAppButton />
         <ScrollToTop />
+        <SpeedInsights />
       </body>
     </html>
   )
