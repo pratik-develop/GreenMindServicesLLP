@@ -35,7 +35,9 @@ async function initializeClients() {
       token: process.env.SANITY_WRITE_TOKEN,
     })
     
-    const builder = imageUrlBuilder.default(client)
+    // @sanity/image-url may export differently depending on module format
+    const builderFn = imageUrlBuilder.default || imageUrlBuilder
+    const builder = builderFn(client)
     urlFor = (source: any) => builder.image(source)
   } catch (error) {
     console.warn('Failed to initialize Sanity client:', error)
