@@ -8,7 +8,7 @@ import CtaButton from './CtaButton'
 import Logo from './Logo'
 
 const navLinks = [
-  { name: 'Home',       href: '/' },
+  // { name: 'Home',       href: '/' }, // temporarily disabled
   { name: 'Services',   href: '/services' },
   { name: 'Industries', href: '/industries' },
   // { name: 'Projects',   href: '/projects' }, // temporarily disabled
