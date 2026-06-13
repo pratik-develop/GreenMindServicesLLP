@@ -9,10 +9,10 @@
 export default {
   schema: './lib/schema.ts',
   out: './migrations',
-  driver: 'pg',
+  dialect: 'postgresql',
   dbCredentials: {
     // Set DATABASE_URL in .env.local before running migrations.
     // Format: postgres://user:password@host/dbname?sslmode=require
-    connectionString: process.env.DATABASE_URL!,
+    url: process.env.DATABASE_URL!,
   },
 }
