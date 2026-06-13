@@ -2,24 +2,35 @@ import { createClient } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
 
-export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!
+export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 export const dataset   = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 export const apiVersion = '2024-01-01'
 
+// Helper function to check if Sanity is configured
+function isSanityConfigured(): boolean {
+  return !!projectId
+}
+
 export const client = createClient({
-  projectId,
+  projectId: projectId || 'dummy', // Fallback for build time
   dataset,
   apiVersion,
   useCdn: true, // cached reads on public data
+  // Add a dummy client for build time if not configured
+  ...(projectId ? {} : {
+    ignoreBrowserTokenWarning: true,
+    perspective: 'published',
+  })
 })
 
 // For mutations (write token required — server-side only)
 export const writeClient = createClient({
-  projectId,
+  projectId: projectId || 'dummy', // Fallback for build time
   dataset,
   apiVersion,
   useCdn: false,
   token: process.env.SANITY_WRITE_TOKEN,
+  ignoreBrowserTokenWarning: true,
 })
 
 // Image URL builder
@@ -65,6 +76,7 @@ export interface SanityCertificate {
 // ─── Queries ──────────────────────────────────────────────────────────────────
 
 export async function getProjects(): Promise<SanityProject[]> {
+  if (!isSanityConfigured()) return []
   return client.fetch(
     `*[_type == "project"] | order(featured desc, date desc) {
       _id, title, slug, sector, showClientName, clientName, anonymizedAlias,
@@ -75,6 +87,7 @@ export async function getProjects(): Promise<SanityProject[]> {
 }
 
 export async function getCertificates(): Promise<SanityCertificate[]> {
+  if (!isSanityConfigured()) return []
   return client.fetch(
     `*[_type == "certificate" && status == "active"] | order(featured desc, issueDate desc) {
       _id, certName, authority, certificateNumber, issueDate, expiryDate,
@@ -103,6 +116,7 @@ export interface SanityService {
 }
 
 export async function getServices(): Promise<SanityService[]> {
+  if (!isSanityConfigured()) return []
   return client.fetch(
     `*[_type == "service"] | order(order asc) {
       _id, title, slug, description, bullets, tagline, summary,
@@ -113,6 +127,7 @@ export async function getServices(): Promise<SanityService[]> {
 }
 
 export async function getServiceBySlug(slug: string): Promise<SanityService | null> {
+  if (!isSanityConfigured()) return null
   return client.fetch(
     `*[_type == "service" && slug.current == $slug][0] {
       _id, title, slug, description, bullets, tagline, summary,
@@ -138,6 +153,7 @@ export interface SanityBlogPost {
 }
 
 export async function getBlogPosts(): Promise<SanityBlogPost[]> {
+  if (!isSanityConfigured()) return []
   return client.fetch(
     `*[_type == "blogPost"] | order(publishedAt desc) {
       _id, title, slug, excerpt, category, publishedAt,
@@ -147,6 +163,7 @@ export async function getBlogPosts(): Promise<SanityBlogPost[]> {
 }
 
 export async function getBlogPostBySlug(slug: string): Promise<SanityBlogPost | null> {
+  if (!isSanityConfigured()) return null
   return client.fetch(
     `*[_type == "blogPost" && slug.current == $slug][0] {
       _id, title, slug, excerpt, category, publishedAt,
@@ -167,6 +184,7 @@ export interface SanityFaqItem {
 }
 
 export async function getFaqs(page: 'home' | 'services' | 'all' = 'home'): Promise<SanityFaqItem[]> {
+  if (!isSanityConfigured()) return []
   return client.fetch(
     `*[_type == "faqItem" && (page == $page || page == "all")] | order(order asc) {
       _id, question, answer, order, page
@@ -189,6 +207,7 @@ export interface SanityTeamMember {
 }
 
 export async function getTeamMembers(): Promise<SanityTeamMember[]> {
+  if (!isSanityConfigured()) return []
   return client.fetch(
     `*[_type == "teamMember"] | order(order asc) {
       _id, name, initials, role, expertise, bio, photo { ..., alt }, order
