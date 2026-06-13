@@ -1,42 +1,60 @@
-import { createClient } from 'next-sanity'
-import imageUrlBuilder from '@sanity/image-url'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-
 export const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
 export const dataset   = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 export const apiVersion = '2024-01-01'
 
 // Helper function to check if Sanity is configured
-function isSanityConfigured(): boolean {
+export function isSanityConfigured(): boolean {
   return !!projectId
 }
 
-export const client = createClient({
-  projectId: projectId || 'dummy', // Fallback for build time
-  dataset,
-  apiVersion,
-  useCdn: true, // cached reads on public data
-  // Add a dummy client for build time if not configured
-  ...(projectId ? {} : {
-    ignoreBrowserTokenWarning: true,
-    perspective: 'published',
-  })
-})
+// Dynamic client creation - only import Sanity when configured
+let client: any = null
+let writeClient: any = null
+let urlFor: any = null
 
-// For mutations (write token required — server-side only)
-export const writeClient = createClient({
-  projectId: projectId || 'dummy', // Fallback for build time
-  dataset,
-  apiVersion,
-  useCdn: false,
-  token: process.env.SANITY_WRITE_TOKEN,
-  ignoreBrowserTokenWarning: true,
-})
+async function initializeClients() {
+  if (!isSanityConfigured() || client) return
+  
+  try {
+    // Dynamic imports to prevent build errors
+    const { createClient } = await import('next-sanity')
+    const imageUrlBuilder = await import('@sanity/image-url')
+    
+    client = createClient({
+      projectId,
+      dataset,
+      apiVersion,
+      useCdn: true,
+    })
+    
+    writeClient = createClient({
+      projectId,
+      dataset,
+      apiVersion,
+      useCdn: false,
+      token: process.env.SANITY_WRITE_TOKEN,
+    })
+    
+    const builder = imageUrlBuilder.default(client)
+    urlFor = (source: any) => builder.image(source)
+  } catch (error) {
+    console.warn('Failed to initialize Sanity client:', error)
+  }
+}
 
-// Image URL builder
-const builder = imageUrlBuilder(client)
-export function urlFor(source: SanityImageSource) {
-  return builder.image(source)
+export async function getClient() {
+  await initializeClients()
+  return client
+}
+
+export async function getWriteClient() {
+  await initializeClients()
+  return writeClient
+}
+
+export async function getUrlFor() {
+  await initializeClients()
+  return urlFor
 }
 
 // ─── Typed helpers ────────────────────────────────────────────────────────────
@@ -55,7 +73,7 @@ export interface SanityProject {
   featured: boolean
   description: string
   outcome: string[]
-  featuredImage?: SanityImageSource & { alt?: string }
+  featuredImage?: any & { alt?: string }
   services: string[]
 }
 
@@ -77,6 +95,8 @@ export interface SanityCertificate {
 
 export async function getProjects(): Promise<SanityProject[]> {
   if (!isSanityConfigured()) return []
+  const client = await getClient()
+  if (!client) return []
   return client.fetch(
     `*[_type == "project"] | order(featured desc, date desc) {
       _id, title, slug, sector, showClientName, clientName, anonymizedAlias,
@@ -88,6 +108,8 @@ export async function getProjects(): Promise<SanityProject[]> {
 
 export async function getCertificates(): Promise<SanityCertificate[]> {
   if (!isSanityConfigured()) return []
+  const client = await getClient()
+  if (!client) return []
   return client.fetch(
     `*[_type == "certificate" && status == "active"] | order(featured desc, issueDate desc) {
       _id, certName, authority, certificateNumber, issueDate, expiryDate,
@@ -111,12 +133,14 @@ export interface SanityService {
   howItWorks?: { step: string; detail: string }[]
   addOns?: string[]
   ctaLine?: string
-  image?: SanityImageSource & { alt?: string }
+  image?: any & { alt?: string }
   order?: number
 }
 
 export async function getServices(): Promise<SanityService[]> {
   if (!isSanityConfigured()) return []
+  const client = await getClient()
+  if (!client) return []
   return client.fetch(
     `*[_type == "service"] | order(order asc) {
       _id, title, slug, description, bullets, tagline, summary,
@@ -128,6 +152,8 @@ export async function getServices(): Promise<SanityService[]> {
 
 export async function getServiceBySlug(slug: string): Promise<SanityService | null> {
   if (!isSanityConfigured()) return null
+  const client = await getClient()
+  if (!client) return null
   return client.fetch(
     `*[_type == "service" && slug.current == $slug][0] {
       _id, title, slug, description, bullets, tagline, summary,
@@ -147,13 +173,15 @@ export interface SanityBlogPost {
   excerpt?: string
   category: string
   publishedAt: string
-  coverImage?: SanityImageSource & { alt?: string }
+  coverImage?: any & { alt?: string }
   featured: boolean
   sections?: { heading?: string; body: string }[]
 }
 
 export async function getBlogPosts(): Promise<SanityBlogPost[]> {
   if (!isSanityConfigured()) return []
+  const client = await getClient()
+  if (!client) return []
   return client.fetch(
     `*[_type == "blogPost"] | order(publishedAt desc) {
       _id, title, slug, excerpt, category, publishedAt,
@@ -164,6 +192,8 @@ export async function getBlogPosts(): Promise<SanityBlogPost[]> {
 
 export async function getBlogPostBySlug(slug: string): Promise<SanityBlogPost | null> {
   if (!isSanityConfigured()) return null
+  const client = await getClient()
+  if (!client) return null
   return client.fetch(
     `*[_type == "blogPost" && slug.current == $slug][0] {
       _id, title, slug, excerpt, category, publishedAt,
@@ -185,6 +215,8 @@ export interface SanityFaqItem {
 
 export async function getFaqs(page: 'home' | 'services' | 'all' = 'home'): Promise<SanityFaqItem[]> {
   if (!isSanityConfigured()) return []
+  const client = await getClient()
+  if (!client) return []
   return client.fetch(
     `*[_type == "faqItem" && (page == $page || page == "all")] | order(order asc) {
       _id, question, answer, order, page
@@ -202,12 +234,14 @@ export interface SanityTeamMember {
   role?: string
   expertise?: string
   bio?: string
-  photo?: SanityImageSource & { alt?: string }
+  photo?: any & { alt?: string }
   order?: number
 }
 
 export async function getTeamMembers(): Promise<SanityTeamMember[]> {
   if (!isSanityConfigured()) return []
+  const client = await getClient()
+  if (!client) return []
   return client.fetch(
     `*[_type == "teamMember"] | order(order asc) {
       _id, name, initials, role, expertise, bio, photo { ..., alt }, order
