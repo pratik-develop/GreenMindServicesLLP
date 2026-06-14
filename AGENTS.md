@@ -1,13 +1,24 @@
 # GreenMind v2 — Project Reference
 
-## Stack
-- **Framework**: Next.js 14 (App Router), deployed on Cloudflare Pages via `@cloudflare/next-on-pages`
-- **Styling**: Tailwind CSS — design tokens in `tailwind.config.ts`
-- **Animations**: Framer Motion (transforms) + CSS keyframes in `globals.css` (forest background)
-- **Smooth scroll**: `lenis` package — initialised in `components/LenisProvider.tsx`
-- **CMS**: Sanity v3 — studio at `/studio`, client in `lib/sanity.ts`, abstraction layer in `lib/content/`
-- **Database**: Neon (PostgreSQL serverless) + Drizzle ORM — schema in `lib/schema.ts`
-- **Email**: Resend — templates in `lib/email.ts`
+> **One-page cheatsheet for developers working on this codebase.**
+> Covers architecture, commands, environment variables, security, and CMS patterns.
+> For end-user documentation, see [README.md](./README.md).
+
+---
+
+## At a Glance
+
+| Aspect | Detail |
+|--------|--------|
+| **Framework** | Next.js 14 (App Router) |
+| **Deployment** | Cloudflare Pages via `@cloudflare/next-on-pages` |
+| **Styling** | Tailwind CSS — tokens in `tailwind.config.ts` |
+| **Animations** | Framer Motion + CSS keyframes in `globals.css` |
+| **Smooth Scroll** | `lenis` — initialised in `components/LenisProvider.tsx` |
+| **CMS** | Sanity v3 — studio at `/studio`, abstraction in `lib/content/` |
+| **Database** | Neon (PostgreSQL serverless) + Drizzle ORM |
+| **Email** | Resend — templates in `lib/email.ts` |
+| **Security** | CSRF, rate limiting, honeypot, HSTS, CSP via `middleware.ts` |
 
 ---
 
