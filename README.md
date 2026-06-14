@@ -8,7 +8,7 @@
   <a href="https://nextjs.org/" target="_blank"><img src="https://img.shields.io/badge/Next.js%2014-black?style=for-the-badge&logo=nextdotjs" alt="Next.js 14" /></a>
   <a href="https://www.typescriptlang.org/" target="_blank"><img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" /></a>
   <a href="https://tailwindcss.com/" target="_blank"><img src="https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a>
-  <a href="https://www.cloudflare.com/" target="_blank"><img src="https://img.shields.io/badge/Cloudflare%20Pages-F38020?style=for-the-badge&logo=cloudflare&logoColor=white" alt="Cloudflare Pages" /></a>
+  <a href="https://vercel.com/" target="_blank"><img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" /></a>
 </p>
 
 <p align="center">
@@ -23,7 +23,7 @@
 
 A premium, high-performance marketing website for **GreenMind Services LLP**, an environmental consultancy serving Northeast India. Built with a focus on accessibility, performance, and modern UX patterns.
 
-- **Live URL**: [greenmindservices.com](https://greenmindservices.com)
+- **Live URL**: [green-mind-services-llp.vercel.app](https://green-mind-services-llp.vercel.app/)
 - **Repository**: [GreenMindServicesLLP](https://github.com/pratik-develop/GreenMindServicesLLP)
 
 ---
@@ -56,7 +56,7 @@ A premium, high-performance marketing website for **GreenMind Services LLP**, an
 | ORM | [Drizzle ORM](https://orm.drizzle.team/) |
 | Email | [Resend](https://resend.com/) |
 | Analytics | Google Analytics 4 |
-| Deployment | [Cloudflare Pages](https://pages.cloudflare.com/) |
+| Deployment | [Vercel](https://vercel.com/) |
 
 ---
 
@@ -151,7 +151,26 @@ middleware.ts                 # Security headers (HSTS, CSP, etc.)
 
 ## Deployment
 
-### Cloudflare Pages (Recommended)
+### Vercel (Current)
+
+1. **Push to GitHub** — `git push origin main`
+2. **Import project** in [Vercel Dashboard](https://vercel.com/dashboard) &rarr; Add New Project
+3. **Select repository** and configure:
+   - **Framework Preset**: Next.js
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `.next`
+4. **Add environment variables** in Project &rarr; Settings &rarr; Environment Variables:
+   - `DATABASE_URL`
+   - `RESEND_API_KEY`
+   - `EMAIL_FROM`
+   - `ADMIN_EMAIL`
+   - `SANITY_WRITE_TOKEN`
+   - `ALLOWED_ORIGINS`
+5. **Deploy**
+
+### Cloudflare Pages (Alternative)
+
+The codebase includes Cloudflare configuration (`wrangler.toml`) for Pages deployment via `@cloudflare/next-on-pages`.
 
 1. **Push to GitHub** — `git push origin main`
 2. **Connect repo** in [Cloudflare Dashboard](https://dash.cloudflare.com/) &rarr; Pages &rarr; Create a project
@@ -164,9 +183,9 @@ middleware.ts                 # Security headers (HSTS, CSP, etc.)
    - `ADMIN_EMAIL`
    - `SANITY_WRITE_TOKEN`
    - `ALLOWED_ORIGINS`
-6. **Add KV binding** (optional but recommended):
+6. **Add KV binding** for rate limiting:
    - `wrangler kv:namespace create RATE_LIMIT_KV`
-   - Bind it in Pages &rarr; Settings &rarr; Functions &rarr; KV namespace bindings
+   - Bind in Pages &rarr; Settings &rarr; Functions &rarr; KV namespace bindings
 7. **Deploy**
 
 ### Manual Build
@@ -205,6 +224,6 @@ Copyright &copy; 2024–2025 GreenMind Services LLP. All rights reserved.
 ---
 
 <p align="center">
-  Built with <a href="https://nextjs.org">Next.js</a> &middot; Styled with <a href="https://tailwindcss.com">Tailwind CSS</a> &middot; Deployed on <a href="https://pages.cloudflare.com">Cloudflare Pages</a>
+  Built with <a href="https://nextjs.org">Next.js</a> &middot; Styled with <a href="https://tailwindcss.com">Tailwind CSS</a> &middot; Deployed on <a href="https://vercel.com">Vercel</a>
 </p>
 
