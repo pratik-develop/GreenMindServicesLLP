@@ -51,30 +51,22 @@ export default function Navbar() {
             {/* Issue #4 — h-16 on mobile, h-20 on desktop */}
             <div className="flex items-center justify-between h-16 md:h-20">
 
-              {/* Logo — icon-only on mobile, full lockup on desktop */}
+              {/* Logo — full lockup on all screen sizes */}
               <Link
                 href="/"
                 className="flex items-center shrink-0 hover:opacity-80 transition-opacity"
                 aria-label="GreenMind Services LLP - Home"
               >
-                {/* Mobile: emblem only */}
-                <span className="md:hidden">
-                  <Logo variant="icon" size={38} color="dark" />
-                </span>
-
-                {/* md–lg: full logo, sm preset */}
-                <span className="hidden md:block lg:hidden">
+                <span className="block lg:hidden">
                   <Logo variant="full" size="sm" color="dark" />
                 </span>
-
-                {/* lg+: full logo, md preset */}
                 <span className="hidden lg:block">
                   <Logo variant="full" size="md" color="dark" />
                 </span>
               </Link>
 
               {/* Desktop nav */}
-              <div className="hidden md:flex items-center gap-3 lg:gap-4">
+              <div className="hidden md:flex items-center gap-2 lg:gap-4">
                 {navLinks.map((link) => {
                   const isActive = link.href === activeHref
                   return (
@@ -85,11 +77,7 @@ export default function Navbar() {
                     >
                       {link.name}
                       {isActive && (
-                        <motion.span
-                          layoutId="nav-underline"
-                          className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-forest-mid rounded-full"
-                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                        />
+                        <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-forest-mid rounded-full" />
                       )}
                     </Link>
                   )
@@ -97,14 +85,17 @@ export default function Navbar() {
                 <a
                   href="tel:+919181018810"
                   aria-label="Call us"
-                  className="hidden md:flex items-center gap-1.5 text-sm font-body text-forest-deep/60 hover:text-forest-mid transition-colors min-h-[44px] min-w-[44px] justify-center"
+                  className="hidden lg:flex items-center gap-1.5 text-sm font-body text-forest-deep/60 hover:text-forest-mid transition-colors min-h-[44px] min-w-[44px] justify-center"
                 >
                   <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span className="hidden lg:inline">+91 91810 18810</span>
+                  <span className="hidden xl:inline">+91 91810 18810</span>
                 </a>
-                <CtaButton href="/contact">Book a Consultation</CtaButton>
+                <CtaButton href="/contact">
+                  <span className="hidden lg:inline">Book a Consultation</span>
+                  <span className="lg:hidden">Book</span>
+                </CtaButton>
               </div>
 
               {/* Issue #16 — min 44×44 touch target */}

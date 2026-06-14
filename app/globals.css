@@ -35,8 +35,11 @@
      pattern recalculates automatically if sections are added/removed/reordered.
      Odd sections inherit the cream page background; even sections get a subtle
      forest tint. Both keep dark text fully legible. */
+  .section-stack > section:nth-of-type(odd) {
+    @apply bg-cream;
+  }
   .section-stack > section:nth-of-type(even) {
-    @apply bg-forest-deep/5;
+    @apply bg-cream/80 backdrop-blur-sm;
   }
 
   /* ── Spacing scale ── */

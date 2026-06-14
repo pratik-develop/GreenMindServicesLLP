@@ -17,8 +17,8 @@ export default function PageCta({
   label,
 }: PageCtaProps) {
   return (
-    <section className="bg-forest-deep/5 border-t border-forest-deep/10 py-10 md:py-12">
-      <div className="container-custom">
+    <section className="relative z-[1] border-t border-forest-deep/10 py-10 md:py-12" style={{ backgroundColor: '#F2F6F2' }}>
+      <div className="container-custom relative z-10">
         <SectionReveal>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-12">
 

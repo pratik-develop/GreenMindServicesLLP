@@ -172,19 +172,29 @@ export default function Home() {
 
   return (
     <>
-      {/* ── Hero ─────────────────────────────────────────────────── */}
-      {/* Issue #1 — 70dvh on mobile so CTA is always visible without excessive scrolling */}
-      <section className="min-h-[85dvh] md:min-h-screen flex items-center pt-16 md:pt-20 pb-12 md:pb-16 relative overflow-hidden">
-        <ForestBackground variant="drift" overlay="light" scene="aerial" />
+      {/* Fixed parallax forest — stays pinned while page content scrolls over it */}
+      <div className="fixed inset-0" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=75&fit=crop"
+          alt=""
+          className="w-full h-full object-cover forest-bg-drift"
+        />
+      </div>
 
-        {/* Layer 1 — strong left panel: ensures text column is always fully readable */}
-        <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/98 to-cream/0 z-[2]" />
-        {/* Layer 2 — soft full-width veil: lifts contrast everywhere, fades to nothing on the right on lg+ */}
-        <div className="absolute inset-0 bg-gradient-to-r from-cream/80 via-cream/40 to-transparent lg:to-transparent z-[3]" />
+      {/* Page content wrapper — creates a stacking context above the fixed forest */}
+      <div className="relative z-[1]">
+        {/* ── Hero ─────────────────────────────────────────────────── */}
+        {/* Issue #1 — 70dvh on mobile so CTA is always visible without excessive scrolling */}
+        <section className="min-h-[85dvh] md:min-h-screen flex items-center pt-16 md:pt-20 pb-12 md:pb-16 relative overflow-hidden">
+          {/* Layer 1 — strong cream panel across full width on mobile, partial on md+ */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/95 to-cream/70 z-[2] md:right-[35%] md:to-cream/0" />
+          {/* Layer 2 — soft veil, full width on mobile, partial on md+ */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cream/90 via-cream/60 to-cream/30 z-[3] md:right-[40%] md:to-transparent" />
 
         <div className="container-custom w-full relative z-10">
           {/* Issue #6 — responsive gap */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             {/* Left — text */}
             <SectionReveal>
               <p className="label-section mb-4 md:mb-6">
@@ -201,29 +211,27 @@ export default function Home() {
 
             {/* Right — image */}
             <SectionReveal delay={0.2}>
-              {/* Issue #2 — single image on mobile/tablet; floating grid on desktop */}
-              {/* Mobile/tablet — single image */}
-              <div className="lg:hidden mt-6 md:mt-0">
-                <div className="relative rounded-2xl overflow-hidden h-56 sm:h-72 md:h-80">
+              {/* Mobile — single rounded image */}
+              <div className="md:hidden mt-6">
+                <div className="relative rounded-2xl overflow-hidden h-56 sm:h-72">
                   <Image
                     src={heroImages[0].src}
                     alt={heroImages[0].alt}
                     fill
                     className="object-cover"
                     priority
-                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    sizes="100vw"
                   />
                 </div>
               </div>
-              {/* Tablet hero image — visible md only */}
-              <div className="hidden md:block lg:hidden absolute right-0 top-0 bottom-0 w-2/5 overflow-hidden">
+              {/* Tablet — full-height image in right column */}
+              <div className="hidden md:block lg:hidden relative rounded-2xl overflow-hidden h-80">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=75"
                   alt="Forest canopy"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-2xl"
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/40 to-transparent" />
               </div>
 
               {/* Desktop — floating portrait grid */}
@@ -253,7 +261,7 @@ export default function Home() {
       {/* ── Credential Badges ── */}
       <section className="py-5 border-b border-forest-deep/8 bg-cream/70 backdrop-blur-sm">
         <div className="container-custom">
-          <div className="flex items-center gap-x-8 overflow-x-auto snap-x snap-mandatory pb-1 md:flex-wrap md:justify-center md:overflow-visible [&::-webkit-scrollbar]:hidden">
+          <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 md:gap-x-8 [&::-webkit-scrollbar]:hidden">
             {[
               { label: 'DPIIT Recognised', sub: 'Startup India', color: 'text-forest-mid' },
               { label: 'UDYAM Registered', sub: 'MSME · Govt of India', color: 'text-forest-mid' },
@@ -261,7 +269,7 @@ export default function Home() {
               { label: 'NABL Lab Partners', sub: 'Accredited Analysis', color: 'text-forest-mid' },
               { label: 'NGT Qualified', sub: 'Tribunal-Ready Reports', color: 'text-forest-mid' },
             ].map((badge) => (
-              <div key={badge.label} className="flex items-center gap-2.5 min-w-[160px] snap-start flex-shrink-0">
+              <div key={badge.label} className="flex items-center gap-2.5">
                 <span className="w-7 h-7 rounded-full bg-forest-mid/10 border border-forest-mid/20 flex items-center justify-center flex-shrink-0">
                   <svg className="w-3.5 h-3.5 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
@@ -469,7 +477,7 @@ export default function Home() {
             {[
               {
                 title: 'Experienced Environmental Professionals',
-                desc: 'Led by former senior scientists from the Central Pollution Control Board (CPCB) and Assam Pollution Control Board — regulatory insight and scientific credibility that few consultancies can match.',
+                desc: 'Led by former Director & senior scientists from the Central Pollution Control Board (CPCB) and Assam Pollution Control Board — regulatory insight and scientific credibility that few consultancies can match.',
               },
               {
                 title: 'Practical and Compliant Solutions',
@@ -568,8 +576,10 @@ export default function Home() {
         </div>
       </section>
 
+      </div>{/* end .section-stack */}
+
       {/* ── FAQ ──────────────────────────────────────────────────── */}
-      <section className="section-padding">
+      <section className="section-padding bg-cream">
         <div className="container-custom">
           <SectionReveal>
             <div className="mb-6 md:mb-8">
@@ -588,8 +598,6 @@ export default function Home() {
         </div>
       </section>
 
-      </div>{/* end .section-stack */}
-
       <PageCta
         title="Ready to Preserve · Protect · Prosper?"
         description="Book a free consultation to speak with an environmental expert and discuss your goals. We'll outline a clear next step within 24 hours."
@@ -600,6 +608,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
+      </div>{/* end content wrapper */}
     </>
   )
 }
