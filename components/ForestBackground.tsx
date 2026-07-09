@@ -28,8 +28,7 @@ interface ForestBackgroundProps {
 }
 
 // 1600px wide, q=75 — adequate for full-bleed backgrounds on ≤4K displays and ~50% lighter than w=2400&q=85.
-// When Cloudflare Images or Sanity's image pipeline is active, replace these
-// with CDN-optimised URLs that serve width-negotiated WebP/AVIF.
+// When a CDN image pipeline is active, replace these with width-negotiated WebP/AVIF URLs.
 const SCENES: Record<string, string> = {
   canopy:   'https://images.unsplash.com/photo-1448375240586-882707db888b?w=1600&q=75&fit=crop',
   floor:    'https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?w=1600&q=75&fit=crop',

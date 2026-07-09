@@ -17,10 +17,8 @@ pnpm-lock.yaml
 # build output
 dist/
 
-# Cloudflare / Vercel
+# Vercel
 .vercel
-.cloudflare
-.wrangler
 
 # OS
 .DS_Store

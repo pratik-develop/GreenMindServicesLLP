@@ -8,36 +8,12 @@ export const runtime = 'edge'
 // ─── Constants ────────────────────────────────────────────────────────────────
 const MAX_BODY_BYTES   = 10_000   // 10 KB — prevents memory exhaustion on edge
 const MAX_MESSAGE_LEN  = 5_000   // chars — enforced at app layer + DB CHECK
-const RATE_LIMIT_MAX   = 5       // requests
-const RATE_LIMIT_TTL   = 60      // seconds
 
 // Allowed origins — requests from other origins are rejected (CSRF protection).
 // Add staging/preview URLs as needed.
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://greenmindservices.com')
   .split(',')
   .map((o) => o.trim().toLowerCase())
-
-// ─── Cloudflare KV rate limiter ───────────────────────────────────────────────
-// Reads/writes Cloudflare KV when the binding is available.
-// Setup:
-//   1. wrangler kv:namespace create RATE_LIMIT_KV
-//   2. Bind it in Cloudflare Pages → Settings → Functions → KV namespace bindings
-//      Binding name: RATE_LIMIT_KV
-// Until the binding is wired, this falls through to the WAF (still effective
-// because Cloudflare WAF rate-limiting rules should be configured in the dashboard).
-async function checkRateLimit(ip: string, kvNamespace: KVNamespace | undefined): Promise<boolean> {
-  if (!kvNamespace) return true  // fallback: defer to CF WAF
-
-  const key = `rl:${ip}`
-  const raw = await kvNamespace.get(key)
-  const count = raw ? parseInt(raw, 10) : 0
-
-  if (count >= RATE_LIMIT_MAX) return false
-
-  // Increment — reset TTL on first write of the window
-  await kvNamespace.put(key, String(count + 1), { expirationTtl: RATE_LIMIT_TTL })
-  return true
-}
 
 // ─── Validation ───────────────────────────────────────────────────────────────
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -98,24 +74,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: validationError }, { status: 422 })
   }
 
-  // ── 6. Rate limiting (Cloudflare KV + WAF fallback) ───────────────────────
-  // Cloudflare: cf-connecting-ip is injected by CF and cannot be spoofed.
-  // Vercel: x-forwarded-for is set by the Vercel edge proxy.
-  const ip =
-    request.headers.get('cf-connecting-ip') ||
-    request.headers.get('x-real-ip') ||
-    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
-    'unknown'
-  const kvNamespace: KVNamespace | undefined = (request as Request & { env?: { RATE_LIMIT_KV?: KVNamespace } }).env?.RATE_LIMIT_KV
-  const allowed = await checkRateLimit(ip, kvNamespace)
-  if (!allowed) {
-    return NextResponse.json(
-      { error: 'Too many requests. Please try again in a minute.' },
-      { status: 429, headers: { 'Retry-After': String(RATE_LIMIT_TTL) } },
-    )
-  }
-
-  // ── 7. Extract & sanitise fields ──────────────────────────────────────────
+  // ── 6. Extract & sanitise fields ──────────────────────────────────────────
   const name         = String(body.name).trim()
   const email        = String(body.email).trim().toLowerCase()
   const message      = String(body.message).trim()
@@ -127,7 +86,7 @@ export async function POST(request: NextRequest) {
   const utmMedium    = typeof body.utm_medium   === 'string' ? body.utm_medium.trim()   || null : null
   const utmSource    = typeof body.utm_source   === 'string' ? body.utm_source.trim()   || null : null
 
-  // ── 8. Persist to database ────────────────────────────────────────────────
+  // ── 7. Persist to database ────────────────────────────────────────────────
   let savedId: string | null = null
   try {
     const db = getDb()
@@ -150,19 +109,22 @@ export async function POST(request: NextRequest) {
     savedId = row?.id ?? null
   } catch (dbError) {
     // Log but do not fail the request — emails still go out.
-    // The operator should monitor for DB errors separately (Cloudflare Logpush / Axiom).
     console.error('[enquiry] DB insert error:', dbError)
   }
 
-  // ── 9. Send notification emails ───────────────────────────────────────────
+  // ── 8. Send notification emails ───────────────────────────────────────────
   // Emails are sent in the same request for now.
-  // TODO (scale): move to Cloudflare Queues so this doesn't block response time
-  // and retries are automatic on Resend outage.
   try {
-    await Promise.all([
+    const [confirmation, alert] = await Promise.all([
       sendEnquiryConfirmation({ name, organisation, email, phone, service, message, source, utmCampaign, utmMedium, utmSource }),
       sendEnquiryAlert({        name, organisation, email, phone, service, message, source, utmCampaign, utmMedium, utmSource }),
     ])
+    if (confirmation.error) {
+      console.error('[enquiry] Confirmation email failed (enquiry_id=' + savedId + '):', confirmation.error)
+    }
+    if (alert.error) {
+      console.error('[enquiry] Admin alert email failed (enquiry_id=' + savedId + '):', alert.error)
+    }
   } catch (emailError) {
     console.error('[enquiry] Email send error (enquiry_id=' + savedId + '):', emailError)
     // Do not surface email errors to the user — the enquiry is saved.

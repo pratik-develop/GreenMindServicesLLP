@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Platform-agnostic Next.js config (works on Vercel, Cloudflare, etc.)
+  // Vercel-optimised Next.js config
   trailingSlash: true,
   images: {
     unoptimized: true,

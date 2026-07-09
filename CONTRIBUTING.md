@@ -59,10 +59,9 @@ Before submitting a PR:
 
 ## Deployment
 
-This project deploys to **Cloudflare Pages** via `@cloudflare/next-on-pages`.
+This project deploys to **Vercel**.
 
-- Build command: `npm run pages:build`
-- Output directory: `.vercel/output/static`
-- KV binding `RATE_LIMIT_KV` required for rate limiting in production
+- Build command: `npm run build`
+- Output directory: `.next`
 
 See [AGENTS.md](./AGENTS.md) for full deployment details.

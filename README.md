@@ -143,7 +143,6 @@ sanity/                       # Sanity Studio v3
   ├── schemas/                # Document types: service, blogPost, faqItem, etc.
   └── ...
 
-wrangler.toml                 # Cloudflare Pages build config
 middleware.ts                 # Security headers (HSTS, CSP, etc.)
 ```
 
@@ -164,36 +163,21 @@ middleware.ts                 # Security headers (HSTS, CSP, etc.)
    - `RESEND_API_KEY`
    - `EMAIL_FROM`
    - `ADMIN_EMAIL`
+   - `EMAIL_REPLY_TO`
+   - `RESEND_AUDIENCE_ID`
    - `SANITY_WRITE_TOKEN`
    - `ALLOWED_ORIGINS`
+
+   > **Resend setup**: Verify your sending domain in the Resend dashboard before going live.
+   > The default `EMAIL_FROM` currently uses `onboarding@resend.dev` for testing.
+   > Switch it to `noreply@greenmindservices.com` (or your verified domain) once DNS is configured.
 5. **Deploy**
-
-### Cloudflare Pages (Alternative)
-
-The codebase includes Cloudflare configuration (`wrangler.toml`) for Pages deployment via `@cloudflare/next-on-pages`.
-
-1. **Push to GitHub** — `git push origin main`
-2. **Connect repo** in [Cloudflare Dashboard](https://dash.cloudflare.com/) &rarr; Pages &rarr; Create a project
-3. **Set build command**: `npm run pages:build`
-4. **Set build output directory**: `.vercel/output/static`
-5. **Add environment variables** in Pages &rarr; Settings &rarr; Environment variables:
-   - `DATABASE_URL`
-   - `RESEND_API_KEY`
-   - `EMAIL_FROM`
-   - `ADMIN_EMAIL`
-   - `SANITY_WRITE_TOKEN`
-   - `ALLOWED_ORIGINS`
-6. **Add KV binding** for rate limiting:
-   - `wrangler kv:namespace create RATE_LIMIT_KV`
-   - Bind in Pages &rarr; Settings &rarr; Functions &rarr; KV namespace bindings
-7. **Deploy**
 
 ### Manual Build
 
 ```bash
 npm install
 npm run build              # Standard Next.js build
-npm run pages:build        # Cloudflare adapter build
 ```
 
 See [AGENTS.md](./AGENTS.md) for detailed architecture, security, database, and CMS reference.

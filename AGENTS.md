@@ -11,14 +11,14 @@
 | Aspect | Detail |
 |--------|--------|
 | **Framework** | Next.js 14 (App Router) |
-| **Deployment** | Cloudflare Pages via `@cloudflare/next-on-pages` |
+| **Deployment** | Vercel |
 | **Styling** | Tailwind CSS — tokens in `tailwind.config.ts` |
 | **Animations** | Framer Motion + CSS keyframes in `globals.css` |
 | **Smooth Scroll** | `lenis` — initialised in `components/LenisProvider.tsx` |
-| **CMS** | Sanity v3 — studio at `/studio`, abstraction in `lib/content/` |
+| **CMS** | Sanity v3 — abstraction in `lib/content/` |
 | **Database** | Neon (PostgreSQL serverless) + Drizzle ORM |
 | **Email** | Resend — templates in `lib/email.ts` |
-| **Security** | CSRF, rate limiting, honeypot, HSTS, CSP via `middleware.ts` |
+| **Security** | CSRF, honeypot, HSTS, CSP via `middleware.ts` |
 
 ---
 
@@ -91,35 +91,21 @@ Copy `.env.local.example` to `.env.local` and fill in all values before running.
 | `RESEND_API_KEY` | `lib/email.ts` | From resend.com dashboard |
 | `EMAIL_FROM` | `lib/email.ts` | Verified sender address in Resend |
 | `ADMIN_EMAIL` | `lib/email.ts` | Receives new enquiry alert emails |
-| `ALLOWED_ORIGINS` | `app/api/enquiry/route.ts` | Comma-separated list of allowed CSRF origins |
+| `EMAIL_REPLY_TO` | `lib/email.ts` | Optional reply-to address (defaults to ADMIN_EMAIL) |
+| `RESEND_AUDIENCE_ID` | `lib/email.ts` | Resend audience ID for newsletter subscriptions |
+| `ALLOWED_ORIGINS` | `app/api/enquiry/route.ts`, `app/api/subscribe/route.ts` | Comma-separated list of allowed CSRF origins |
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | `lib/sanity.ts` | From sanity.io/manage |
 | `NEXT_PUBLIC_SANITY_DATASET` | `lib/sanity.ts` | Usually `production` |
 | `SANITY_WRITE_TOKEN` | `lib/sanity.ts` | Server-side write token — **never** prefix with `NEXT_PUBLIC_` |
 | `NEXT_PUBLIC_GA4_MEASUREMENT_ID` | `lib/analytics.ts` | Google Analytics 4 Measurement ID |
 
-### Cloudflare-only bindings (set in Pages dashboard, not `.env.local`)
-
-| Binding | Purpose | How to set |
-|---|---|---|
-| `RATE_LIMIT_KV` | IP-based rate limiting for `/api/enquiry` | Pages → Settings → Functions → KV namespace bindings |
-
 ---
 
 ## Rate Limiting
 
-The enquiry API (`app/api/enquiry/route.ts`) uses a two-layer approach:
-
-1. **Cloudflare WAF** (primary) — configure a Rate Limiting Rule in the CF dashboard:
-   - Expression: `http.request.uri.path eq "/api/enquiry" and http.request.method eq "POST"`
-   - Rate: 5 requests per 60 seconds per IP
-   - Action: Block
-
-2. **Cloudflare KV** (in-code fallback) — already wired in `checkRateLimit()`. To activate:
-   - `wrangler kv:namespace create RATE_LIMIT_KV`
-   - Bind it in Cloudflare Pages → Settings → Functions → KV namespace bindings
-   - Binding name must be exactly: `RATE_LIMIT_KV`
-
-Both layers are independent — either alone provides protection.
+The enquiry API (`app/api/enquiry/route.ts`) and newsletter API (`app/api/subscribe/route.ts`) no longer contain platform-specific rate limiting.
+Protect both endpoints with your hosting provider's edge firewall / WAF (e.g. Vercel Firewall
+or a separate CDN), or add a provider-agnostic store such as Vercel KV, Redis, or Upstash.
 
 ---
 
@@ -171,13 +157,13 @@ and the hardcoded fallback arrays removed from page components.
 
 ## Security Notes
 
-### API route (`app/api/enquiry/route.ts`)
+### API routes (`app/api/enquiry/route.ts` and `app/api/subscribe/route.ts`)
 - **CSRF**: Requests are rejected if `Origin` header doesn't match `ALLOWED_ORIGINS`. Localhost is always allowed in dev.
-- **Rate limiting**: KV-backed (5 req/60s per IP) + Cloudflare WAF (configure separately).
-- **Body size**: Requests over 10 KB are rejected before buffering.
-- **Message length**: Messages over 5,000 characters are rejected.
-- **IP source**: Only `cf-connecting-ip` is used — `x-forwarded-for` is client-controlled and ignored.
+- **Body size**: Enquiries over 10 KB and newsletter payloads over 2 KB are rejected before buffering.
+- **Message length**: Enquiry messages over 5,000 characters are rejected.
 - **Honeypot**: `gm_verify_check` field — filled by bots, silently accepted (returns 200 to avoid signalling rejection).
+- **Retries**: Resend sends in `lib/email.ts` retry up to 3 times with exponential backoff.
+- **Dev fallback**: If `RESEND_API_KEY` is missing in development, emails are logged to the console instead of sent.
 
 ### Email (`lib/email.ts`)
 - All user-supplied values are HTML-escaped via `esc()` before interpolation into email templates.
@@ -199,7 +185,5 @@ and the hardcoded fallback arrays removed from page components.
 - The `ServiceCard` component is **not a link** — cards are presentational only.
   Navigation to service detail pages lives on the `/services` listing page.
 - `ForestBackground` uses a raw `<img>` tag (not `next/image`) because `images.unoptimized: true`
-  is set in `next.config.js` for Cloudflare Pages compatibility. Image optimisation should be
-  handled upstream (Cloudflare Images or Sanity's image pipeline) when traffic scales.
-- `@cloudflare/workers-types` is included in `tsconfig.json` to provide the `KVNamespace` type
-  used in `app/api/enquiry/route.ts`. This is a dev-only type — it does not affect the runtime bundle.
+  is set in `next.config.js`. Image optimisation should be handled upstream by a CDN image pipeline
+  when traffic scales.
