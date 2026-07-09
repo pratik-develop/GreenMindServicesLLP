@@ -109,16 +109,14 @@ export default function Services() {
                 <tbody>
                   {[
                     { req: 'Environmental Clearance (EC)',          s1: true,  s2: false, s3: false, s4: false },
-                    { req: 'Consent to Establish / Operate (CTE/CTO)', s1: true, s2: true, s3: false, s4: false },
-                    { req: 'Environmental Management Plan (EMP)',   s1: true,  s2: false, s3: true,  s4: false },
+                    { req: 'Consent to Establish / Operate (CTE/CTO)', s1: true, s2: true, s3: true,  s4: false },
+                    { req: 'Environmental Management Plan (EMP)',   s1: true,  s2: true,  s3: true,  s4: false },
                     { req: 'Hazardous Waste Authorisation',         s1: false, s2: true,  s3: false, s4: false },
                     { req: 'Biomedical Waste Authorisation',        s1: false, s2: true,  s3: false, s4: false },
                     { req: 'Air / Water / Noise Monitoring',        s1: false, s2: true,  s3: true,  s4: false },
-                    { req: 'Baseline Environmental Study',          s1: true,  s2: false, s3: true,  s4: false },
-                    { req: 'BRSR (SEBI) Reporting',                 s1: false, s2: false, s3: false, s4: true  },
+                    { req: 'Baseline Environmental Study',          s1: true,  s2: true,  s3: true,  s4: false },
                     { req: 'Site Environmental Due Diligence',      s1: false, s2: false, s3: true,  s4: false },
                     { req: 'ISO 14001 / EMS Implementation',        s1: false, s2: true,  s3: false, s4: false },
-                    { req: 'Carbon Footprinting & Net-Zero',        s1: false, s2: false, s3: false, s4: true  },
                     { req: 'Staff Training & Awareness',            s1: false, s2: false, s3: false, s4: true  },
                   ].map((row, i) => (
                     <tr key={row.req} className={`border-b border-forest-deep/6 ${i % 2 === 0 ? 'bg-white/60' : 'bg-forest-deep/3'}`}>

@@ -14,6 +14,9 @@ export const metadata = {
 // ─── Real credentials from certificate ───────────────────────────────────────
 const credentials = [
   { label: 'LLP Identification No.',  value: 'ACS-2757' },
+  { label: 'ISO 9001',                value: 'Quality Management' },
+  { label: 'ISO 14001',               value: 'Environmental Management' },
+  { label: 'ISO 29990',               value: 'Learning Services' },
   { label: 'DPIIT Startup Certificate', value: 'DIPP243892' },
   { label: 'GSTIN',                   value: '18ABDFG6856C1ZC' },
   { label: 'PAN',                     value: 'ABDFG6856C' },
