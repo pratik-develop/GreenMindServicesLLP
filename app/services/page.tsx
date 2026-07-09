@@ -109,7 +109,7 @@ export default function Services() {
                 <tbody>
                   {[
                     { req: 'Environmental Clearance (EC)',          s1: true,  s2: false, s3: false, s4: false },
-                    { req: 'Consent to Establish / Operate (CTE/CTO)', s1: true, s2: true, s3: true,  s4: false },
+                    { req: 'Consent to Establish / Operate (CTE/CTO)', s1: true, s2: true, s3: true, s4: false },
                     { req: 'Environmental Management Plan (EMP)',   s1: true,  s2: true,  s3: true,  s4: false },
                     { req: 'Hazardous Waste Authorisation',         s1: false, s2: true,  s3: false, s4: false },
                     { req: 'Biomedical Waste Authorisation',        s1: false, s2: true,  s3: false, s4: false },
