@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import TrackedLink from '@/components/TrackedLink'
 import SectionReveal from '@/components/SectionReveal'
 import { services } from '@/lib/data/services'
 import CtaButton from '@/components/CtaButton'
@@ -181,15 +182,17 @@ export default function Home() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                   <CtaButton href="/contact" eventName="cta_click" eventParams={{ location: 'homepage_hero', label: 'Book a Consultation' }}>Book a Consultation</CtaButton>
-                  <Link
+                  <TrackedLink
                     href="/services"
+                    eventName="cta_click"
+                    eventParams={{ location: 'homepage_hero', label: 'Explore our services' }}
                     className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl border border-cream/40 text-cream font-body font-semibold text-sm hover:bg-cream/10 transition-colors"
                   >
                     Explore our services
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </Link>
+                  </TrackedLink>
                 </div>
               </SectionReveal>
             </div>
@@ -249,14 +252,14 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-4 xl:gap-6">
             {services.map((service, index) => (
               <SectionReveal key={service.slug} delay={index * 0.1}>
-                <Link href={`/services/${service.slug}`} className="group block h-full">
+                <TrackedLink href={`/services/${service.slug}`} className="group block h-full" eventName="service_card_click" eventParams={{ slug: service.slug, title: service.title, location: 'homepage' }}>
                   <ServiceCard
                     title={service.title}
                     description={service.description}
                     icon={service.icon}
                     image={service.image}
                   />
-                </Link>
+                </TrackedLink>
               </SectionReveal>
             ))}
           </div>
@@ -276,7 +279,7 @@ export default function Home() {
                 <p className="text-forest-deep/65 leading-relaxed mb-8">
                   We partner with industries, institutions, and government bodies to deliver scientific and cost-effective environmental solutions — protecting natural resources for future generations.
                 </p>
-                <CtaButton href="/about" variant="secondary">Learn more about us</CtaButton>
+                <CtaButton href="/about" variant="secondary" eventName="cta_click" eventParams={{ location: 'homepage_about', label: 'Learn more about us' }}>Learn more about us</CtaButton>
               </div>
               <div className="hidden md:block relative rounded-2xl overflow-hidden h-56 sm:h-64 md:h-72 bg-forest-deep/5 mt-6 md:mt-0">
                 <Image

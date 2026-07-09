@@ -6,6 +6,7 @@ import SectionReveal from '@/components/SectionReveal'
 import BlogCard from '@/components/BlogCard'
 import CtaButton from '@/components/CtaButton'
 import PageCta from '@/components/PageCta'
+import { trackEvent } from '@/lib/analytics'
 
 const blogPosts = [
   {
@@ -150,7 +151,10 @@ export default function Resources() {
               {categories.map((cat) => (
                 <button
                   key={cat}
-                  onClick={() => setActiveCategory(cat)}
+                  onClick={() => {
+                    setActiveCategory(cat)
+                    trackEvent('resource_category_click', { category: cat })
+                  }}
                   className={`px-4 py-2 rounded-full text-sm font-body font-medium transition-all min-h-[36px] border ${
                     activeCategory === cat
                       ? 'bg-forest-mid text-cream border-forest-mid shadow-sm'
@@ -184,7 +188,7 @@ export default function Resources() {
           </div>
           {!showAll && filtered.slice(1).length > 8 && (
             <div className="text-center mt-8">
-              <CtaButton onClick={() => setShowAll(true)} variant="secondary">
+              <CtaButton onClick={() => setShowAll(true)} variant="secondary" eventName="resource_load_more" eventParams={{ count: filtered.slice(1).length - 8 }}>
                 Load more articles ({filtered.slice(1).length - 8} more)
               </CtaButton>
             </div>
@@ -223,6 +227,7 @@ export default function Resources() {
                 </ul>
                 <a
                   href="/contact?ref=checklist"
+                  onClick={() => trackEvent('lead_magnet_click', { item: 'compliance_checklist' })}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-cream text-forest-deep font-body font-semibold text-sm rounded-xl hover:bg-cream/90 transition-colors min-h-[44px] shadow-lg"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

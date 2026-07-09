@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import TrackedLink from '@/components/TrackedLink'
 import SectionReveal from '@/components/SectionReveal'
 import PageCta from '@/components/PageCta'
 import { services } from '@/lib/data/services'
@@ -48,7 +48,7 @@ export default function Services() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service, index) => (
               <SectionReveal key={service.slug} delay={index * 0.1}>
-                <Link href={`/services/${service.slug}`} className="group block h-full">
+                <TrackedLink href={`/services/${service.slug}`} className="group block h-full" eventName="service_card_click" eventParams={{ slug: service.slug, title: service.title }}>
                 <div className="card-base card-hover p-6 md:p-8 h-full flex flex-col">
                   {/* Icon + number row */}
                   <div className="flex items-center gap-3 mb-5">
@@ -75,7 +75,7 @@ export default function Services() {
                     ))}
                   </ul>
                 </div>
-                </Link>
+                </TrackedLink>
               </SectionReveal>
             ))}
           </div>

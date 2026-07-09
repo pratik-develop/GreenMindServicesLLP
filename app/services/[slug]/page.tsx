@@ -3,6 +3,7 @@ import SectionReveal from '@/components/SectionReveal'
 import CtaButton from '@/components/CtaButton'
 import PageCta from '@/components/PageCta'
 import Link from 'next/link'
+import TrackedLink from '@/components/TrackedLink'
 import { notFound } from 'next/navigation'
 import { serviceBySlug, serviceOrder } from '@/lib/data/services'
 
@@ -166,7 +167,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                   <p className="text-forest-deep/60 text-sm mb-6 leading-relaxed">
                     Book a free initial consultation. We&apos;ll review your requirements and outline a clear next step within 24 hours.
                   </p>
-                  <CtaButton href="/contact" size="lg">
+                  <CtaButton href="/contact" size="lg" eventName="cta_click" eventParams={{ location: 'service_sidebar', label: 'Book a Consultation', service: service.title }}>
                     Book a Consultation
                   </CtaButton>
                   <p className="text-xs text-forest-deep/40 mt-4 text-center">
@@ -181,7 +182,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
 
       {/* ── Next service ─────────────────────────────────────────── */}
       <section className="border-t border-forest-deep/10">
-        <Link href={`/services/${nextSlug}`} className="group block">
+        <TrackedLink href={`/services/${nextSlug}`} className="group block" eventName="next_service_click" eventParams={{ from: service.title, to: nextService.title, slug: nextSlug }}>
           <div className="container-custom py-10 flex items-center justify-between">
             <div>
               <p className="text-xs font-body font-medium text-forest-deep/40 uppercase tracking-widest mb-1">Next service</p>
@@ -195,7 +196,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
               </svg>
             </div>
           </div>
-        </Link>
+        </TrackedLink>
       </section>
 
       {/* ── CTA ── */}

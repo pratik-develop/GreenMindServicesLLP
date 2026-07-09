@@ -1,3 +1,5 @@
+"use client"
+
 import SectionReveal from '@/components/SectionReveal'
 import CtaButton from '@/components/CtaButton'
 
@@ -7,6 +9,8 @@ interface PageCtaProps {
   buttonText: string
   buttonHref?: string
   label?: string
+  eventName?: string
+  eventParams?: Record<string, any>
 }
 
 export default function PageCta({
@@ -15,6 +19,8 @@ export default function PageCta({
   buttonText,
   buttonHref = '/contact',
   label,
+  eventName = 'cta_click',
+  eventParams,
 }: PageCtaProps) {
   return (
     <section className="relative z-[1] border-t border-forest-deep/10 py-10 md:py-12" style={{ backgroundColor: '#F2F6F2' }}>
@@ -37,7 +43,7 @@ export default function PageCta({
 
             {/* Right — button */}
             <div className="shrink-0">
-              <CtaButton href={buttonHref}>{buttonText}</CtaButton>
+              <CtaButton href={buttonHref} eventName={eventName} eventParams={eventParams || { location: 'page_cta', label: buttonText }}>{buttonText}</CtaButton>
             </div>
 
           </div>

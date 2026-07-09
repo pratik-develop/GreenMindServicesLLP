@@ -16,6 +16,10 @@ function trackLinkedIn() {
   trackEvent('linkedin_click', { location: 'footer' })
 }
 
+function trackFooterLink(label: string, section: 'pages' | 'legal') {
+  trackEvent('footer_link_click', { label, section, location: 'footer' })
+}
+
 export default function Footer() {
   const year = new Date().getFullYear()
 
@@ -59,7 +63,7 @@ export default function Footer() {
                 { label: 'Contact',   href: '/contact' },
               ].map((l) => (
                 <li key={l.label}>
-                  <Link href={l.href} className="text-cream/55 hover:text-cream text-xs transition-colors py-0.5 block">
+                  <Link href={l.href} onClick={() => trackFooterLink(l.label, 'pages')} className="text-cream/55 hover:text-cream text-xs transition-colors py-0.5 block">
                     {l.label}
                   </Link>
                 </li>
@@ -76,7 +80,7 @@ export default function Footer() {
                 { label: 'Terms & Conditions', href: '/policies/terms-conditions' },
               ].map((l) => (
                 <li key={l.label}>
-                  <Link href={l.href} className="text-cream/55 hover:text-cream text-xs transition-colors py-0.5 block">
+                  <Link href={l.href} onClick={() => trackFooterLink(l.label, 'legal')} className="text-cream/55 hover:text-cream text-xs transition-colors py-0.5 block">
                     {l.label}
                   </Link>
                 </li>

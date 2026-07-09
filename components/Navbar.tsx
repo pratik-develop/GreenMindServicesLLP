@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import CtaButton from './CtaButton'
 import Logo from './Logo'
+import { trackEvent } from '@/lib/analytics'
 
 const navLinks = [
   // { name: 'Home',       href: '/' }, // temporarily disabled
@@ -56,6 +57,7 @@ export default function Navbar() {
                 href="/"
                 className="flex items-center shrink-0 hover:opacity-80 transition-opacity"
                 aria-label="GreenMind Services LLP - Home"
+                onClick={() => trackEvent('logo_click', { location: 'navbar' })}
               >
                 <span className="block lg:hidden">
                   <Logo variant="full" size="sm" color="dark" />
@@ -74,6 +76,7 @@ export default function Navbar() {
                       key={link.name}
                       href={link.href}
                       className={`relative text-sm font-body font-medium transition-colors py-1 px-1 ${isActive ? 'text-forest-mid font-semibold' : 'text-forest-deep hover:text-forest-mid'}`}
+                      onClick={() => trackEvent('nav_link_click', { label: link.name, location: 'desktop' })}
                     >
                       {link.name}
                       {isActive && (
@@ -85,6 +88,7 @@ export default function Navbar() {
                 <a
                   href="tel:+919181018810"
                   aria-label="Call us"
+                  onClick={() => trackEvent('phone_click', { location: 'navbar', number: '+919181018810' })}
                   className="hidden lg:flex items-center gap-1.5 text-sm font-body text-forest-deep/60 hover:text-forest-mid transition-colors min-h-[44px] min-w-[44px] justify-center"
                 >
                   <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,7 +96,7 @@ export default function Navbar() {
                   </svg>
                   <span className="hidden xl:inline">+91 91810 18810</span>
                 </a>
-                <CtaButton href="/contact">
+                <CtaButton href="/contact" eventName="cta_click" eventParams={{ location: 'navbar', label: 'Book a Consultation' }}>
                   <span className="hidden lg:inline">Book a Consultation</span>
                   <span className="lg:hidden">Book</span>
                 </CtaButton>
@@ -136,13 +140,16 @@ export default function Navbar() {
                           ? 'text-forest-mid bg-forest-mid/15 font-semibold'
                           : 'text-forest-deep hover:text-forest-mid hover:bg-forest-deep/5'
                       }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false)
+                        trackEvent('nav_link_click', { label: link.name, location: 'mobile' })
+                      }}
                     >
                       {link.name}
                     </Link>
                   ))}
                   <div className="pt-4">
-                    <CtaButton href="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                    <CtaButton href="/contact" onClick={() => setIsMobileMenuOpen(false)} eventName="cta_click" eventParams={{ location: 'navbar_mobile', label: 'Book a Consultation' }}>
                       Book a Consultation
                     </CtaButton>
                   </div>

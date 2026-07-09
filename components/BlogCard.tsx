@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import TrackedLink from './TrackedLink'
 import SectionReveal from './SectionReveal'
 
 interface BlogCardProps {
@@ -31,7 +31,7 @@ export default function BlogCard({ title, excerpt, category, date, slug, image, 
   if (featured) {
     return (
       <SectionReveal delay={delay}>
-        <Link href={`/resources/${slug}`} className="group block">
+        <TrackedLink href={`/resources/${slug}`} className="group block" eventName="resource_click" eventParams={{ slug, title, category, location: 'featured' }}>
           <article className="card-base card-hover overflow-hidden grid grid-cols-1 md:grid-cols-2">
             {/* Image — left half on desktop, top on mobile */}
             <div className="relative h-56 md:h-full min-h-[220px] overflow-hidden">
@@ -65,7 +65,7 @@ export default function BlogCard({ title, excerpt, category, date, slug, image, 
               </div>
             </div>
           </article>
-        </Link>
+        </TrackedLink>
       </SectionReveal>
     )
   }
@@ -73,7 +73,7 @@ export default function BlogCard({ title, excerpt, category, date, slug, image, 
   // ── Standard card ───────────────────────────────────────────────────────────
   return (
     <SectionReveal delay={delay}>
-      <Link href={`/resources/${slug}`} className="group block h-full">
+      <TrackedLink href={`/resources/${slug}`} className="group block h-full" eventName="resource_click" eventParams={{ slug, title, category, location: 'grid' }}>
         <article className="card-base card-hover h-full flex flex-col overflow-hidden">
           {/* Image */}
           <div className="relative h-44 sm:h-48 overflow-hidden bg-forest-deep/10 flex-shrink-0">
@@ -107,7 +107,7 @@ export default function BlogCard({ title, excerpt, category, date, slug, image, 
             </div>
           </div>
         </article>
-      </Link>
+      </TrackedLink>
     </SectionReveal>
   )
 }
