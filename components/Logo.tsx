@@ -77,24 +77,24 @@ function Wordmark({
 }) {
   // Name line: prominent, display font
   const nameClass = {
-    sm: "text-sm",
-    md: "text-base",
-    lg: "text-lg",
-    xl: "text-xl",
+    sm: "text-base",
+    md: "text-lg",
+    lg: "text-xl",
+    xl: "text-2xl",
   }[size]
 
   // Tagline line: small caps, body font
   const tagClass = {
-    sm: "text-[9px]",
-    md: "text-[10px]",
-    lg: "text-[11px]",
-    xl: "text-xs",
+    sm: "text-[10px]",
+    md: "text-[11px]",
+    lg: "text-xs",
+    xl: "text-sm",
   }[size]
 
   return (
     <span className="inline-flex flex-col justify-center leading-none gap-[3px]">
       <span
-        className={`font-display font-semibold tracking-tight whitespace-nowrap ${nameClass}`}
+        className={`font-display font-bold tracking-tight whitespace-nowrap ${nameClass}`}
         style={{ color: t.text, lineHeight: 1.1 }}
       >
         GreenMind Services LLP

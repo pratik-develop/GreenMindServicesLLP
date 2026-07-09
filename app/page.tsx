@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Leaf, TreePine, ClipboardCheck, FileText } from 'lucide-react'
 import SectionReveal from '@/components/SectionReveal'
 import { services } from '@/lib/data/services'
 import CtaButton from '@/components/CtaButton'
@@ -11,6 +12,7 @@ import StatsGrid from '@/components/StatsGrid'
 import ForestBackground from '@/components/ForestBackground'
 import ComplianceQuiz from '@/components/ComplianceQuiz'
 import PageCta from '@/components/PageCta'
+import HeroServiceCard from '@/components/HeroServiceCard'
 
 export const metadata = {
   title: 'GreenMind Services LLP — Environmental & Compliance Consultants, Guwahati',
@@ -145,28 +147,35 @@ export default function Home() {
     },
   ]
 
-  // Floating hero images (right-side portrait grid)
-  // w-*/h-* kept as wrapper sizes; Image uses fill within each wrapper
-  const heroImages = [
+  // Hero service cards — 2×2 grid on desktop/tablet, 1 column on mobile
+  const heroServices = [
     {
-      src: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&q=80',
-      alt: 'Dense forest canopy',
-      wrapperClass: 'relative w-48 h-64 rounded-2xl shadow-xl overflow-hidden',
+      title: 'Environmental Impact Assessment',
+      description: 'Rigorous EIA studies, EMP planning, and clearance support for projects of every scale.',
+      href: '/services/environmental-impact-assessments',
+      icon: Leaf,
+      image: services[0].image,
     },
     {
-      src: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=600&q=80',
-      alt: 'Environmental field survey',
-      wrapperClass: 'relative w-40 h-52 rounded-2xl shadow-xl overflow-hidden mt-12',
+      title: 'Sustainability & Resource Management',
+      description: 'Waste, water, energy, and material-balance solutions that keep operations compliant.',
+      href: '/services/environmental-compliance',
+      icon: TreePine,
+      image: services[1].image,
     },
     {
-      src: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=600&q=80',
-      alt: 'Green tree roots',
-      wrapperClass: 'relative w-44 h-60 rounded-2xl shadow-xl overflow-hidden',
+      title: 'Compliance & Regulatory Support',
+      description: 'Pollution control, monitoring programmes, and regulatory approvals done right.',
+      href: '/services/environmental-monitoring',
+      icon: ClipboardCheck,
+      image: services[2].image,
     },
     {
-      src: 'https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?w=600&q=80',
-      alt: 'Sunlight through forest',
-      wrapperClass: 'relative w-36 h-48 rounded-2xl shadow-xl overflow-hidden mt-8',
+      title: 'Reports & Documentation',
+      description: 'Audit-ready ESG, BRSR, training, and compliance documentation your stakeholders trust.',
+      href: '/services/esg-disclosure-reporting',
+      icon: FileText,
+      image: services[3].image,
     },
   ]
 
@@ -209,48 +218,21 @@ export default function Home() {
               <CtaButton href="/contact">Book a Consultation</CtaButton>
             </SectionReveal>
 
-            {/* Right — image */}
+            {/* Right — service cards grid */}
             <SectionReveal delay={0.2}>
-              {/* Mobile — single rounded image */}
-              <div className="md:hidden mt-6">
-                <div className="relative rounded-2xl overflow-hidden h-56 sm:h-72">
-                  <Image
-                    src={heroImages[0].src}
-                    alt={heroImages[0].alt}
-                    fill
-                    className="object-cover"
-                    priority
-                    sizes="100vw"
-                  />
-                </div>
-              </div>
-              {/* Tablet — full-height image in right column */}
-              <div className="hidden md:block lg:hidden relative rounded-2xl overflow-hidden h-80">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=75"
-                  alt="Forest canopy"
-                  className="w-full h-full object-cover rounded-2xl"
-                />
-              </div>
-
-              {/* Desktop — floating portrait grid */}
-              <div className="hidden lg:flex items-end gap-4 justify-center h-[520px]">
-                <div className="flex flex-col gap-4 items-end pb-8">
-                  <div className={heroImages[0].wrapperClass}>
-                    <Image src={heroImages[0].src} alt={heroImages[0].alt} fill className="object-cover" priority sizes="192px" />
-                  </div>
-                  <div className={heroImages[3].wrapperClass}>
-                    <Image src={heroImages[3].src} alt={heroImages[3].alt} fill className="object-cover" priority sizes="144px" />
-                  </div>
-                </div>
-                <div className="flex flex-col gap-4 items-start pt-8">
-                  <div className={heroImages[2].wrapperClass}>
-                    <Image src={heroImages[2].src} alt={heroImages[2].alt} fill className="object-cover" priority sizes="176px" />
-                  </div>
-                  <div className={heroImages[1].wrapperClass}>
-                    <Image src={heroImages[1].src} alt={heroImages[1].alt} fill className="object-cover" priority sizes="160px" />
-                  </div>
+              <div className="mt-8 md:mt-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  {heroServices.map((service, index) => (
+                    <HeroServiceCard
+                      key={service.title}
+                      title={service.title}
+                      description={service.description}
+                      href={service.href}
+                      icon={service.icon}
+                      image={service.image}
+                      delay={0.1 + index * 0.1}
+                    />
+                  ))}
                 </div>
               </div>
             </SectionReveal>

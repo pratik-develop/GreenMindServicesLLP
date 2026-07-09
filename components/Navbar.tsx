@@ -9,11 +9,11 @@ import Logo from './Logo'
 
 const navLinks = [
   // { name: 'Home',       href: '/' }, // temporarily disabled
+  { name: 'About',      href: '/about' },
   { name: 'Services',   href: '/services' },
   { name: 'Industries', href: '/industries' },
   // { name: 'Projects',   href: '/projects' }, // temporarily disabled
   { name: 'Resources',  href: '/resources' },
-  { name: 'About',      href: '/about' },
   { name: 'Contact',    href: '/contact' },
 ]
 
@@ -61,7 +61,7 @@ export default function Navbar() {
                   <Logo variant="full" size="sm" color="dark" />
                 </span>
                 <span className="hidden lg:block">
-                  <Logo variant="full" size="md" color="dark" />
+                  <Logo variant="full" size="lg" color="dark" />
                 </span>
               </Link>
 
