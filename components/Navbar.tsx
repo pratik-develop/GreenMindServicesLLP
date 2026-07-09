@@ -89,12 +89,11 @@ export default function Navbar() {
                   href="tel:+919181018810"
                   aria-label="Call us"
                   onClick={() => trackEvent('phone_click', { location: 'navbar', number: '+919181018810' })}
-                  className="hidden lg:flex items-center gap-1.5 text-sm font-body text-forest-deep/60 hover:text-forest-mid transition-colors min-h-[44px] min-w-[44px] justify-center"
+                  className="hidden lg:flex items-center justify-center text-sm font-body text-forest-deep/60 hover:text-forest-mid transition-colors min-h-[44px] min-w-[44px]"
                 >
-                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span className="hidden xl:inline">+91 91810 18810</span>
                 </a>
                 <CtaButton href="/contact" eventName="cta_click" eventParams={{ location: 'navbar', label: 'Book a Consultation' }}>
                   <span className="hidden lg:inline">Book a Consultation</span>
