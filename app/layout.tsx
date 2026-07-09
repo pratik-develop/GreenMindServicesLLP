@@ -5,6 +5,8 @@ import LenisProvider from '@/components/LenisProvider'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
 import SkipLink from '@/components/SkipLink'
 import MobileCtaBar from '@/components/MobileCtaBar'
 import WhatsAppButton from '@/components/WhatsAppButton'
@@ -134,6 +136,8 @@ export default function RootLayout({
         <MobileCtaBar />
         <WhatsAppButton />
         <ScrollToTop />
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )
