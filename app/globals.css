@@ -14,7 +14,12 @@
   }
 
   body {
-    @apply bg-cream text-forest-deep font-body antialiased;
+    @apply text-forest-deep font-body antialiased;
+    /* Subtle site-wide gradient wash — cream drifting into a faint sage green.
+       Fixed attachment so it stays put while content scrolls over it. */
+    background-color: #F7F3EC;
+    background-image: linear-gradient(160deg, #FAF8F4 0%, #F1EDE3 45%, #E5EDE5 100%);
+    background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -36,10 +41,10 @@
      Odd sections inherit the cream page background; even sections get a subtle
      forest tint. Both keep dark text fully legible. */
   .section-stack > section:nth-of-type(odd) {
-    @apply bg-cream;
+    @apply bg-cream/55 backdrop-blur-sm;
   }
   .section-stack > section:nth-of-type(even) {
-    @apply bg-cream/80 backdrop-blur-sm;
+    @apply bg-transparent;
   }
 
   /* ── Spacing scale ── */

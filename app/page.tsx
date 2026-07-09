@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Leaf, TreePine, ClipboardCheck, FileText } from 'lucide-react'
 import SectionReveal from '@/components/SectionReveal'
 import { services } from '@/lib/data/services'
 import CtaButton from '@/components/CtaButton'
@@ -11,7 +10,6 @@ import ServiceCard from '@/components/ServiceCard'
 import StatsGrid from '@/components/StatsGrid'
 import ComplianceQuiz from '@/components/ComplianceQuiz'
 import PageCta from '@/components/PageCta'
-import HeroServiceCard from '@/components/HeroServiceCard'
 
 export const metadata = {
   title: 'GreenMind Services LLP — Environmental & Compliance Consultants, Guwahati',
@@ -146,98 +144,64 @@ export default function Home() {
     },
   ]
 
-  // Hero service cards — 2×2 grid on desktop/tablet, 1 column on mobile
-  const heroServices = [
-    {
-      title: 'Environmental Impact Assessment',
-      description: 'Rigorous EIA studies, EMP planning, and clearance support for projects of every scale.',
-      href: '/services/environmental-impact-assessments',
-      icon: Leaf,
-      image: services[0].image,
-    },
-    {
-      title: 'Sustainability & Resource Management',
-      description: 'Waste, water, energy, and material-balance solutions that keep operations compliant.',
-      href: '/services/environmental-compliance',
-      icon: TreePine,
-      image: services[1].image,
-    },
-    {
-      title: 'Compliance & Regulatory Support',
-      description: 'Pollution control, monitoring programmes, and regulatory approvals done right.',
-      href: '/services/environmental-monitoring',
-      icon: ClipboardCheck,
-      image: services[2].image,
-    },
-    {
-      title: 'Reports & Documentation',
-      description: 'Audit-ready ESG, BRSR, training, and compliance documentation your stakeholders trust.',
-      href: '/services/esg-disclosure-reporting',
-      icon: FileText,
-      image: services[3].image,
-    },
-  ]
-
   return (
     <>
-      {/* Fixed parallax forest — stays pinned while page content scrolls over it */}
-      <div className="fixed inset-0" aria-hidden="true">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1600&q=75&fit=crop"
-          alt=""
-          className="w-full h-full object-cover forest-bg-drift"
-        />
-      </div>
-
-      {/* Page content wrapper — creates a stacking context above the fixed forest */}
+      {/* Page content wrapper — sits above the site-wide gradient wash */}
       <div className="relative z-[1]">
-        {/* ── Hero ─────────────────────────────────────────────────── */}
-        {/* Issue #1 — 70dvh on mobile so CTA is always visible without excessive scrolling */}
-        <section className="min-h-[85dvh] md:min-h-screen flex items-center pt-16 md:pt-20 pb-12 md:pb-16 relative overflow-hidden">
-          {/* Layer 1 — strong cream panel across full width on mobile, partial on md+ */}
-          <div className="absolute inset-0 bg-gradient-to-r from-cream via-cream/95 to-cream/70 z-[2] md:right-[35%] md:to-cream/0" />
-          {/* Layer 2 — soft veil, full width on mobile, partial on md+ */}
-          <div className="absolute inset-0 bg-gradient-to-r from-cream/90 via-cream/60 to-cream/30 z-[3] md:right-[40%] md:to-transparent" />
+        {/* ── Hero — full-bleed forest image with dark overlay ──────── */}
+        <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden">
+          {/* Full-bleed background image (Pexels — free for commercial use) */}
+          <Image
+            src="https://images.pexels.com/photos/31573719/pexels-photo-31573719.jpeg?auto=compress&cs=tinysrgb&w=1920"
+            alt="Sunlight streaming through a lush green forest"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          {/* Legibility overlays — darker on the left where the text sits */}
+          <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/92 via-forest-deep/70 to-forest-deep/35" />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-forest-deep/25" />
 
-        <div className="container-custom w-full relative z-10">
-          {/* Issue #6 — responsive gap */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
-            {/* Left — text */}
-            <SectionReveal>
-              <p className="label-section mb-4 md:mb-6">
-                Guwahati, Assam · North-east India
-              </p>
-              <h1 className="heading-display text-forest-deep mb-4 md:mb-6">
-                Expert Solutions for Environmental Excellence
-              </h1>
-              <p className="text-base md:text-lg xl:text-xl text-forest-deep/65 mb-8 md:mb-10 max-w-lg leading-relaxed">
-                We combine deep domain expertise, technical advisory, and compliance support to help industries, infrastructure projects, institutions, and government bodies navigate complex environmental frameworks — with confidence.
-              </p>
-              <CtaButton href="/contact">Book a Consultation</CtaButton>
-            </SectionReveal>
-
-            {/* Right — service cards grid */}
-            <SectionReveal delay={0.2}>
-              <div className="mt-8 md:mt-0">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                  {heroServices.map((service, index) => (
-                    <HeroServiceCard
-                      key={service.title}
-                      title={service.title}
-                      description={service.description}
-                      href={service.href}
-                      icon={service.icon}
-                      image={service.image}
-                      delay={0.1 + index * 0.1}
-                    />
-                  ))}
+          <div className="container-custom w-full relative z-10 pt-24 pb-20 md:pt-28 md:pb-24">
+            <div className="max-w-2xl">
+              <SectionReveal>
+                <p className="inline-flex items-center gap-2 label-section text-gold-light mb-5 md:mb-6">
+                  <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Guwahati, Assam · North-east India
+                </p>
+                <h1 className="heading-display text-cream mb-5 md:mb-6">
+                  Expert Solutions for Environmental Excellence
+                </h1>
+                <p className="text-base md:text-lg xl:text-xl text-cream/85 mb-8 md:mb-10 max-w-xl leading-relaxed">
+                  We combine deep domain expertise, technical advisory, and compliance support to help industries, infrastructure projects, institutions, and government bodies navigate complex environmental frameworks — with confidence.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                  <CtaButton href="/contact">Book a Consultation</CtaButton>
+                  <Link
+                    href="/services"
+                    className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl border border-cream/40 text-cream font-body font-semibold text-sm hover:bg-cream/10 transition-colors"
+                  >
+                    Explore our services
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
                 </div>
-              </div>
-            </SectionReveal>
+              </SectionReveal>
+            </div>
           </div>
-        </div>
-      </section>
+
+          {/* Scroll cue */}
+          <div aria-hidden="true" className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:block">
+            <svg className="w-6 h-6 text-cream/50 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        </section>
 
       {/* ── Credential Badges ── */}
       <section className="py-5 border-b border-forest-deep/8 bg-cream/70 backdrop-blur-sm">
@@ -560,7 +524,7 @@ export default function Home() {
       </div>{/* end .section-stack */}
 
       {/* ── FAQ ──────────────────────────────────────────────────── */}
-      <section className="section-padding bg-cream">
+      <section className="section-padding bg-cream/55 backdrop-blur-sm">
         <div className="container-custom">
           <SectionReveal>
             <div className="mb-6 md:mb-8">

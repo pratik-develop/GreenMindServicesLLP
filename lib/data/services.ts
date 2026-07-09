@@ -48,7 +48,7 @@ export const services: ServiceDetail[] = [
       'Inventory Works of Industrial Units / Waste / Resources',
     ],
     icon: FileSearch,
-    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&q=75',
+    image: 'https://images.pexels.com/photos/10408415/pexels-photo-10408415.jpeg?auto=compress&cs=tinysrgb&w=800',
     tagline: 'Clear evidence. Confident approvals.',
     summary: 'Understanding your project\'s environmental footprint is the first step toward a smooth clearance process. Our EIA service gives you a rigorous, credible assessment — and the confidence to proceed.',
     whatYouGet: [
@@ -86,7 +86,7 @@ export const services: ServiceDetail[] = [
       'Water / Energy / Material Balance',
     ],
     icon: Recycle,
-    image: 'https://images.unsplash.com/photo-1569163139599-0f4517e36f51?w=800&q=75',
+    image: 'https://images.pexels.com/photos/38084363/pexels-photo-38084363.jpeg?auto=compress&cs=tinysrgb&w=800',
     tagline: 'Stay compliant. Stay operational.',
     summary: 'Non-compliance with environmental regulations can halt operations, trigger penalties, and damage reputation overnight. We build the systems and habits that keep your facility firmly on the right side of the law.',
     whatYouGet: [
@@ -125,7 +125,7 @@ export const services: ServiceDetail[] = [
       'Any other Environmental Works',
     ],
     icon: Activity,
-    image: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=800&q=75',
+    image: 'https://images.pexels.com/photos/5651794/pexels-photo-5651794.jpeg?auto=compress&cs=tinysrgb&w=800',
     tagline: 'Measure what matters.',
     summary: 'Sound environmental decisions start with accurate data. Our monitoring and studies service gives you a verified, defensible baseline and an ongoing view of your environmental performance.',
     whatYouGet: [
@@ -163,7 +163,7 @@ export const services: ServiceDetail[] = [
       'ESG Consultancy',
     ],
     icon: GraduationCap,
-    image: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=800&q=75',
+    image: 'https://images.pexels.com/photos/4207909/pexels-photo-4207909.jpeg?auto=compress&cs=tinysrgb&w=800',
     tagline: 'Build the capability. Sustain the change.',
     summary: 'Compliance is only as strong as the people who implement it. We build environmental knowledge and capability inside your organisation — from board level to plant floor.',
     whatYouGet: [
