@@ -180,7 +180,7 @@ export default function Home() {
                   We combine deep domain expertise, technical advisory, and compliance support to help industries, infrastructure projects, institutions, and government bodies navigate complex environmental frameworks — with confidence.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                  <CtaButton href="/contact">Book a Consultation</CtaButton>
+                  <CtaButton href="/contact" eventName="cta_click" eventParams={{ location: 'homepage_hero', label: 'Book a Consultation' }}>Book a Consultation</CtaButton>
                   <Link
                     href="/services"
                     className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl border border-cream/40 text-cream font-body font-semibold text-sm hover:bg-cream/10 transition-colors"

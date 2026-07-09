@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Cormorant_Garamond, Jost } from 'next/font/google'
 import './globals.css'
@@ -5,6 +6,7 @@ import LenisProvider from '@/components/LenisProvider'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import GoogleAnalytics from '@/components/GoogleAnalytics'
+import RouteChangeTracker from '@/components/RouteChangeTracker'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Analytics } from '@vercel/analytics/next'
 import SkipLink from '@/components/SkipLink'
@@ -127,6 +129,9 @@ export default function RootLayout({
       <body className={`${cormorant.variable} ${jost.variable}`}>
         <SkipLink />
         <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <RouteChangeTracker />
+        </Suspense>
         <LenisProvider />
         <Navbar />
         <main id="main-content" className="min-h-screen scroll-mt-16 md:scroll-mt-20">

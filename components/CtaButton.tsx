@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { ReactNode } from 'react'
+import { trackEvent } from '@/lib/analytics'
 
 interface CtaButtonProps {
   children: ReactNode
@@ -10,6 +11,8 @@ interface CtaButtonProps {
   className?: string
   variant?: 'primary' | 'secondary' | 'outline'
   size?: 'sm' | 'md' | 'lg'
+  eventName?: string
+  eventParams?: Record<string, any>
 }
 
 export default function CtaButton({
@@ -19,6 +22,8 @@ export default function CtaButton({
   className = "",
   variant = 'primary',
   size = 'md',
+  eventName,
+  eventParams,
 }: CtaButtonProps) {
   // All sizes enforce ≥44px height (WCAG 2.5.5 touch target)
   const sizeStyles: Record<string, string> = {
@@ -37,9 +42,16 @@ export default function CtaButton({
 
   const baseStyles = `inline-flex items-center justify-center font-medium transition-shadow duration-300 rounded-xl ${sizeStyles[size]}`
 
+  const handleClick = () => {
+    if (eventName) {
+      trackEvent(eventName, eventParams)
+    }
+    onClick?.()
+  }
+
   const buttonContent = (
     <motion.button
-      onClick={onClick}
+      onClick={handleClick}
       className={`${baseStyles} ${variantStyles[variant]} ${className}`}
       whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.97 }}
@@ -51,7 +63,7 @@ export default function CtaButton({
 
   if (href) {
     return (
-      <a href={href} className="inline-block">
+      <a href={href} className="inline-block" onClick={handleClick}>
         {buttonContent}
       </a>
     )

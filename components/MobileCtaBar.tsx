@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { usePathname } from "next/navigation"
 import Link from "next/link"
+import { trackEvent } from "@/lib/analytics"
 
 export default function MobileCtaBar() {
   const pathname = usePathname()
@@ -44,6 +45,7 @@ export default function MobileCtaBar() {
       {/* Phone link */}
       <a
         href="tel:+919181018810"
+        onClick={() => trackEvent('phone_click', { location: 'mobile_cta_bar', number: '+919181018810' })}
         className="flex items-center gap-2 text-cream/70 text-sm min-h-[44px]"
       >
         {/* Phone icon */}
@@ -66,6 +68,7 @@ export default function MobileCtaBar() {
       {/* CTA link */}
       <Link
         href="/contact"
+        onClick={() => trackEvent('cta_click', { location: 'mobile_cta_bar', label: 'Get in Touch' })}
         className="bg-gradient-to-br from-forest-mid to-forest-deep text-cream
           font-semibold text-sm px-5 py-2.5 rounded-xl
           border border-forest-light/30 shadow-lg min-h-[44px]

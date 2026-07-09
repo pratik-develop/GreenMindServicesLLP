@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion"
 import { usePathname } from "next/navigation"
+import { trackEvent } from "@/lib/analytics"
 
 const WHATSAPP_URL =
   "https://wa.me/919181018810?text=Hi%20GreenMind%2C%20I%27d%20like%20to%20discuss%20my%20environmental%20compliance%20requirements."
@@ -16,6 +17,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
+      onClick={() => trackEvent('whatsapp_click', { location: pathname })}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.95 }}
       className="fixed bottom-[5.5rem] right-5 md:bottom-8 md:right-6 z-40

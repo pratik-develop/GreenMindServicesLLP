@@ -5,6 +5,7 @@ import Image from 'next/image'
 import SectionReveal from '@/components/SectionReveal'
 import CtaButton from '@/components/CtaButton'
 import FaqAccordion from '@/components/FaqAccordion'
+import { trackEvent } from '@/lib/analytics'
 const contactFaqs = [
   {
     question: 'What information should I prepare before the call?',
@@ -88,8 +89,10 @@ export default function Contact() {
       if (res.ok) {
         setSubmitStatus('success')
         setFormData({ name: '', organisation: '', email: '', phone: '', service: '', message: '', gm_verify_check: '' })
+        trackEvent('contact_form_success', { service: formData.service || 'general' })
       } else {
         setSubmitStatus('error')
+        trackEvent('contact_form_error', { status: res.status })
       }
     } catch {
       setSubmitStatus('error')
@@ -184,7 +187,7 @@ export default function Contact() {
                       <p className="text-forest-deep/65 mb-5 leading-relaxed text-sm">
                         Schedule a complimentary 30-minute discovery call with one of our consultants to discuss your requirements.
                       </p>
-                      <CtaButton href="mailto:greenmindservicesllp@gmail.com">Email us directly</CtaButton>
+                      <CtaButton href="mailto:greenmindservicesllp@gmail.com" eventName="email_click" eventParams={{ location: 'contact_page' }}>Email us directly</CtaButton>
                     </div>
                   )}
 

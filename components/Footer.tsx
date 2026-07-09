@@ -1,5 +1,20 @@
+"use client"
+
 import Link from 'next/link'
 import Logo from './Logo'
+import { trackEvent } from '@/lib/analytics'
+
+function trackPhone(number: string) {
+  trackEvent('phone_click', { location: 'footer', number })
+}
+
+function trackEmail() {
+  trackEvent('email_click', { location: 'footer' })
+}
+
+function trackLinkedIn() {
+  trackEvent('linkedin_click', { location: 'footer' })
+}
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -23,6 +38,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GreenMind on LinkedIn"
+              onClick={trackLinkedIn}
               className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-cream/20 hover:bg-cream/10 transition-colors"
             >
               <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -73,13 +89,13 @@ export default function Footer() {
             <h4 className="font-body font-semibold text-[10px] uppercase tracking-widest text-cream/40 mb-3">Contact</h4>
             <ul className="space-y-2 text-xs text-cream/55">
               <li>
-                <a href="mailto:greenmindservicesllp@gmail.com" className="hover:text-cream transition-colors break-all">
+                <a href="mailto:greenmindservicesllp@gmail.com" onClick={trackEmail} className="hover:text-cream transition-colors break-all">
                   greenmindservicesllp@gmail.com
                 </a>
               </li>
               <li className="flex flex-col gap-0.5">
-                <a href="tel:+919181018810" className="hover:text-cream transition-colors">+91 91810 18810</a>
-                <a href="tel:+919181018811" className="hover:text-cream transition-colors">+91 91810 18811</a>
+                <a href="tel:+919181018810" onClick={() => trackPhone('+919181018810')} className="hover:text-cream transition-colors">+91 91810 18810</a>
+                <a href="tel:+919181018811" onClick={() => trackPhone('+919181018811')} className="hover:text-cream transition-colors">+91 91810 18811</a>
               </li>
               <li className="text-cream/35 leading-snug">
                 House No. 45, Jai Ram Boro Path<br />
