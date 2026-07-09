@@ -80,7 +80,7 @@ export default function Contact() {
     setIsSubmitting(true)
     setSubmitStatus('idle')
     try {
-      const res = await fetch('/api/enquiry', {
+      const res = await fetch('/api/enquiry/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
