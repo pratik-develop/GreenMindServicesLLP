@@ -44,20 +44,20 @@ export default function BlogCard({ title, excerpt, category, date, slug, image, 
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-forest-deep/50 via-forest-deep/10 to-transparent" />
-              <span className="absolute top-4 left-4 px-3 py-1.5 bg-forest-deep/85 text-cream text-xs font-body font-semibold rounded-full backdrop-blur-sm border border-cream/20">
+              <span className="absolute top-4 left-4 px-3 py-1.5 bg-primary/85 text-cream text-xs font-body font-semibold rounded-full backdrop-blur-sm border border-cream/20">
                 {category}
               </span>
             </div>
             {/* Content — right half */}
             <div className="p-6 md:p-8 lg:p-10 flex flex-col justify-center">
-              <p className="text-forest-deep/40 text-xs font-body mb-3">{date}</p>
-              <h2 className="font-display font-bold text-xl md:text-2xl lg:text-3xl text-forest-deep mb-3 group-hover:text-forest-mid transition-colors leading-snug">
+              <p className="text-primary/40 text-xs font-body mb-3">{date}</p>
+              <h2 className="font-display font-bold text-xl md:text-2xl lg:text-3xl text-primary mb-3 group-hover:text-secondary transition-colors leading-snug">
                 {title}
               </h2>
-              <p className="text-forest-deep/60 text-sm md:text-base leading-relaxed mb-6 flex-1">
+              <p className="text-primary/60 text-sm md:text-base leading-relaxed mb-6 flex-1">
                 {excerpt}
               </p>
-              <div className="flex items-center text-forest-mid text-sm font-body font-semibold group-hover:translate-x-1 transition-transform duration-300">
+              <div className="flex items-center text-secondary text-sm font-body font-semibold group-hover:translate-x-1 transition-transform duration-300">
                 Read article
                 <svg className="w-5 h-5 ml-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -76,7 +76,7 @@ export default function BlogCard({ title, excerpt, category, date, slug, image, 
       <TrackedLink href={`/resources/${slug}`} className="group block h-full" eventName="resource_click" eventParams={{ slug, title, category, location: 'grid' }}>
         <article className="card-base card-hover h-full flex flex-col overflow-hidden">
           {/* Image */}
-          <div className="relative h-44 sm:h-48 overflow-hidden bg-forest-deep/10 flex-shrink-0">
+          <div className="relative h-44 sm:h-48 overflow-hidden bg-primary/10 flex-shrink-0">
             <Image
               src={thumbnail}
               alt={title}
@@ -85,21 +85,21 @@ export default function BlogCard({ title, excerpt, category, date, slug, image, 
               sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/55 via-forest-deep/10 to-transparent" />
-            <span className="absolute top-3 left-3 px-2.5 py-1 bg-forest-deep/85 text-cream text-xs font-body font-semibold rounded-full backdrop-blur-sm border border-cream/20">
+            <span className="absolute top-3 left-3 px-2.5 py-1 bg-primary/85 text-cream text-xs font-body font-semibold rounded-full backdrop-blur-sm border border-cream/20">
               {category}
             </span>
           </div>
 
           {/* Content */}
           <div className="p-5 md:p-6 flex flex-col flex-1">
-            <p className="text-forest-deep/40 text-xs font-body mb-2.5">{date}</p>
-            <h3 className="heading-card text-forest-deep mb-2 group-hover:text-forest-mid transition-colors line-clamp-2 leading-snug">
+            <p className="text-primary/40 text-xs font-body mb-2.5">{date}</p>
+            <h3 className="heading-card text-primary mb-2 group-hover:text-secondary transition-colors line-clamp-2 leading-snug">
               {title}
             </h3>
-            <p className="text-forest-deep/58 text-sm leading-relaxed flex-1 line-clamp-2">
+            <p className="text-primary/58 text-sm leading-relaxed flex-1 line-clamp-2">
               {excerpt}
             </p>
-            <div className="flex items-center text-forest-mid text-sm font-body font-semibold mt-4 pt-4 border-t border-forest-mid/12 group-hover:translate-x-1 transition-transform duration-300">
+            <div className="flex items-center text-secondary text-sm font-body font-semibold mt-4 pt-4 border-t border-secondary/12 group-hover:translate-x-1 transition-transform duration-300">
               Read more
               <svg className="w-4 h-4 ml-1.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

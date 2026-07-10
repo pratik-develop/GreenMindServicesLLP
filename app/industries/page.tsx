@@ -77,10 +77,10 @@ export default function Industries() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <SectionReveal>
               <p className="label-section mb-4">Industries</p>
-              <h1 className="heading-display text-forest-deep mb-4 md:mb-6">
+              <h1 className="heading-display text-primary mb-4 md:mb-6">
                 Industries We Serve
               </h1>
-              <p className="text-base md:text-xl text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-base md:text-xl text-primary/65 max-w-2xl leading-relaxed">
                 Scientific and cost-effective environmental solutions tailored to the compliance needs of six key sectors across North-east India and beyond.
               </p>
             </SectionReveal>
@@ -102,7 +102,7 @@ export default function Industries() {
       </section>
 
       {/* Industries Grid */}
-      <section className="section-padding bg-forest-deep/5">
+      <section className="section-padding bg-primary/5">
         <div className="container-custom">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((industry, index) => (
@@ -119,22 +119,22 @@ export default function Industries() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/60 via-forest-deep/20 to-transparent" />
                     {/* Icon badge bottom-left */}
-                    <div className="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-cream/15 backdrop-blur-sm border border-cream/25 flex items-center justify-center">
+                    <div className="absolute bottom-3 left-4 w-10 h-10 rounded-xl bg-page/15 backdrop-blur-sm border border-cream/25 flex items-center justify-center">
                       <industry.icon className="w-5 h-5 text-cream" />
                     </div>
                   </div>
                   <div className="p-6 md:p-7 flex flex-col flex-1">
-                    <h3 className="heading-card text-forest-deep mb-3">
+                    <h3 className="heading-card text-primary mb-3">
                       {industry.title}
                     </h3>
-                    <p className="text-forest-deep/60 text-sm md:text-base leading-relaxed mb-5 flex-1">
+                    <p className="text-primary/60 text-sm md:text-base leading-relaxed mb-5 flex-1">
                       {industry.description}
                     </p>
-                    <div className="border-t border-forest-deep/8 pt-4">
-                      <p className="text-xs font-body font-semibold text-forest-deep/40 uppercase tracking-wider mb-3">Key Services</p>
+                    <div className="border-t border-card pt-4">
+                      <p className="text-xs font-body font-semibold text-primary/40 uppercase tracking-wider mb-3">Key Services</p>
                       <ul className="space-y-1.5">
                         {industry.services.map((service) => (
-                          <li key={service} className="flex items-center gap-2.5 text-sm text-forest-deep/65">
+                          <li key={service} className="flex items-center gap-2.5 text-sm text-primary/65">
                             <span className="w-1.5 h-1.5 rounded-full bg-gold/70 flex-shrink-0" />
                             {service}
                           </li>
@@ -143,7 +143,7 @@ export default function Industries() {
                     </div>
                     <button
                       onClick={() => toggleCard(index)}
-                      className="md:hidden mt-3 flex items-center gap-1.5 text-xs text-forest-mid font-body font-semibold hover:text-forest-deep transition-colors"
+                      className="md:hidden mt-3 flex items-center gap-1.5 text-xs text-secondary font-body font-semibold hover:text-primary transition-colors"
                     >
                       <svg
                         className={`w-3.5 h-3.5 transition-transform ${expandedCards.includes(index) ? 'rotate-180' : ''}`}
@@ -154,15 +154,15 @@ export default function Industries() {
                       {expandedCards.includes(index) ? 'Hide compliance details' : 'See compliance details'}
                     </button>
                     <div className={`${expandedCards.includes(index) ? 'block' : 'hidden'} md:block`}>
-                      <div className="mt-4 pt-3 border-t border-forest-deep/8">
-                        <p className="text-[10px] font-body font-semibold uppercase tracking-wider text-forest-deep/35 mb-1">Key Regulation</p>
-                        <p className="text-xs text-forest-mid/80 font-body">{industry.regulation}</p>
+                      <div className="mt-4 pt-3 border-t border-card">
+                        <p className="text-[10px] font-body font-semibold uppercase tracking-wider text-primary/35 mb-1">Key Regulation</p>
+                        <p className="text-xs text-secondary/80 font-body">{industry.regulation}</p>
                       </div>
                       <div className="mt-3 flex items-start gap-2 bg-gold/6 border border-gold/15 rounded-lg px-3 py-2">
                         <svg className="w-3.5 h-3.5 text-gold mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
                         </svg>
-                        <p className="text-[11px] text-forest-deep/60 leading-relaxed">{industry.contactHint}</p>
+                        <p className="text-[11px] text-primary/60 leading-relaxed">{industry.contactHint}</p>
                       </div>
                     </div>
                   </div>

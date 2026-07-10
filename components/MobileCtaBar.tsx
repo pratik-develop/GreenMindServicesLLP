@@ -89,9 +89,9 @@ export default function MobileCtaBar() {
       <Link
         href="/contact"
         onClick={() => trackEvent('cta_click', { location: 'mobile_cta_bar', label: 'Get in Touch' })}
-        className="bg-gradient-to-br from-forest-mid to-forest-deep text-cream
+        className="bg-gradient-to-br from-secondary to-forest-deep text-cream
           font-semibold text-sm px-5 py-2.5 rounded-xl
-          border border-forest-light/30 shadow-lg min-h-[44px]
+          border border-secondary/30 shadow-lg min-h-[44px]
           flex items-center"
       >
         Get in Touch

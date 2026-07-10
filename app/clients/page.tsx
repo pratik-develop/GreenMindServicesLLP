@@ -82,14 +82,15 @@ export default function Clients() {
       {/* Hero Section */}
       <section className="relative min-h-[55vh] flex items-center overflow-hidden text-cream">
         <ForestBackground variant="ken" overlay="dark" scene="canopy" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-forest-deep/50 via-transparent to-transparent dark:from-forest-deep/70" />
         <div className="relative z-10 container-custom section-padding">
           <SectionReveal>
-            <div className="max-w-4xl mx-auto text-center">
-              <p className="label-section mb-4">Our Clients</p>
-              <h1 className="heading-display text-cream mb-6 tracking-tight">
+            <div className="max-w-4xl mx-auto text-center bg-gradient-to-b from-forest-deep/40 to-forest-deep/10 dark:from-forest-deep/60 dark:to-forest-deep/30 backdrop-blur-sm border border-cream/10 rounded-2xl p-6 md:p-10 shadow-2xl shadow-forest-deep/40">
+              <p className="label-section text-gold-light mb-4">Our Clients</p>
+              <h1 className="heading-display text-cream text-shadow-hero mb-6 tracking-tight">
                 Our Valued Clients
               </h1>
-              <p className="text-xl md:text-2xl text-cream/90 font-body max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-cream/90 text-shadow-soft font-body max-w-3xl mx-auto leading-relaxed">
                 Trusted by leading organizations across sectors for environmental excellence and sustainable growth.
               </p>
             </div>
@@ -98,7 +99,7 @@ export default function Clients() {
       </section>
 
       {/* Stats Section */}
-      <section className="section-padding bg-cream">
+      <section className="section-padding bg-page">
         <div className="container-custom">
           <StatsGrid
             stats={[
@@ -112,15 +113,15 @@ export default function Clients() {
       </section>
 
       {/* Client Categories */}
-      <section className="section-padding bg-forest-deep/5">
+      <section className="section-padding bg-primary/5">
         <div className="container-custom">
           <SectionReveal>
             <div className="text-center mb-16">
               <p className="label-section mb-4">Client Segments</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 Client Segments
               </h2>
-              <p className="text-lg text-forest-deep/65 font-body max-w-2xl mx-auto">
+              <p className="text-lg text-primary/65 font-body max-w-2xl mx-auto">
                 Serving diverse organizations with tailored environmental solutions across multiple sectors.
               </p>
             </div>
@@ -130,20 +131,20 @@ export default function Clients() {
             {clientCategories.map((category, index) => (
               <SectionReveal key={category.title} delay={index * 0.1}>
                 <div className="card-base card-hover p-6 md:p-8 h-full">
-                  <div className="w-16 h-16 bg-forest-mid/10 rounded-2xl flex items-center justify-center mb-6">
-                    <category.icon className="w-8 h-8 text-forest-mid" />
+                  <div className="w-16 h-16 bg-secondary/10 rounded-2xl flex items-center justify-center mb-6">
+                    <category.icon className="w-8 h-8 text-secondary" />
                   </div>
-                  <h3 className="heading-card text-forest-deep mb-3">
+                  <h3 className="heading-card text-primary mb-3">
                     {category.title}
                   </h3>
-                  <p className="text-forest-deep/65 font-body mb-6 leading-relaxed">
+                  <p className="text-primary/65 font-body mb-6 leading-relaxed">
                     {category.description}
                   </p>
                   <div className="space-y-2">
-                    <h4 className="font-semibold text-forest-deep font-body mb-3">Key Clients:</h4>
+                    <h4 className="font-semibold text-primary font-body mb-3">Key Clients:</h4>
                     <ul className="space-y-1">
                       {category.clients.map((client) => (
-                        <li key={client} className="flex items-center text-sm text-forest-deep/65 font-body">
+                        <li key={client} className="flex items-center text-sm text-primary/65 font-body">
                           <div className="w-1.5 h-1 bg-gold rounded-full mr-3" />
                           {client}
                         </li>
@@ -163,10 +164,10 @@ export default function Clients() {
           <SectionReveal>
             <div className="text-center mb-16">
               <p className="label-section mb-4">What Our Clients Say</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 Client Testimonials
               </h2>
-              <p className="text-lg text-forest-deep/65 font-body max-w-2xl mx-auto">
+              <p className="text-lg text-primary/65 font-body max-w-2xl mx-auto">
                 Hear what our clients have to say about their experience working with GreenMind.
               </p>
             </div>

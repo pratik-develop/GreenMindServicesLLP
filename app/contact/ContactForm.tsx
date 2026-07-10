@@ -103,9 +103,9 @@ export default function Contact() {
 
   const getInputClasses = (hasError: boolean) => {
     if (hasError) {
-      return 'form-input bg-white border-red-400 focus:ring-red-400/20'
+      return 'form-input bg-page-elevated border-red-400 focus:ring-red-400/20'
     }
-    return 'form-input bg-white'
+    return 'form-input bg-page-elevated'
   }
 
   return (
@@ -116,10 +116,10 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <SectionReveal>
               <p className="label-section mb-4">Contact us</p>
-              <h1 className="heading-display text-forest-deep mb-4 md:mb-6">
+              <h1 className="heading-display text-primary mb-4 md:mb-6">
                 We&apos;d love to hear from you
               </h1>
-              <p className="text-base md:text-xl text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-base md:text-xl text-primary/65 max-w-2xl leading-relaxed">
                 Click below to schedule a call with an environmental expert. Alternatively, drop us a message and we&apos;ll respond within 24 hours.
               </p>
             </SectionReveal>
@@ -141,13 +141,13 @@ export default function Contact() {
       </section>
 
       {/* ── What happens next ── */}
-      <section className="section-padding-tight border-b border-forest-deep/8">
+      <section className="section-padding-tight border-b border-card">
         <div className="container-custom">
           <SectionReveal>
             <p className="label-section mb-6 text-center">What to expect</p>
             <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
               {/* Connector line — desktop only */}
-              <div aria-hidden="true" className="hidden sm:block absolute top-5 left-[calc(16.7%+1rem)] right-[calc(16.7%+1rem)] h-px bg-forest-deep/10" />
+              <div aria-hidden="true" className="hidden sm:block absolute top-5 left-[calc(16.7%+1rem)] right-[calc(16.7%+1rem)] h-px bg-primary/10" />
               {[
                 { step: '01', title: 'We call within 24 hrs', desc: 'A consultant reviews your message and calls or emails to understand your requirements.', icon: '📞' },
                 { step: '02', title: 'Free 30-min scoping call', desc: 'We clarify your project, timeline, and obligations — no obligation, no charge.', icon: '🗓' },
@@ -155,11 +155,11 @@ export default function Contact() {
               ].map((item, i) => (
                 <SectionReveal key={i} delay={i * 0.12}>
                   <div className="text-center px-2">
-                    <div className="w-12 h-12 rounded-full bg-forest-deep/6 border border-forest-deep/10 flex items-center justify-center mx-auto mb-3">
-                      <span className="font-display font-bold text-forest-mid text-lg">{item.step}</span>
+                    <div className="w-12 h-12 rounded-full bg-primary/5 border border-card flex items-center justify-center mx-auto mb-3">
+                      <span className="font-display font-bold text-secondary text-lg">{item.step}</span>
                     </div>
-                    <h3 className="font-display font-semibold text-forest-deep text-base mb-1.5">{item.title}</h3>
-                    <p className="text-forest-deep/55 text-sm leading-relaxed">{item.desc}</p>
+                    <h3 className="font-display font-semibold text-primary text-base mb-1.5">{item.title}</h3>
+                    <p className="text-primary/55 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </SectionReveal>
               ))}
@@ -169,7 +169,7 @@ export default function Contact() {
       </section>
 
       {/* ── Contact block ── */}
-      <section className="section-padding bg-forest-deep/5">
+      <section className="section-padding bg-primary/5">
         <div className="container-custom">
           {/* Issue #13 — responsive gap */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 md:gap-10 lg:gap-12">
@@ -181,10 +181,10 @@ export default function Contact() {
                   {/* Book a call */}
                   {submitStatus !== 'success' && (
                     <div>
-                      <h2 className="heading-card text-forest-deep mb-3">
+                      <h2 className="heading-card text-primary mb-3">
                         Book a free consultation
                       </h2>
-                      <p className="text-forest-deep/65 mb-5 leading-relaxed text-sm">
+                      <p className="text-primary/65 mb-5 leading-relaxed text-sm">
                         Schedule a complimentary 30-minute discovery call with one of our consultants to discuss your requirements.
                       </p>
                       <CtaButton href="mailto:greenmindservicesllp@gmail.com" eventName="email_click" eventParams={{ location: 'contact_page' }}>Email us directly</CtaButton>
@@ -192,68 +192,68 @@ export default function Contact() {
                   )}
 
                   {/* Office details */}
-                  <div className="border-t border-forest-deep/10 pt-8 space-y-5">
+                  <div className="border-t border-card pt-8 space-y-5">
                     <div className="flex items-start gap-4">
-                      <span className="w-11 h-11 rounded-full bg-forest-deep/8 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-5 h-5 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span className="w-11 h-11 rounded-full bg-primary/8 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                       </span>
                       <div>
-                        <p className="font-body font-semibold text-forest-deep text-sm mb-1">Office</p>
-                        <p className="text-forest-deep/65 text-sm leading-relaxed">House No. 45, Jai Ram Boro Path<br />Garchuk, Kamrup (M)<br />Assam — 781035</p>
+                        <p className="font-body font-semibold text-primary text-sm mb-1">Office</p>
+                        <p className="text-primary/65 text-sm leading-relaxed">House No. 45, Jai Ram Boro Path<br />Garchuk, Kamrup (M)<br />Assam — 781035</p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <span className="w-11 h-11 rounded-full bg-forest-deep/8 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-5 h-5 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span className="w-11 h-11 rounded-full bg-primary/8 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
                       </span>
                       <div>
-                        <p className="font-body font-semibold text-forest-deep text-sm mb-1">Email</p>
-                        <a href="mailto:greenmindservicesllp@gmail.com" className="text-forest-mid text-sm hover:underline">
+                        <p className="font-body font-semibold text-primary text-sm mb-1">Email</p>
+                        <a href="mailto:greenmindservicesllp@gmail.com" className="text-secondary text-sm hover:underline">
                           greenmindservicesllp@gmail.com
                         </a>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <span className="w-11 h-11 rounded-full bg-forest-deep/8 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-5 h-5 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span className="w-11 h-11 rounded-full bg-primary/8 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
                       </span>
                       <div>
-                        <p className="font-body font-semibold text-forest-deep text-sm mb-1">Phone</p>
-                        <a href="tel:+919181018810" className="text-forest-mid text-sm hover:underline block">+91 91810 18810</a>
-                        <a href="tel:+919181018811" className="text-forest-mid text-sm hover:underline block">+91 91810 18811</a>
+                        <p className="font-body font-semibold text-primary text-sm mb-1">Phone</p>
+                        <a href="tel:+919181018810" className="text-secondary text-sm hover:underline block">+91 91810 18810</a>
+                        <a href="tel:+919181018811" className="text-secondary text-sm hover:underline block">+91 91810 18811</a>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-4">
-                      <span className="w-11 h-11 rounded-full bg-forest-deep/8 flex items-center justify-center flex-shrink-0">
-                        <svg className="w-5 h-5 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <span className="w-11 h-11 rounded-full bg-primary/8 flex items-center justify-center flex-shrink-0">
+                        <svg className="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </span>
                       <div>
-                        <p className="font-body font-semibold text-forest-deep text-sm mb-1">Office hours</p>
-                        <p className="text-forest-deep/65 text-sm">Monday – Friday<br />9:00 AM – 6:00 PM IST</p>
+                        <p className="font-body font-semibold text-primary text-sm mb-1">Office hours</p>
+                        <p className="text-primary/65 text-sm">Monday – Friday<br />9:00 AM – 6:00 PM IST</p>
                       </div>
                     </div>
 
                     {/* OpenStreetMap embed */}
-                    <div className="mt-2 rounded-xl overflow-hidden border border-forest-deep/10">
+                    <div className="mt-2 rounded-xl overflow-hidden border border-card">
                       <iframe
                         src="https://www.openstreetmap.org/export/embed.html?bbox=91.6762%2C26.0936%2C91.7362%2C26.1336&layer=mapnik&marker=26.1136%2C91.7062"
                         width="100%"
                         height="200"
                         loading="lazy"
                         title="GreenMind Services LLP office location"
-                        className="w-full h-48 rounded-xl border border-forest-deep/10"
+                        className="w-full h-48 rounded-xl border border-card"
                         style={{ border: 0 }}
                       />
                     </div>
@@ -263,7 +263,7 @@ export default function Contact() {
                       href="https://www.google.com/maps/dir/?api=1&destination=26.1136,91.7062"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-forest-mid text-sm font-body font-semibold hover:underline min-h-[44px]"
+                      className="inline-flex items-center gap-2 text-secondary text-sm font-body font-semibold hover:underline min-h-[44px]"
                     >
                       <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
@@ -279,16 +279,16 @@ export default function Contact() {
             <div className="lg:col-span-3">
               <SectionReveal delay={0.15}>
                 {/* Issue #5 — responsive form padding */}
-                <form onSubmit={handleSubmit} className="bg-white/60 backdrop-blur-sm rounded-2xl p-5 md:p-8 border border-forest-deep/10 space-y-5">
+                <form onSubmit={handleSubmit} className="bg-card/70 backdrop-blur-sm rounded-2xl p-5 md:p-8 border border-card space-y-5">
                   {submitStatus === 'success' && (
                     <div className="p-6 rounded-xl bg-sage/10 border border-sage/25 text-center">
                       <div className="w-12 h-12 rounded-full bg-sage/20 flex items-center justify-center mx-auto mb-3">
-                        <svg className="w-6 h-6 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
-                      <h3 className="font-display font-semibold text-forest-deep text-lg mb-1">Message received!</h3>
-                      <p className="text-forest-deep/65 text-sm">We respond to all enquiries within 24 business hours. You&apos;ll hear from us soon.</p>
+                      <h3 className="font-display font-semibold text-primary text-lg mb-1">Message received!</h3>
+                      <p className="text-primary/65 text-sm">We respond to all enquiries within 24 business hours. You&apos;ll hear from us soon.</p>
                     </div>
                   )}
                   {submitStatus === 'error' && (
@@ -304,7 +304,7 @@ export default function Contact() {
                     <>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                          <label className="form-label">Name <span className="text-forest-mid">*</span></label>
+                          <label className="form-label">Name <span className="text-secondary">*</span></label>
                           <input 
                             type="text" 
                             name="name" 
@@ -327,14 +327,14 @@ export default function Contact() {
                             value={formData.organisation} 
                             onChange={handleChange}
                             placeholder="Company or org name" 
-                            className="form-input bg-white" 
+                            className="form-input bg-page-elevated" 
                           />
                         </div>
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                          <label className="form-label">Email <span className="text-forest-mid">*</span></label>
+                          <label className="form-label">Email <span className="text-secondary">*</span></label>
                           <input 
                             type="email" 
                             name="email" 
@@ -357,14 +357,14 @@ export default function Contact() {
                             value={formData.phone} 
                             onChange={handleChange}
                             placeholder="+91 98765 43210" 
-                            className="form-input bg-white" 
+                            className="form-input bg-page-elevated" 
                           />
                         </div>
                       </div>
 
                       <div>
                         <label className="form-label">Service of interest</label>
-                        <select name="service" value={formData.service} onChange={handleChange} className="form-input bg-white">
+                        <select name="service" value={formData.service} onChange={handleChange} className="form-input bg-page-elevated">
                           <option value="">Select a service…</option>
                           <option value="eia-compliance">Environmental Impact Survey &amp; Its Compliance</option>
                           <option value="waste-pollution">Waste &amp; Pollution Management</option>
@@ -376,7 +376,7 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <label className="form-label">Message <span className="text-forest-mid">*</span></label>
+                        <label className="form-label">Message <span className="text-secondary">*</span></label>
                         <textarea 
                           name="message" 
                           required 
@@ -397,7 +397,7 @@ export default function Contact() {
                         style={{ display: 'none' }} tabIndex={-1} autoComplete="off" aria-hidden="true" />
 
                       {/* Response-time trust callout */}
-                      <p className="text-xs text-forest-deep/45 flex items-center gap-1.5">
+                      <p className="text-xs text-primary/45 flex items-center gap-1.5">
                         <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -407,7 +407,7 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full min-h-[48px] px-8 py-3.5 bg-gradient-to-br from-forest-mid to-forest-deep text-cream font-body font-semibold text-sm rounded-xl shadow-lg hover:shadow-xl transition-shadow disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="w-full min-h-[48px] px-8 py-3.5 bg-gradient-to-br from-secondary to-forest-deep text-cream font-body font-semibold text-sm rounded-xl shadow-lg hover:shadow-xl transition-shadow disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
                           <span className="flex items-center justify-center gap-2">
@@ -434,10 +434,10 @@ export default function Contact() {
           <SectionReveal>
             <div className="mb-12">
               <p className="label-section mb-4">FAQ</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 Frequently asked questions
               </h2>
-              <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-primary/65 max-w-2xl leading-relaxed">
                 Here are the questions our clients ask most before getting in touch.
               </p>
             </div>
@@ -461,7 +461,7 @@ export default function Contact() {
               <div className="flex flex-col sm:flex-row gap-3 shrink-0 justify-center">
                 <a
                   href="tel:+919181018810"
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-gold text-forest-deep font-body font-semibold text-sm shadow-lg hover:shadow-xl transition-shadow"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-gold text-primary font-body font-semibold text-sm shadow-lg hover:shadow-xl transition-shadow"
                 >
                   <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -470,7 +470,7 @@ export default function Contact() {
                 </a>
                 <a
                   href="mailto:greenmindservicesllp@gmail.com"
-                  className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl border border-cream/30 text-cream font-body font-semibold text-sm hover:bg-cream/10 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl border border-cream/30 text-cream font-body font-semibold text-sm hover:bg-page/10 transition-colors"
                 >
                   Email us
                 </a>

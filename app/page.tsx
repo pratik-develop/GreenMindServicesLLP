@@ -149,20 +149,23 @@ export default function Home() {
     <>
       {/* Page content wrapper — sits above the site-wide gradient wash */}
       <div className="relative z-[1]">
-        {/* ── Hero — full-bleed forest image with dark overlay ──────── */}
+        {/* ── Hero — full-bleed forest image with layered gradients ──────── */}
         <section className="relative min-h-[90vh] md:min-h-screen flex items-center overflow-hidden">
-          {/* Full-bleed background image (Pexels — free for commercial use) */}
-          <Image
-            src="https://images.pexels.com/photos/31573719/pexels-photo-31573719.jpeg?auto=compress&cs=tinysrgb&w=1920"
-            alt="Sunlight streaming through a lush green forest"
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
+          {/* Full-bleed forest background — fixed attachment so it stays static while content scrolls */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -z-10 bg-cover bg-center bg-fixed bg-no-repeat dark:brightness-75"
+            style={{
+              backgroundImage: "url('https://images.pexels.com/photos/31573719/pexels-photo-31573719.jpeg?auto=compress&cs=tinysrgb&w=1920')",
+            }}
           />
-          {/* Legibility overlays — darker on the left where the text sits */}
-          <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/92 via-forest-deep/70 to-forest-deep/35" />
-          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/80 via-transparent to-forest-deep/25" />
+
+          {/* Layered legibility overlays */}
+          {/* Top darkening so the navbar stays readable over bright sky/sunshine */}
+          <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-forest-deep/80 to-transparent dark:from-forest-deep/95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/35 via-forest-deep/15 to-forest-deep/5 dark:from-forest-deep/75 dark:via-forest-deep/50 dark:to-forest-deep/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/40 via-forest-deep/10 to-forest-deep/5 dark:from-forest-deep/65 dark:via-forest-deep/15 dark:to-forest-deep/15" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left_center,_var(--tw-gradient-stops))] from-forest-deep/30 via-forest-deep/10 to-transparent dark:from-forest-deep/50 dark:via-forest-deep/20" />
 
           <div className="container-custom w-full relative z-10 pt-24 pb-20 md:pt-28 md:pb-24">
             <div className="max-w-2xl">
@@ -174,64 +177,73 @@ export default function Home() {
                   </svg>
                   Guwahati, Assam · North-east India
                 </p>
-                <h1 className="heading-display text-cream mb-5 md:mb-6">
-                  Expert Solutions for Environmental Excellence
-                </h1>
-                <p className="text-base md:text-lg xl:text-xl text-cream/85 mb-8 md:mb-10 max-w-xl leading-relaxed">
-                  We combine deep domain expertise, technical advisory, and compliance support to help industries, infrastructure projects, institutions, and government bodies navigate complex environmental frameworks — with confidence.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                  <CtaButton href="/contact" eventName="cta_click" eventParams={{ location: 'homepage_hero', label: 'Book a Consultation' }}>Book a Consultation</CtaButton>
-                  <TrackedLink
-                    href="/services"
-                    eventName="cta_click"
-                    eventParams={{ location: 'homepage_hero', label: 'Explore our services' }}
-                    className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl border border-cream/40 text-cream font-body font-semibold text-sm hover:bg-cream/10 transition-colors"
-                  >
-                    Explore our services
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </TrackedLink>
+                <div className="bg-gradient-to-br from-forest-deep/60 to-forest-deep/30 dark:from-forest-deep/75 dark:to-forest-deep/45 backdrop-blur-md border border-cream/10 dark:border-cream/15 rounded-2xl p-6 md:p-8 lg:p-10 shadow-2xl shadow-forest-deep/40">
+                  <h1 className="heading-display text-cream text-shadow-hero mb-5 md:mb-6">
+                    Expert Solutions for Environmental Excellence
+                  </h1>
+                  <p className="text-base md:text-lg xl:text-xl text-cream/90 text-shadow-soft mb-8 md:mb-10 max-w-xl leading-relaxed">
+                    We combine deep domain expertise, technical advisory, and compliance support to help industries, infrastructure projects, institutions, and government bodies navigate complex environmental frameworks — with confidence.
+                  </p>
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <span className="hidden sm:inline-block">
+                      <CtaButton href="/contact" eventName="cta_click" eventParams={{ location: 'homepage_hero', label: 'Book a Consultation' }}>Book a Consultation</CtaButton>
+                    </span>
+                    <TrackedLink
+                      href="#services"
+                      eventName="cta_click"
+                      eventParams={{ location: 'homepage_hero', label: 'Explore our services' }}
+                      className="inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl border border-cream/40 text-cream font-body font-semibold text-sm bg-page/5 hover:bg-page/10 transition-colors"
+                    >
+                      Explore our services
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </TrackedLink>
+                  </div>
                 </div>
               </SectionReveal>
             </div>
           </div>
 
+          {/* Floating credentials bar — full width */}
+          <div className="absolute bottom-0 left-0 right-0 z-20">
+            <SectionReveal delay={0.2}>
+              <div className="bg-gradient-to-r from-page/55 via-page/70 to-page/55 dark:from-forest-deep/55 dark:via-forest-deep/70 dark:to-forest-deep/55 backdrop-blur-lg border-t border-card/60 shadow-2xl">
+                <div className="container-custom py-4 md:py-5">
+                  <div className="flex flex-wrap justify-center gap-x-5 gap-y-3 md:gap-x-10">
+                    {[
+                      { label: 'DPIIT Recognised', sub: 'Startup India' },
+                      { label: 'UDYAM Registered', sub: 'MSME · Govt of India' },
+                      { label: 'ISO Certified', sub: '9001 · 14001 · 29990' },
+                      { label: 'MoEF&CC Compliant', sub: 'EIA Notification 2006' },
+                      { label: 'NABL Lab Partners', sub: 'Accredited Analysis' },
+                      { label: 'NGT Qualified', sub: 'Tribunal-Ready Reports' },
+                    ].map((badge) => (
+                      <div key={badge.label} className="flex items-center gap-2">
+                        <span className="w-6 h-6 rounded-full bg-secondary/10 border border-secondary/20 flex items-center justify-center flex-shrink-0">
+                          <svg className="w-3 h-3 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                          </svg>
+                        </span>
+                        <div>
+                          <p className="font-body font-semibold text-xs text-primary dark:text-cream text-shadow-soft">{badge.label}</p>
+                          <p className="text-primary/55 dark:text-cream/55 text-[10px]">{badge.sub}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </SectionReveal>
+          </div>
+
           {/* Scroll cue */}
-          <div aria-hidden="true" className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden md:block">
-            <svg className="w-6 h-6 text-cream/50 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div aria-hidden="true" className="absolute bottom-20 left-1/2 -translate-x-1/2 z-10 hidden md:block">
+            <svg className="w-6 h-6 text-cream/60 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
         </section>
-
-      {/* ── Credential Badges ── */}
-      <section className="py-5 border-b border-forest-deep/8 bg-cream/70 backdrop-blur-sm">
-        <div className="container-custom">
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-3 md:gap-x-8 [&::-webkit-scrollbar]:hidden">
-            {[
-              { label: 'DPIIT Recognised', sub: 'Startup India', color: 'text-forest-mid' },
-              { label: 'UDYAM Registered', sub: 'MSME · Govt of India', color: 'text-forest-mid' },
-              { label: 'MoEF&CC Compliant', sub: 'EIA Notification 2006', color: 'text-forest-mid' },
-              { label: 'NABL Lab Partners', sub: 'Accredited Analysis', color: 'text-forest-mid' },
-              { label: 'NGT Qualified', sub: 'Tribunal-Ready Reports', color: 'text-forest-mid' },
-            ].map((badge) => (
-              <div key={badge.label} className="flex items-center gap-2.5">
-                <span className="w-7 h-7 rounded-full bg-forest-mid/10 border border-forest-mid/20 flex items-center justify-center flex-shrink-0">
-                  <svg className="w-3.5 h-3.5 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                </span>
-                <div>
-                  <p className={`font-body font-semibold text-xs ${badge.color}`}>{badge.label}</p>
-                  <p className="text-forest-deep/40 text-[10px]">{badge.sub}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <div className="section-stack">
 
@@ -241,10 +253,10 @@ export default function Home() {
           <SectionReveal>
             <div className="mb-6 md:mb-8">
               <p className="label-section mb-4">Services</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 What we do
               </h2>
-              <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-primary/65 max-w-2xl leading-relaxed">
                 Four integrated service areas covering every environmental need — from regulatory clearances and pollution control to monitoring, training, and ESG consultancy.
               </p>
             </div>
@@ -267,21 +279,21 @@ export default function Home() {
       </section>
 
       {/* ── About strip ──────────────────────────────────────────── */}
-      <section className="section-padding border-t border-forest-deep/10">
+      <section className="section-padding border-t border-card">
         <div className="container-custom">
           <SectionReveal>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
                 <p className="label-section mb-4">About</p>
-                <h2 className="heading-section text-forest-deep mb-6">
+                <h2 className="heading-section text-primary mb-6">
                   A professional environmental consultancy committed to sustainable development in North-east India and beyond.
                 </h2>
-                <p className="text-forest-deep/65 leading-relaxed mb-8">
+                <p className="text-primary/65 leading-relaxed mb-8">
                   We partner with industries, institutions, and government bodies to deliver scientific and cost-effective environmental solutions — protecting natural resources for future generations.
                 </p>
                 <CtaButton href="/about" variant="secondary" eventName="cta_click" eventParams={{ location: 'homepage_about', label: 'Learn more about us' }}>Learn more about us</CtaButton>
               </div>
-              <div className="hidden md:block relative rounded-2xl overflow-hidden h-56 sm:h-64 md:h-72 bg-forest-deep/5 mt-6 md:mt-0">
+              <div className="hidden md:block relative rounded-2xl overflow-hidden h-56 sm:h-64 md:h-72 bg-primary/5 mt-6 md:mt-0">
                 <Image
                   src="https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=900&q=80"
                   alt="Environmental consultants at work"
@@ -302,10 +314,10 @@ export default function Home() {
             {/* Left — heading block */}
             <SectionReveal>
               <p className="label-section mb-4">Our Commitment</p>
-              <h2 className="heading-section text-forest-deep mb-6">
+              <h2 className="heading-section text-primary mb-6">
                 Environmental responsibility and economic growth — hand in hand
               </h2>
-              <p className="text-forest-deep/60 text-base md:text-lg leading-relaxed">
+              <p className="text-primary/60 text-base md:text-lg leading-relaxed">
                 We work closely with our clients to ensure compliance today while building resilience for tomorrow — protecting natural resources and business interests at the same time.
               </p>
             </SectionReveal>
@@ -315,7 +327,7 @@ export default function Home() {
               {[
                 {
                   icon: (
-                    <svg className="w-5 h-5 text-forest-mid flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
                   ),
@@ -324,7 +336,7 @@ export default function Home() {
                 },
                 {
                   icon: (
-                    <svg className="w-5 h-5 text-forest-mid flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   ),
@@ -333,7 +345,7 @@ export default function Home() {
                 },
                 {
                   icon: (
-                    <svg className="w-5 h-5 text-forest-mid flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 text-secondary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   ),
@@ -342,13 +354,13 @@ export default function Home() {
                 },
               ].map((item, i) => (
                 <SectionReveal key={i} delay={i * 0.1}>
-                  <div className="flex items-start gap-4 bg-forest-deep/5 border border-forest-deep/10 rounded-xl p-5">
-                    <div className="w-10 h-10 rounded-lg bg-forest-mid/10 border border-forest-mid/20 flex items-center justify-center flex-shrink-0">
+                  <div className="flex items-start gap-4 bg-primary/5 border border-card rounded-xl p-5">
+                    <div className="w-10 h-10 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center flex-shrink-0">
                       {item.icon}
                     </div>
                     <div>
-                      <p className="font-body font-semibold text-forest-deep text-sm md:text-base mb-1">{item.title}</p>
-                      <p className="text-forest-deep/60 text-sm leading-relaxed">{item.desc}</p>
+                      <p className="font-body font-semibold text-primary text-sm md:text-base mb-1">{item.title}</p>
+                      <p className="text-primary/60 text-sm leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 </SectionReveal>
@@ -364,17 +376,17 @@ export default function Home() {
           <SectionReveal>
             <div className="mb-6 md:mb-8">
               <p className="label-section mb-4">Process</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 How we work
               </h2>
-              <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-primary/65 max-w-2xl leading-relaxed">
                 A clear, structured engagement — from first conversation to final deliverable.
               </p>
             </div>
           </SectionReveal>
           <div className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Connector line — desktop only */}
-            <div aria-hidden="true" className="hidden lg:block absolute top-9 left-[12%] right-[12%] h-px bg-forest-deep/12" />
+            <div aria-hidden="true" className="hidden lg:block absolute top-9 left-[12%] right-[12%] h-px bg-primary/10" />
             {process.map((step, index) => (
               <SectionReveal key={index} delay={index * 0.12}>
                 <div className="relative card-base card-hover p-6 md:p-8 h-full flex flex-col">
@@ -387,14 +399,14 @@ export default function Home() {
                       {step.number}
                     </span>
                   </div>
-                  <h3 className="heading-card text-forest-deep mb-3">{step.title}</h3>
-                  <p className="text-forest-deep/60 text-sm md:text-base leading-relaxed flex-1">
+                  <h3 className="heading-card text-primary mb-3">{step.title}</h3>
+                  <p className="text-primary/60 text-sm md:text-base leading-relaxed flex-1">
                     {step.detail}
                   </p>
                   {/* Connecting arrow between steps on desktop */}
                   {index < process.length - 1 && (
-                    <div className="hidden lg:flex absolute top-[3.25rem] -right-3.5 z-10 items-center justify-center w-7 h-7 rounded-full bg-cream border border-forest-deep/10">
-                      <svg className="w-3 h-3 text-forest-deep/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="hidden lg:flex absolute top-[3.25rem] -right-3.5 z-10 items-center justify-center w-7 h-7 rounded-full bg-page border border-card">
+                      <svg className="w-3 h-3 text-primary/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
@@ -412,10 +424,10 @@ export default function Home() {
           <SectionReveal>
             <div className="mb-6 md:mb-8">
               <p className="label-section mb-4">Benefits</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 Why choose us?
               </h2>
-              <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-primary/65 max-w-2xl leading-relaxed">
                 Environmental compliance can be a confusing space. We help you cut through the noise and focus on your business.
               </p>
             </div>
@@ -445,9 +457,9 @@ export default function Home() {
               },
             ].map((item, index) => (
               <SectionReveal key={index} delay={index * 0.1}>
-                <div className="card-base card-hover h-full p-5 md:p-6 xl:p-5 bg-cream/70">
-                  <h3 className="heading-card text-forest-deep text-lg sm:text-xl md:text-xl mb-2 md:mb-3">{item.title}</h3>
-                  <p className="text-forest-deep/60 text-sm leading-relaxed">{item.desc}</p>
+                <div className="card-base card-hover h-full p-5 md:p-6 xl:p-5 bg-page/70">
+                  <h3 className="heading-card text-primary text-lg sm:text-xl md:text-xl mb-2 md:mb-3">{item.title}</h3>
+                  <p className="text-primary/60 text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </SectionReveal>
             ))}
@@ -463,8 +475,8 @@ export default function Home() {
           <SectionReveal>
             <div className="max-w-2xl mb-8">
               <p className="label-section mb-3">Quick Assessment</p>
-              <h2 className="heading-section text-forest-deep mb-3">Is your business fully compliant?</h2>
-              <p className="text-forest-deep/60 text-base leading-relaxed">
+              <h2 className="heading-section text-primary mb-3">Is your business fully compliant?</h2>
+              <p className="text-primary/60 text-base leading-relaxed">
                 Answer 5 quick questions to get a personalised compliance risk summary and a list of recommended services.
               </p>
             </div>
@@ -479,10 +491,10 @@ export default function Home() {
           <SectionReveal>
             <div className="mb-6 md:mb-8">
               <p className="label-section mb-4">Testimonials</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 What our clients say
               </h2>
-              <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-primary/65 max-w-2xl leading-relaxed">
                 Environmental compliance is a long-term commitment — so we build lasting relationships to match.
               </p>
             </div>
@@ -497,10 +509,10 @@ export default function Home() {
           <SectionReveal>
             <div className="mb-6 md:mb-8">
               <p className="label-section mb-4">Resources</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 Latest insights
               </h2>
-              <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-primary/65 max-w-2xl leading-relaxed">
                 Research and insights for forward-thinking businesses.
               </p>
             </div>
@@ -513,7 +525,7 @@ export default function Home() {
           <SectionReveal>
             <a
               href="/resources"
-              className="inline-flex items-center min-h-[44px] text-forest-deep hover:text-forest-mid font-body font-medium transition-colors"
+              className="inline-flex items-center min-h-[44px] text-primary hover:text-secondary font-body font-medium transition-colors"
             >
               View all articles
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -527,15 +539,15 @@ export default function Home() {
       </div>{/* end .section-stack */}
 
       {/* ── FAQ ──────────────────────────────────────────────────── */}
-      <section className="section-padding bg-cream/55 backdrop-blur-sm">
+      <section className="section-padding bg-page/55 backdrop-blur-sm">
         <div className="container-custom">
           <SectionReveal>
             <div className="mb-6 md:mb-8">
               <p className="label-section mb-4">FAQ</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 Frequently asked questions
               </h2>
-              <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-primary/65 max-w-2xl leading-relaxed">
                 Here are the questions our clients ask most before getting started.
               </p>
             </div>

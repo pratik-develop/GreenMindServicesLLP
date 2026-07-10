@@ -148,23 +148,23 @@ const team = [
 // Icon components for accreditation cards
 function AccreditationIcon({ type }: { type: string }) {
   if (type === 'nabet') return (
-    <svg className="w-6 h-6 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
     </svg>
   )
   if (type === 'nabl') return (
-    <svg className="w-6 h-6 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
     </svg>
   )
   if (type === 'govt') return (
-    <svg className="w-6 h-6 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10h1v11H4V10zm6 0h1v11h-1V10zm5 0h1v11h-1V10zm5 0h1v11h-1V10z" />
     </svg>
   )
   // dpiit
   return (
-    <svg className="w-6 h-6 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg className="w-6 h-6 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
     </svg>
   )
@@ -187,13 +187,13 @@ export default async function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <SectionReveal>
               <p className="label-section mb-4">About us</p>
-              <h1 className="heading-display text-forest-deep mb-4 md:mb-6 max-w-3xl">
+              <h1 className="heading-display text-primary mb-4 md:mb-6 max-w-3xl">
                 Expert Solutions for Environmental Excellence
               </h1>
-              <p className="text-base md:text-xl text-forest-deep/65 max-w-2xl leading-relaxed mb-5">
+              <p className="text-base md:text-xl text-primary/65 max-w-2xl leading-relaxed mb-5">
                 GreenMind Services LLP is a DPIIT-recognised environmental consultancy firm based in Guwahati, Assam. We bring 35+ years of combined regulatory expertise and a commitment to delivering audit-ready compliance solutions for Indian businesses.
               </p>
-              <p className="text-base md:text-xl text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-base md:text-xl text-primary/65 max-w-2xl leading-relaxed">
                 Our team of retired government scientists and engineers works with manufacturers, real estate developers, healthcare institutions, and government bodies across Northeast India and beyond.
               </p>
             </SectionReveal>
@@ -215,16 +215,16 @@ export default async function About() {
       </section>
 
       {/* ── Mission ── */}
-      <section className="section-padding bg-forest-deep/5">
+      <section className="section-padding bg-primary/5">
         <div className="container-custom">
           {/* Issue #21 — responsive gap */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
             <SectionReveal>
               <p className="label-section mb-4">Vision</p>
-              <h2 className="heading-section text-forest-deep mb-5">
+              <h2 className="heading-section text-primary mb-5">
                 To be a trusted leader in environmental consultancy
               </h2>
-              <p className="text-forest-deep/65 leading-relaxed text-base md:text-lg mb-10">
+              <p className="text-primary/65 leading-relaxed text-base md:text-lg mb-10">
                 Enabling sustainable growth towards a greener-cleaner environment with social harmony — for industries, institutions, and communities across India.
               </p>
 
@@ -241,7 +241,7 @@ export default async function About() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
-                    <span className="text-forest-deep/75 text-sm md:text-base leading-relaxed">{point}</span>
+                    <span className="text-primary/75 text-sm md:text-base leading-relaxed">{point}</span>
                   </li>
                 ))}
               </ul>
@@ -268,7 +268,7 @@ export default async function About() {
           <SectionReveal>
             <div className="mb-12">
               <p className="label-section mb-4">Values</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 The principles that guide everything we do
               </h2>
             </div>
@@ -278,13 +278,13 @@ export default async function About() {
             {values.map((value, index) => (
               <SectionReveal key={index} delay={index * 0.1}>
                 <div className="card-base card-hover p-6 md:p-8">
-                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-forest-mid/12 to-forest-mid/4 border border-forest-mid/12 flex items-center justify-center mb-4">
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-secondary/12 to-secondary/4 border border-secondary/12 flex items-center justify-center mb-4">
                     <span className="text-xl leading-none">{value.emoji}</span>
                   </div>
-                  <h3 className="heading-card text-forest-deep mb-3">{value.title}</h3>
-                  <p className="text-forest-deep/60 leading-relaxed text-sm md:text-base">{value.description}</p>
+                  <h3 className="heading-card text-primary mb-3">{value.title}</h3>
+                  <p className="text-primary/60 leading-relaxed text-sm md:text-base">{value.description}</p>
                   {value.example && (
-                    <p className="text-forest-deep/40 text-xs leading-relaxed mt-2 italic border-l-2 border-forest-mid/20 pl-3">
+                    <p className="text-primary/40 text-xs leading-relaxed mt-2 italic border-l-2 border-secondary/20 pl-3">
                       {value.example}
                     </p>
                   )}
@@ -298,15 +298,15 @@ export default async function About() {
       </section>
 
       {/* ── Credentials & Registrations ── */}
-      <section className="section-padding bg-forest-deep/5">
+      <section className="section-padding bg-primary/5">
         <div className="container-custom">
           <SectionReveal>
             <div className="mb-12">
               <p className="label-section mb-4">Credentials</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 Registered, recognised &amp; accredited
               </h2>
-              <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-primary/65 max-w-2xl leading-relaxed">
                 GreenMind Services LLP is a DPIIT-recognised startup, MSME-registered firm, and empanelled Environmental Management Consultant with the State Environmental Impact Assessment Authority, Meghalaya.
               </p>
             </div>
@@ -316,13 +316,13 @@ export default async function About() {
           <SectionReveal>
             <div className="flex flex-wrap gap-3 mb-6">
               {accreditations.map((acc) => (
-                <div key={acc.title} className="flex items-center gap-2.5 px-4 py-2.5 bg-forest-mid/8 border border-forest-mid/20 rounded-xl">
+                <div key={acc.title} className="flex items-center gap-2.5 px-4 py-2.5 bg-secondary/8 border border-secondary/20 rounded-xl">
                   <span className="w-6 h-6 flex items-center justify-center">
                     <AccreditationIcon type={acc.icon} />
                   </span>
                   <div>
-                    <p className="font-body font-semibold text-xs text-forest-mid">{acc.title}</p>
-                    {acc.detail && <p className="text-forest-deep/40 text-[10px]">{acc.detail}</p>}
+                    <p className="font-body font-semibold text-xs text-secondary">{acc.title}</p>
+                    {acc.detail && <p className="text-primary/40 text-[10px]">{acc.detail}</p>}
                   </div>
                 </div>
               ))}
@@ -330,23 +330,23 @@ export default async function About() {
           </SectionReveal>
 
           {/* Divider between accreditations and credentials */}
-          <div className="border-t border-forest-deep/8 my-8 md:my-12" />
+          <div className="border-t border-card my-8 md:my-12" />
 
           {/* Registration numbers table */}
           <SectionReveal delay={0.1}>
-            <div className="overflow-hidden rounded-2xl border border-forest-deep/10">
+            <div className="overflow-hidden rounded-2xl border border-card">
               <table className="w-full text-sm font-body">
                 <thead>
-                  <tr className="bg-forest-deep/5 border-b border-forest-deep/10">
-                    <th className="text-left px-5 py-3 text-forest-deep/60 font-semibold text-xs uppercase tracking-wider">Registration</th>
-                    <th className="text-left px-5 py-3 text-forest-deep/60 font-semibold text-xs uppercase tracking-wider">Number / Reference</th>
+                  <tr className="bg-primary/5 border-b border-card">
+                    <th className="text-left px-5 py-3 text-primary/60 font-semibold text-xs uppercase tracking-wider">Registration</th>
+                    <th className="text-left px-5 py-3 text-primary/60 font-semibold text-xs uppercase tracking-wider">Number / Reference</th>
                   </tr>
                 </thead>
                 <tbody>
                   {credentials.map((cred, i) => (
-                    <tr key={cred.label} className={i % 2 === 0 ? 'bg-white/60' : 'bg-forest-deep/[0.02]'}>
-                      <td className="px-5 py-3 text-forest-deep/70 font-medium">{cred.label}</td>
-                      <td className="px-5 py-3 text-forest-deep font-semibold font-mono text-xs md:text-sm">{cred.value}</td>
+                    <tr key={cred.label} className={i % 2 === 0 ? 'bg-card/70' : 'bg-primary/[0.02]'}>
+                      <td className="px-5 py-3 text-primary/70 font-medium">{cred.label}</td>
+                      <td className="px-5 py-3 text-primary font-semibold font-mono text-xs md:text-sm">{cred.value}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -358,17 +358,17 @@ export default async function About() {
           {sanityCertificates.length > 0 && (
             <SectionReveal delay={0.15}>
               <div className="mt-8">
-                <p className="font-body font-semibold text-sm text-forest-deep mb-4">Certificates &amp; Accreditations</p>
+                <p className="font-body font-semibold text-sm text-primary mb-4">Certificates &amp; Accreditations</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {sanityCertificates.map((cert) => (
-                    <div key={cert._id} className="bg-white/60 border border-forest-deep/10 rounded-xl p-4 flex flex-col gap-1">
-                      <p className="font-body font-semibold text-sm text-forest-deep">{cert.certName}</p>
-                      <p className="text-xs text-forest-deep/55">{cert.authority}</p>
+                    <div key={cert._id} className="bg-card/70 border border-card rounded-xl p-4 flex flex-col gap-1">
+                      <p className="font-body font-semibold text-sm text-primary">{cert.certName}</p>
+                      <p className="text-xs text-primary/55">{cert.authority}</p>
                       {cert.certificateNumber && (
-                        <p className="text-xs font-mono text-forest-deep/45 mt-0.5">No. {cert.certificateNumber}</p>
+                        <p className="text-xs font-mono text-primary/45 mt-0.5">No. {cert.certificateNumber}</p>
                       )}
                       {!cert.isLifetime && cert.expiryDate && (
-                        <p className="text-xs text-forest-deep/40 mt-0.5">
+                        <p className="text-xs text-primary/40 mt-0.5">
                           Valid until {new Date(cert.expiryDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })}
                         </p>
                       )}
@@ -387,7 +387,7 @@ export default async function About() {
           <SectionReveal>
             <div className="mb-12">
               <p className="label-section mb-4">Team</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 Meet the experts behind GreenMind
               </h2>
             </div>
@@ -398,20 +398,20 @@ export default async function About() {
               <SectionReveal key={index} delay={index * 0.12}>
                 <div className="card-base card-hover p-6 md:p-8">
                   {/* Avatar — photo slot with monogram fallback */}
-                  <div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 bg-forest-mid/15 flex items-center justify-center mb-5">
+                  <div className="w-20 h-20 rounded-full overflow-hidden flex-shrink-0 bg-secondary/15 flex items-center justify-center mb-5">
                     {member.photo ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={member.photo} alt={member.name} className="w-full h-full object-cover" />
                     ) : (
-                      <span className="font-display font-bold text-lg text-forest-mid">
+                      <span className="font-display font-bold text-lg text-secondary">
                         {member.name.split(' ').map((w: string) => w[0]).join('').slice(0, 2).toUpperCase()}
                       </span>
                     )}
                   </div>
-                  <h3 className="heading-card text-forest-deep mb-1">{member.name}</h3>
-                  <p className="text-forest-mid font-body font-semibold text-sm mb-2">{member.role}</p>
-                  <p className="text-forest-deep/45 text-xs mb-4 font-body">{member.expertise}</p>
-                  <p className="text-forest-deep/65 text-sm leading-relaxed">{member.bio}</p>
+                  <h3 className="heading-card text-primary mb-1">{member.name}</h3>
+                  <p className="text-secondary font-body font-semibold text-sm mb-2">{member.role}</p>
+                  <p className="text-primary/45 text-xs mb-4 font-body">{member.expertise}</p>
+                  <p className="text-primary/65 text-sm leading-relaxed">{member.bio}</p>
                 </div>
               </SectionReveal>
             ))}
@@ -420,15 +420,15 @@ export default async function About() {
       </section>
 
       {/* ── Clients ── */}
-      <section className="section-padding bg-forest-deep/5">
+      <section className="section-padding bg-primary/5">
         <div className="container-custom">
           <SectionReveal>
             <div className="mb-10">
               <p className="label-section mb-4">Clients</p>
-              <h2 className="heading-section text-forest-deep mb-4">
+              <h2 className="heading-section text-primary mb-4">
                 Businesses that trust GreenMind
               </h2>
-              <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-primary/65 max-w-2xl leading-relaxed">
                 We&apos;ve had the privilege of working with leading organisations across healthcare, agribusiness, construction, diagnostics, and services — from Northeast India to Haryana.
               </p>
             </div>
@@ -447,7 +447,7 @@ export default async function About() {
           </div>
 
           <SectionReveal delay={0.1}>
-            <p className="text-forest-deep/40 text-xs mt-6">
+            <p className="text-primary/40 text-xs mt-6">
               Client relationships are confidential. Names shown with permission.
             </p>
           </SectionReveal>
@@ -460,10 +460,10 @@ export default async function About() {
           <SectionReveal>
             <div className="max-w-3xl">
               <div className="border-l-4 border-gold/60 pl-6 md:pl-8">
-                <blockquote className="text-xl md:text-2xl lg:text-3xl text-forest-deep leading-relaxed italic mb-5 font-display font-light">
+                <blockquote className="text-xl md:text-2xl lg:text-3xl text-primary leading-relaxed italic mb-5 font-display font-light">
                   &ldquo;GreenMind&rsquo;s practical approach and deep regulatory knowledge have helped us maintain compliance without compromising our project timelines. They feel less like consultants and more like part of our team.&rdquo;
                 </blockquote>
-                <cite className="text-forest-mid font-body font-semibold not-italic text-sm">
+                <cite className="text-secondary font-body font-semibold not-italic text-sm">
                   — Operations Director, Infrastructure Company, Assam
                 </cite>
               </div>

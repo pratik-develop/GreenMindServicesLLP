@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss"
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,6 +10,30 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        page: {
+          DEFAULT: "hsl(var(--bg-page))",
+          soft: "hsl(var(--bg-page-soft))",
+          elevated: "hsl(var(--bg-page-elevated))",
+        },
+        primary: {
+          DEFAULT: "hsl(var(--text-primary))",
+          muted: "hsl(var(--text-muted))",
+          light: "hsl(var(--text-light))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          light: "hsl(var(--secondary-light))",
+          dark: "hsl(var(--secondary-dark))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          light: "hsl(var(--accent-light))",
+          dark: "hsl(var(--accent-dark))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card-bg))",
+          border: "hsl(var(--card-border))",
+        },
         cream: {
           DEFAULT: "#F7F3EC",
           light: "#FAF8F4",

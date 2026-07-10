@@ -52,7 +52,7 @@ export default function Preloader({
         {isLoading && (
           <motion.div
             key="preloader"
-            className="fixed inset-0 z-[100] bg-cream flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[100] bg-page flex flex-col items-center justify-center"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: fadeDuration / 1000, ease: [0.22, 1, 0.36, 1] }}
@@ -69,7 +69,7 @@ export default function Preloader({
 
             {/* Tagline reveal */}
             <motion.p
-              className="mt-8 text-forest-deep/60 font-body text-sm tracking-widest uppercase"
+              className="mt-8 text-primary/60 font-body text-sm tracking-widest uppercase"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
@@ -79,13 +79,13 @@ export default function Preloader({
 
             {/* Progress bar */}
             <motion.div
-              className="absolute bottom-0 left-0 right-0 h-1 bg-forest-deep/10"
+              className="absolute bottom-0 left-0 right-0 h-1 bg-primary/10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
             >
               <motion.div
-                className="h-full bg-gradient-to-r from-forest-mid to-gold"
+                className="h-full bg-gradient-to-r from-secondary to-gold"
                 initial={{ width: "0%" }}
                 animate={{ width: isReady ? "100%" : "70%" }}
                 transition={{

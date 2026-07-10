@@ -30,17 +30,17 @@ export default function ServiceCard({ title, description, icon: Icon, image, del
           />
           <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/55 via-forest-deep/10 to-transparent" />
           {Icon && (
-            <div className="absolute bottom-3 left-4 w-9 h-9 rounded-lg bg-cream/15 backdrop-blur-sm border border-cream/25 flex items-center justify-center">
+            <div className="absolute bottom-3 left-4 w-9 h-9 rounded-lg bg-page/15 backdrop-blur-sm border border-cream/25 flex items-center justify-center">
               <Icon className="w-4.5 h-4.5 text-cream" strokeWidth={1.75} />
             </div>
           )}
         </div>
         {/* Content */}
         <div className="p-6 md:p-8 flex flex-col flex-1">
-          <h3 className="heading-card text-forest-deep mb-3">
+          <h3 className="heading-card text-primary mb-3">
             {title}
           </h3>
-          <p className="text-forest-deep/65 flex-1 text-sm md:text-base leading-relaxed">
+          <p className="text-primary/65 flex-1 text-sm md:text-base leading-relaxed">
             {description}
           </p>
         </div>

@@ -4,7 +4,7 @@ import CtaButton from '@/components/CtaButton'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-cream relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-page relative overflow-hidden">
       {/* Background watermark — emblem at low opacity */}
       <LogoWatermark
         size={560}
@@ -39,16 +39,16 @@ export default function NotFound() {
         </div>
 
         {/* 404 code */}
-        <h1 className="font-display font-bold text-8xl md:text-9xl text-forest-deep mb-2">
+        <h1 className="font-display font-bold text-8xl md:text-9xl text-primary mb-2">
           404
         </h1>
 
         {/* Message */}
-        <h2 className="heading-section text-forest-deep mb-4">
+        <h2 className="heading-section text-primary mb-4">
           This page has gone green
         </h2>
 
-        <p className="text-forest-deep/70 text-lg md:text-xl mb-8 max-w-xl mx-auto leading-relaxed">
+        <p className="text-primary/70 text-lg md:text-xl mb-8 max-w-xl mx-auto leading-relaxed">
           The page you&apos;re looking for doesn&apos;t exist or has been moved. But don&apos;t worry — we&apos;re still here to help you preserve, protect, and prosper.
         </p>
 
@@ -63,8 +63,8 @@ export default function NotFound() {
         </div>
 
         {/* Helpful links */}
-        <div className="mt-12 pt-8 border-t border-forest-deep/10">
-          <p className="text-forest-deep/50 text-sm mb-4">You might be looking for:</p>
+        <div className="mt-12 pt-8 border-t border-card">
+          <p className="text-primary/50 text-sm mb-4">You might be looking for:</p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
             {[
               { label: 'Our Services', href: '/services' },
@@ -75,7 +75,7 @@ export default function NotFound() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-forest-mid hover:text-forest-deep transition-colors underline underline-offset-4"
+                className="text-secondary hover:text-primary transition-colors underline underline-offset-4"
               >
                 {l.label}
               </Link>

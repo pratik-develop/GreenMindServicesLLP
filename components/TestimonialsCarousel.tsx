@@ -44,29 +44,29 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
                 <div className="card-base p-6 sm:p-8 md:p-10">
                   {/* Gold left-border accent + enlarged quote */}
                   <div className="border-l-4 border-gold/60 pl-5 md:pl-7 mb-6 md:mb-8">
-                    <blockquote className="text-lg sm:text-xl md:text-2xl text-forest-deep italic font-light leading-relaxed">
+                    <blockquote className="text-lg sm:text-xl md:text-2xl text-primary italic font-light leading-relaxed">
                       &ldquo;{t.quote}&rdquo;
                     </blockquote>
                   </div>
                   {/* Author — separated with top border */}
-                  <div className="pt-4 border-t border-forest-deep/10 flex items-center gap-4">
+                  <div className="pt-4 border-t border-card flex items-center gap-4">
                     {/* Monogram avatar */}
-                    <div className="w-10 h-10 rounded-full bg-forest-mid/15 flex items-center justify-center flex-shrink-0">
-                      <span className="font-display font-semibold text-sm text-forest-mid">
+                    <div className="w-10 h-10 rounded-full bg-secondary/15 flex items-center justify-center flex-shrink-0">
+                      <span className="font-display font-semibold text-sm text-secondary">
                         {t.author.split(',').map(part => part.trim().split(' ').map(w => w[0]).join('')).join('').slice(0, 2).toUpperCase()}
                       </span>
                     </div>
                     <div className="flex-1">
-                      <cite className="font-display font-semibold text-forest-deep not-italic text-base md:text-lg block">
+                      <cite className="font-display font-semibold text-primary not-italic text-base md:text-lg block">
                         {t.author}
                       </cite>
                       {t.role && (
-                        <p className="text-forest-deep/70 text-xs md:text-sm font-body font-medium mt-0.5">{t.role}</p>
+                        <p className="text-primary/70 text-xs md:text-sm font-body font-medium mt-0.5">{t.role}</p>
                       )}
                       <p className="text-sage-dark text-xs md:text-sm font-body font-medium mt-0.5">{t.company}</p>
                       {t.sector && (
                         <div className="mt-2">
-                          <span className="inline-block px-2.5 py-1 bg-forest-mid/10 text-forest-mid text-[10px] md:text-xs font-body font-medium rounded-full border border-forest-mid/20">
+                          <span className="inline-block px-2.5 py-1 bg-secondary/10 text-secondary text-[10px] md:text-xs font-body font-medium rounded-full border border-secondary/20">
                             {t.sector}
                           </span>
                         </div>
@@ -83,7 +83,7 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
         <div className="flex justify-center items-center mt-6 md:mt-8 gap-4">
           <button
             onClick={prev}
-            className="min-w-[44px] min-h-[44px] hidden md:flex items-center justify-center rounded-full border border-forest-deep/20 hover:bg-forest-mid hover:text-cream hover:border-forest-mid transition-all duration-200"
+            className="min-w-[44px] min-h-[44px] hidden md:flex items-center justify-center rounded-full border border-primary/20 hover:bg-secondary hover:text-cream hover:border-secondary transition-all duration-200"
             aria-label="Previous testimonial"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,8 +104,8 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
                 <span
                   className={`block rounded-full transition-all duration-400 ${
                     i === currentIndex
-                      ? 'w-6 h-2.5 bg-forest-mid'
-                      : 'w-2.5 h-2.5 bg-forest-deep/20 hover:bg-forest-deep/40'
+                      ? 'w-6 h-2.5 bg-secondary'
+                      : 'w-2.5 h-2.5 bg-primary/20 hover:bg-primary/40'
                   }`}
                 />
               </button>
@@ -114,7 +114,7 @@ export default function TestimonialsCarousel({ testimonials }: TestimonialsCarou
 
           <button
             onClick={next}
-            className="min-w-[44px] min-h-[44px] hidden md:flex items-center justify-center rounded-full border border-forest-deep/20 hover:bg-forest-mid hover:text-cream hover:border-forest-mid transition-all duration-200"
+            className="min-w-[44px] min-h-[44px] hidden md:flex items-center justify-center rounded-full border border-primary/20 hover:bg-secondary hover:text-cream hover:border-secondary transition-all duration-200"
             aria-label="Next testimonial"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

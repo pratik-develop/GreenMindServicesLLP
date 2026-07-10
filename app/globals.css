@@ -2,30 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes loading-bar {
-  0%   { transform: translateX(-100%); width: 60%; }
-  50%  { transform: translateX(60%);  width: 60%; }
-  100% { transform: translateX(200%); width: 60%; }
-}
-
 @layer base {
+  :root {
+    /* Semantic light mode palette */
+    --bg-page: 41 31% 95%;          /* cream page background */
+    --bg-page-soft: 39 23% 92%;      /* slightly darker cream */
+    --bg-page-elevated: 0 0% 100%;  /* white cards/inputs */
+    --text-primary: 140 30% 13%;    /* forest-deep text */
+    --text-muted: 140 20% 40%;      /* muted forest text */
+    --text-light: 140 15% 58%;      /* light forest text */
+    --secondary: 140 52% 27%;       /* forest-mid accent */
+    --secondary-light: 140 40% 45%;
+    --secondary-dark: 140 60% 18%;
+    --accent: 42 63% 44%;           /* gold accent */
+    --accent-light: 44 54% 58%;
+    --accent-dark: 40 67% 31%;
+    --card-bg: 0 0% 100%;
+    --card-border: 140 30% 13% / 0.1;
+  }
+
+  html.dark {
+    --bg-page: 140 30% 13%;         /* deep forest */
+    --bg-page-soft: 140 28% 16%;    /* slightly lighter forest */
+    --bg-page-elevated: 140 24% 19%; /* elevated card/input */
+    --text-primary: 41 31% 95%;     /* cream text */
+    --text-muted: 140 25% 72%;      /* muted sage text */
+    --text-light: 140 30% 60%;      /* light sage text */
+    --secondary: 140 35% 55%;       /* lighter green for dark mode */
+    --secondary-light: 140 40% 65%;
+    --secondary-dark: 140 30% 45%;
+    --accent: 44 54% 58%;           /* lighter gold */
+    --accent-light: 44 68% 72%;
+    --accent-dark: 42 63% 44%;
+    --card-bg: 140 24% 19%;
+    --card-border: 41 31% 95% / 0.12;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply text-forest-deep font-body antialiased;
-    /* Subtle site-wide gradient wash — cream drifting into a faint sage green.
-       Fixed attachment so it stays put while content scrolls over it. */
-    background-color: #F7F3EC;
-    background-image: linear-gradient(160deg, #FAF8F4 0%, #F1EDE3 45%, #E5EDE5 100%);
+    @apply text-primary font-body antialiased;
+    background-color: hsl(var(--bg-page));
+    background-image: linear-gradient(160deg, hsl(var(--bg-page)) 0%, hsl(var(--bg-page-soft)) 45%, hsl(var(--bg-page-elevated)) 100%);
     background-attachment: fixed;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
+  }
+
+  ::selection {
+    background-color: hsl(var(--accent));
+    color: #fff;
   }
 }
 
@@ -34,20 +67,15 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 2xl:px-12;
   }
 
-  /* ── Alternating section backgrounds ──────────────────────────────────
-     Reorder-safe: backgrounds are driven by document order, not hardcoded
-     per-section. Wrap a run of <section> elements in `.section-stack` and the
-     pattern recalculates automatically if sections are added/removed/reordered.
-     Odd sections inherit the cream page background; even sections get a subtle
-     forest tint. Both keep dark text fully legible. */
+  /* Alternating section backgrounds */
   .section-stack > section:nth-of-type(odd) {
-    @apply bg-cream/55 backdrop-blur-sm;
+    @apply bg-page/55 backdrop-blur-sm;
   }
   .section-stack > section:nth-of-type(even) {
     @apply bg-transparent;
   }
 
-  /* ── Spacing scale ── */
+  /* Spacing */
   .section-padding-tight {
     @apply py-6 sm:py-8 md:py-10 lg:py-12;
   }
@@ -58,38 +86,34 @@
     @apply py-10 sm:py-14 md:py-18 lg:py-24;
   }
 
-  /* ── Typography system ── */
-  /* Page-level H1 — used across all page heroes */
+  /* Typography */
   .heading-display {
     @apply font-display font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight;
   }
-  /* Section H2 */
   .heading-section {
     @apply font-display font-semibold text-2xl sm:text-3xl md:text-4xl leading-snug;
   }
-  /* Card / sub-section H3 */
   .heading-card {
     @apply font-display font-semibold text-lg sm:text-xl md:text-2xl leading-snug;
   }
-  /* Section label — small caps above headings */
   .label-section {
-    @apply text-xs sm:text-sm font-body font-semibold text-forest-mid uppercase tracking-widest;
+    @apply text-xs sm:text-sm font-body font-semibold text-secondary uppercase tracking-widest;
   }
 
-  /* ── Card system ── */
+  /* Cards */
   .card-base {
-    @apply bg-white/80 backdrop-blur-md rounded-2xl border border-forest-deep/10 transition-all duration-300;
+    @apply bg-card/80 border-card border rounded-2xl transition-all duration-300;
   }
   .card-hover {
-    @apply hover:border-forest-mid/50 hover:shadow-xl hover:shadow-forest-mid/10 hover:-translate-y-0.5;
+    @apply hover:border-secondary/50 hover:shadow-xl hover:shadow-secondary/10 hover:-translate-y-0.5;
   }
 
-  /* ── Form inputs ── */
+  /* Forms */
   .form-input {
-    @apply w-full px-4 py-3 rounded-xl border-2 border-forest-deep/15 bg-white/70 text-forest-deep placeholder-forest-deep/35 font-body text-sm md:text-base transition-all focus:outline-none focus:border-forest-mid focus:bg-white focus:shadow-lg focus:shadow-forest-mid/10;
+    @apply w-full px-4 py-3 rounded-xl border bg-page-elevated text-primary placeholder-primary-light border-card font-body text-sm md:text-base transition-all focus:outline-none focus:border-secondary focus:ring-2 focus:ring-secondary/20;
   }
   .form-label {
-    @apply block text-xs sm:text-sm font-body font-semibold text-forest-deep mb-1.5;
+    @apply block text-xs sm:text-sm font-body font-semibold text-primary mb-1.5;
   }
   .form-select {
     @apply form-input cursor-pointer appearance-none;
@@ -99,16 +123,27 @@
     background-size: 1.125rem 1.125rem;
     padding-right: 2.5rem;
   }
+  html.dark .form-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23F7F3EC' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+  }
 }
 
-/* ─── Forest background animations ──────────────────────────────────────────
-   Three layered keyframes:
-   · forest-drift  — slow horizontal + vertical drift (hero)
-   · forest-breathe — gentle scale pulse (CTA strip)
-   · forest-ken     — Ken Burns zoom + slight pan (service heroes)
-   All use will-change: transform for GPU compositing.
-   ─────────────────────────────────────────────────────────────────────────── */
+/* Text shadows for hero legibility */
+.text-shadow-hero {
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
+}
+.text-shadow-soft {
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.3);
+}
 
+/* Loading bar */
+@keyframes loading-bar {
+  0%   { transform: translateX(-100%); width: 60%; }
+  50%  { transform: translateX(60%);  width: 60%; }
+  100% { transform: translateX(200%); width: 60%; }
+}
+
+/* Forest background animations */
 @keyframes forest-drift {
   0%   { transform: scale(1.08) translate(0px, 0px); }
   25%  { transform: scale(1.10) translate(-8px, -4px); }
@@ -143,7 +178,7 @@
   animation: forest-ken 22s ease-in-out infinite alternate;
 }
 
-/* Reduce motion — swap to static for users who prefer it */
+/* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .forest-bg-drift,
   .forest-bg-breathe,

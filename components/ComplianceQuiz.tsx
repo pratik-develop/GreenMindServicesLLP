@@ -113,7 +113,7 @@ export default function ComplianceQuiz() {
   const result = done ? getRiskLevel(answers) : null
 
   const riskColors = {
-    low: { bg: 'bg-sage/10', border: 'border-sage/30', text: 'text-forest-mid', badge: 'bg-sage/20 text-forest-mid' },
+    low: { bg: 'bg-sage/10', border: 'border-sage/30', text: 'text-secondary', badge: 'bg-sage/20 text-secondary' },
     medium: { bg: 'bg-gold/8', border: 'border-gold/25', text: 'text-gold-dark', badge: 'bg-gold/15 text-gold-dark' },
     high: { bg: 'bg-red-50', border: 'border-red-200', text: 'text-red-700', badge: 'bg-red-100 text-red-700' },
   }
@@ -127,11 +127,11 @@ export default function ComplianceQuiz() {
             {questions.map((_, i) => (
               <div
                 key={i}
-                className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= step ? 'bg-forest-mid' : 'bg-forest-deep/10'}`}
+                className={`h-1 flex-1 rounded-full transition-all duration-300 ${i <= step ? 'bg-secondary' : 'bg-primary/10'}`}
               />
             ))}
           </div>
-          <p className="text-xs font-body font-semibold text-forest-deep/40 uppercase tracking-wider mb-3">
+          <p className="text-xs font-body font-semibold text-primary/40 uppercase tracking-wider mb-3">
             Question {step + 1} of {questions.length}
           </p>
           <AnimatePresence mode="wait">
@@ -142,7 +142,7 @@ export default function ComplianceQuiz() {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.22 }}
             >
-              <h3 className="font-display font-semibold text-xl md:text-2xl text-forest-deep mb-5 leading-snug">
+              <h3 className="font-display font-semibold text-xl md:text-2xl text-primary mb-5 leading-snug">
                 {q.question}
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -150,7 +150,7 @@ export default function ComplianceQuiz() {
                   <button
                     key={opt.value}
                     onClick={() => handleAnswer(opt.value)}
-                    className="text-left px-4 py-3.5 rounded-xl border border-forest-deep/12 bg-white/60 hover:border-forest-mid hover:bg-forest-mid/5 text-forest-deep text-sm font-body transition-all min-h-[52px] active:scale-[0.98]"
+                    className="text-left px-4 py-3.5 rounded-xl border border-card bg-card/70 hover:border-secondary hover:bg-secondary/5 text-primary text-sm font-body transition-all min-h-[52px] active:scale-[0.98]"
                   >
                     {opt.label}
                   </button>
@@ -161,7 +161,7 @@ export default function ComplianceQuiz() {
           {step > 0 && (
             <button
               onClick={() => setStep(step - 1)}
-              className="mt-4 text-xs text-forest-deep/40 hover:text-forest-deep transition-colors"
+              className="mt-4 text-xs text-primary/40 hover:text-primary transition-colors"
             >
               ← Back
             </button>
@@ -172,7 +172,7 @@ export default function ComplianceQuiz() {
           <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>
             <div className={`p-6 rounded-2xl border ${riskColors[result.level].bg} ${riskColors[result.level].border} mb-5`}>
               <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
-                <h3 className="font-display font-semibold text-forest-deep text-lg">Your Compliance Assessment</h3>
+                <h3 className="font-display font-semibold text-primary text-lg">Your Compliance Assessment</h3>
                 <span className={`text-xs font-body font-semibold px-3 py-1 rounded-full ${riskColors[result.level].badge}`}>
                   {result.level === 'low' ? 'Low Risk' : result.level === 'medium' ? 'Medium Risk' : 'High Risk — Act Now'}
                 </span>
@@ -180,12 +180,12 @@ export default function ComplianceQuiz() {
               <p className={`text-sm leading-relaxed ${riskColors[result.level].text}`}>{result.summary}</p>
             </div>
             <div className="mb-5">
-              <p className="font-body font-semibold text-xs uppercase tracking-wider text-forest-deep/40 mb-3">Recommended Services</p>
+              <p className="font-body font-semibold text-xs uppercase tracking-wider text-primary/40 mb-3">Recommended Services</p>
               <ul className="space-y-2">
                 {result.services.map((s) => (
-                  <li key={s} className="flex items-center gap-2.5 text-sm text-forest-deep/70">
-                    <span className="w-5 h-5 rounded-full bg-forest-mid/10 border border-forest-mid/20 flex items-center justify-center flex-shrink-0">
-                      <svg className="w-2.5 h-2.5 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <li key={s} className="flex items-center gap-2.5 text-sm text-primary/70">
+                    <span className="w-5 h-5 rounded-full bg-secondary/10 border border-secondary/20 flex items-center justify-center flex-shrink-0">
+                      <svg className="w-2.5 h-2.5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                     </span>

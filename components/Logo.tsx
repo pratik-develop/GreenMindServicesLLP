@@ -4,7 +4,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 
 interface LogoProps {
-  variant?: "full" | "icon" | "wordmark"
+  variant?: "full" | "icon" | "wordmark" | "large"
   color?: "dark" | "light"
   size?: "sm" | "md" | "lg" | "xl" | number
   animate?: boolean
@@ -25,15 +25,24 @@ const theme = {
   },
 }
 
-// ─── Emblem sizes (px) ───────────────────────────────────────────────────────
-const emblemSize = {
-  sm: 36,
-  md: 44,
-  lg: 56,
-  xl: 72,
+// Intrinsic PNG dimensions (used for Next/Image aspect ratio)
+const INTRINSIC = {
+  emblem:   { w: 2544, h: 2488 }, // logo-sm.png
+  wordmark: { w: 2630, h: 649 },  // logo-txt.png
+  large:    { w: 2630, h: 1600 }, // logo-lg.png
 }
 
-// ─── Emblem — real logo PNG ──────────────────────────────────────────────────
+// ─── Display sizes ─────────────────────────────────────────────────────────────
+const emblemSize = { sm: 36, md: 44, lg: 56, xl: 72 }        // icon-only / loader
+const lockupEmblemSize = { sm: 34, md: 40, lg: 50, xl: 64 }  // emblem next to wordmark
+const wordmarkHeight = { sm: 28, md: 34, lg: 42, xl: 54 }
+const largeHeight = { sm: 56, md: 72, lg: 96, xl: 128 }
+
+function sizeKey(size: NonNullable<LogoProps["size"]>): "sm" | "md" | "lg" | "xl" {
+  return typeof size === "number" ? "md" : size
+}
+
+// ─── Emblem — small logo PNG ───────────────────────────────────────────────────
 function Emblem({
   size,
   animate: anim,
@@ -43,20 +52,20 @@ function Emblem({
 }) {
   const img = (
     <Image
-      src="/logo.png"
+      src="/logo-sm.png"
       alt="GreenMind emblem"
-      width={size}
-      height={size}
-      style={{ width: size, height: size, objectFit: "contain" }}
+      width={INTRINSIC.emblem.w}
+      height={INTRINSIC.emblem.h}
       priority
+      style={{ width: size, height: size, objectFit: "contain" }}
     />
   )
 
-  if (!anim) return <span className="inline-block shrink-0">{img}</span>
+  if (!anim) return <span className="inline-block shrink-0 self-center">{img}</span>
 
   return (
     <motion.span
-      className="inline-block shrink-0"
+      className="inline-block shrink-0 self-center"
       initial={{ opacity: 0, scale: 0.85 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -66,46 +75,42 @@ function Emblem({
   )
 }
 
-// ─── Wordmark text block ─────────────────────────────────────────────────────
-// Uses Tailwind classes so responsive scaling works correctly everywhere.
+// ─── Wordmark — logo text PNG ──────────────────────────────────────────────────
 function Wordmark({
-  t,
   size,
 }: {
-  t: typeof theme.dark
   size: "sm" | "md" | "lg" | "xl"
 }) {
-  // Name line: prominent, display font
-  const nameClass = {
-    sm: "text-base",
-    md: "text-lg",
-    lg: "text-xl",
-    xl: "text-2xl",
-  }[size]
-
-  // Tagline line: small caps, body font
-  const tagClass = {
-    sm: "text-[10px]",
-    md: "text-[11px]",
-    lg: "text-xs",
-    xl: "text-sm",
-  }[size]
+  const h = wordmarkHeight[size]
 
   return (
-    <span className="inline-flex flex-col justify-center leading-none gap-[3px]">
-      <span
-        className={`font-display font-bold tracking-tight whitespace-nowrap ${nameClass}`}
-        style={{ color: t.text, lineHeight: 1.1 }}
-      >
-        GreenMind Services LLP
-      </span>
-      <span
-        className={`font-body font-normal uppercase tracking-[0.18em] whitespace-nowrap ${tagClass}`}
-        style={{ color: t.sub, lineHeight: 1 }}
-      >
-        Preserve · Protect · Prosper
-      </span>
-    </span>
+    <Image
+      src="/logo-txt.png"
+      alt="GreenMind Services LLP"
+      width={INTRINSIC.wordmark.w}
+      height={INTRINSIC.wordmark.h}
+      style={{ height: h, width: "auto", maxWidth: "100%" }}
+      className="shrink-0 self-center"
+    />
+  )
+}
+
+// ─── Large lockup — full logo PNG ──────────────────────────────────────────────
+function LargeLockup({
+  size,
+}: {
+  size: "sm" | "md" | "lg" | "xl"
+}) {
+  const h = largeHeight[size]
+
+  return (
+    <Image
+      src="/logo-lg.png"
+      alt="GreenMind Services LLP"
+      width={INTRINSIC.large.w}
+      height={INTRINSIC.large.h}
+      style={{ height: h, width: "auto", maxWidth: "100%" }}
+    />
   )
 }
 
@@ -117,17 +122,17 @@ export default function Logo({
   animate   = false,
   className = "",
 }: LogoProps) {
-  const t        = theme[color]
-  const sizeKey  = typeof size === "number" ? "md" : size
-  const eSize    = typeof size === "number" ? size : emblemSize[sizeKey]
+  const key   = sizeKey(size)
+  const eSize = typeof size === "number" ? size : emblemSize[key]
+  const lockupEmblem = typeof size === "number" ? size : lockupEmblemSize[key]
 
   // Gap between emblem and wordmark (px), scales with size
   const gap = {
-    sm: 8,
-    md: 10,
-    lg: 12,
-    xl: 16,
-  }[sizeKey]
+    sm: 6,
+    md: 8,
+    lg: 10,
+    xl: 12,
+  }[key]
 
   // ── Icon only ──────────────────────────────────────────────────────────────
   if (variant === "icon") {
@@ -145,7 +150,19 @@ export default function Logo({
         className={`inline-block ${className}`}
         aria-label="GreenMind Services LLP"
       >
-        <Wordmark t={t} size={sizeKey} />
+        <Wordmark size={key} />
+      </span>
+    )
+  }
+
+  // ── Large lockup (single PNG) ───────────────────────────────────────────────
+  if (variant === "large") {
+    return (
+      <span
+        className={`inline-block ${className}`}
+        aria-label="GreenMind Services LLP"
+      >
+        <LargeLockup size={key} />
       </span>
     )
   }
@@ -157,8 +174,8 @@ export default function Logo({
       style={{ gap }}
       aria-label="GreenMind Services LLP"
     >
-      <Emblem size={eSize} animate={animate} />
-      <Wordmark t={t} size={sizeKey} />
+      <Emblem size={lockupEmblem} animate={animate} />
+      <Wordmark size={key} />
     </span>
   )
 }

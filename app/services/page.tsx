@@ -18,10 +18,10 @@ export default function Services() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <SectionReveal>
               <p className="label-section mb-4">Services</p>
-              <h1 className="heading-display text-forest-deep mb-4 md:mb-6">
+              <h1 className="heading-display text-primary mb-4 md:mb-6">
                 Our Services
               </h1>
-              <p className="text-base md:text-xl text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-base md:text-xl text-primary/65 max-w-2xl leading-relaxed">
                 Four integrated service areas delivering scientific and cost-effective environmental solutions — from regulatory clearances and pollution control to monitoring studies, training, and ESG consultancy.
               </p>
             </SectionReveal>
@@ -43,7 +43,7 @@ export default function Services() {
       </section>
 
       {/* ── Services Grid ── */}
-      <section className="section-padding bg-forest-deep/5">
+      <section className="section-padding bg-primary/5">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service, index) => (
@@ -52,23 +52,23 @@ export default function Services() {
                 <div className="card-base card-hover p-6 md:p-8 h-full flex flex-col">
                   {/* Icon + number row */}
                   <div className="flex items-center gap-3 mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-forest-mid/12 to-forest-mid/4 border border-forest-mid/12 flex items-center justify-center flex-shrink-0">
-                      <service.icon className="w-6 h-6 text-forest-mid" strokeWidth={1.75} />
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-secondary/12 to-secondary/4 border border-secondary/12 flex items-center justify-center flex-shrink-0">
+                      <service.icon className="w-6 h-6 text-secondary" strokeWidth={1.75} />
                     </div>
                     <span className="font-display font-bold text-2xl text-gold/35 leading-none select-none">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                   </div>
-                  <h3 className="heading-card text-forest-deep mb-2">
+                  <h3 className="heading-card text-primary mb-2">
                     {service.title}
                   </h3>
-                  <p className="text-forest-deep/60 text-sm leading-relaxed mb-5">
+                  <p className="text-primary/60 text-sm leading-relaxed mb-5">
                     {service.description}
                   </p>
                   {/* Bullet sub-services */}
                   <ul className="space-y-2 flex-1">
                     {service.bullets.map((b, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-sm text-forest-deep/65">
+                      <li key={i} className="flex items-start gap-2.5 text-sm text-primary/65">
                         <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gold/70 flex-shrink-0" />
                         {b}
                       </li>
@@ -88,14 +88,14 @@ export default function Services() {
           <SectionReveal>
             <div className="mb-8">
               <p className="label-section mb-3">Quick reference</p>
-              <h2 className="heading-section text-forest-deep">Which service covers your requirement?</h2>
-              <p className="text-forest-deep/60 text-base mt-3 max-w-2xl">
+              <h2 className="heading-section text-primary">Which service covers your requirement?</h2>
+              <p className="text-primary/60 text-base mt-3 max-w-2xl">
                 Use this table to match your regulatory obligation to the right service. Not sure? Contact us — most requirements span more than one area.
               </p>
             </div>
           </SectionReveal>
           <SectionReveal delay={0.1}>
-            <div className="overflow-x-auto rounded-2xl border border-forest-deep/10 shadow-sm">
+            <div className="overflow-x-auto rounded-2xl border border-card shadow-sm">
               <table className="w-full text-sm font-body min-w-[720px]">
                 <thead>
                   <tr className="bg-forest-deep text-cream">
@@ -119,18 +119,18 @@ export default function Services() {
                     { req: 'ISO 14001 / EMS Implementation',        s1: false, s2: true,  s3: false, s4: false },
                     { req: 'Staff Training & Awareness',            s1: false, s2: false, s3: false, s4: true  },
                   ].map((row, i) => (
-                    <tr key={row.req} className={`border-b border-forest-deep/6 ${i % 2 === 0 ? 'bg-white/60' : 'bg-forest-deep/3'}`}>
-                      <td className="px-5 py-3.5 text-forest-deep font-medium">{row.req}</td>
+                    <tr key={row.req} className={`border-b border-primary/6 ${i % 2 === 0 ? 'bg-card/70' : 'bg-primary/3'}`}>
+                      <td className="px-5 py-3.5 text-primary font-medium">{row.req}</td>
                       {[row.s1, row.s2, row.s3, row.s4].map((v, j) => (
                         <td key={j} className="px-4 py-3.5 text-center">
                           {v ? (
-                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-forest-mid/12 border border-forest-mid/20">
-                              <svg className="w-3 h-3 text-forest-mid" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-secondary/12 border border-secondary/20">
+                              <svg className="w-3 h-3 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                               </svg>
                             </span>
                           ) : (
-                            <span className="text-forest-deep/15 text-lg leading-none">·</span>
+                            <span className="text-primary/15 text-lg leading-none">·</span>
                           )}
                         </td>
                       ))}

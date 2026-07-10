@@ -13,6 +13,8 @@ import SkipLink from '@/components/SkipLink'
 import MobileCtaBar from '@/components/MobileCtaBar'
 import WhatsAppButton from '@/components/WhatsAppButton'
 import ScrollToTop from '@/components/ScrollToTop'
+import ThemeProvider from '@/components/ThemeProvider'
+import ThemeToggle from '@/components/ThemeToggle'
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -33,7 +35,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenmind.services'
 
 export const viewport: Viewport = {
   themeColor: '#152E1C',
-  colorScheme: 'light',
+  colorScheme: 'light dark',
 }
 
 export const metadata: Metadata = {
@@ -51,11 +53,12 @@ export const metadata: Metadata = {
   // Icons
   icons: {
     icon: [
-      { url: '/logo.png', type: 'image/png' },
+      { url: '/favicon.png?v=2', type: 'image/png', sizes: '256x256' },
+      { url: '/favicon.ico', type: 'image/x-icon', sizes: 'any' },
     ],
-    shortcut: '/logo.png',
+    shortcut: '/favicon.ico',
     apple: [
-      { url: '/logo.png', type: 'image/png', sizes: '180x180' },
+      { url: '/logo-sm.png', type: 'image/png', sizes: '180x180' },
     ],
   },
 
@@ -127,22 +130,25 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${cormorant.variable} ${jost.variable}`}>
-        <SkipLink />
-        <GoogleAnalytics />
-        <Suspense fallback={null}>
-          <RouteChangeTracker />
-        </Suspense>
-        <LenisProvider />
-        <Navbar />
-        <main id="main-content" className="min-h-screen scroll-mt-16 md:scroll-mt-20">
-          {children}
-        </main>
-        <Footer />
-        <MobileCtaBar />
-        <WhatsAppButton />
-        <ScrollToTop />
-        <SpeedInsights />
-        <Analytics />
+        <ThemeProvider>
+          <SkipLink />
+          <GoogleAnalytics />
+          <Suspense fallback={null}>
+            <RouteChangeTracker />
+          </Suspense>
+          <LenisProvider />
+          <Navbar />
+          <main id="main-content" className="min-h-screen scroll-mt-16 md:scroll-mt-20">
+            {children}
+          </main>
+          <Footer />
+          <MobileCtaBar />
+          <WhatsAppButton />
+          <ScrollToTop />
+          <ThemeToggle />
+          <SpeedInsights />
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   )

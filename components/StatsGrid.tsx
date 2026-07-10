@@ -49,10 +49,10 @@ export default function StatsGrid({ stats }: StatsGridProps) {
           className="text-center"
         >
           {/* Bold, oversized number for impact */}
-          <p className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-forest-deep mb-1 md:mb-2 leading-none">
+          <p className="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary mb-1 md:mb-2 leading-none">
             <AnimatedCounter value={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
           </p>
-          <p className="text-forest-deep/55 text-xs sm:text-sm md:text-base font-body font-medium mt-1">{stat.label}</p>
+          <p className="text-primary/55 text-xs sm:text-sm md:text-base font-body font-medium mt-1">{stat.label}</p>
         </motion.div>
       ))}
     </div>

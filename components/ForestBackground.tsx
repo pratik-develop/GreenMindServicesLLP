@@ -44,9 +44,9 @@ const ANIMATION_CLASS: Record<string, string> = {
 }
 
 const OVERLAY_CLASS: Record<string, string> = {
-  dark:  'bg-forest-deep/80',
-  mid:   'bg-forest-deep/65',
-  light: 'bg-cream/15',
+  dark:  'bg-primary/80',
+  mid:   'bg-primary/55',
+  light: 'bg-page/15',
 }
 
 export default function ForestBackground({

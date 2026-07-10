@@ -24,9 +24,11 @@ export default function ScrollToTop() {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Scroll to top"
           className="fixed bottom-[9.5rem] md:bottom-28 right-6 z-40
-            w-10 h-10 rounded-full bg-forest-deep/80 backdrop-blur-sm
-            border border-cream/20 text-cream shadow-lg
-            flex items-center justify-center hover:bg-forest-mid transition-colors"
+            w-10 h-10 rounded-full backdrop-blur-sm shadow-lg
+            flex items-center justify-center transition-colors
+            bg-forest-deep/85 text-cream border border-cream/30
+            dark:bg-cream/90 dark:text-forest-deep dark:border-forest-deep/20
+            hover:bg-secondary hover:text-forest-deep hover:border-transparent"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />

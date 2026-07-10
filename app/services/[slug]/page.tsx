@@ -39,37 +39,40 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             src={service.image}
             alt={service.title}
             fill
-            className="object-cover origin-center forest-bg-ken"
+            className="object-cover origin-center forest-bg-ken dark:brightness-75"
             priority
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/60 to-forest-deep/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-forest-deep/90 via-forest-deep/60 to-forest-deep/20 dark:from-forest-deep/95 dark:via-forest-deep/75 dark:to-forest-deep/40" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-forest-deep/70 via-transparent to-transparent dark:from-forest-deep/85" />
         </div>
         <div className="container-custom relative z-10">
           <SectionReveal>
             <Link
               href="/services"
-              className="inline-flex items-center text-cream/70 hover:text-cream text-sm mb-8 transition-colors"
+              className="inline-flex items-center text-cream/80 hover:text-cream text-sm mb-8 transition-colors text-shadow-soft"
             >
               <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               All services
             </Link>
-            <p className="text-cream/60 text-sm font-body uppercase tracking-widest mb-4">Service</p>
-            <h1 className="heading-display text-cream mb-3 md:mb-4 max-w-3xl">
-              {service.title}
-            </h1>
-            <p className="text-cream/80 text-xl md:text-2xl font-display italic">
-              {service.tagline}
-            </p>
+            <div className="bg-gradient-to-br from-forest-deep/50 to-forest-deep/20 dark:from-forest-deep/75 dark:to-forest-deep/45 backdrop-blur-md border border-cream/10 dark:border-cream/15 rounded-2xl p-6 md:p-8 lg:p-10 shadow-2xl shadow-forest-deep/40">
+              <p className="text-cream/70 text-sm font-body uppercase tracking-widest mb-4">Service</p>
+              <h1 className="heading-display text-cream text-shadow-hero mb-3 md:mb-4 max-w-3xl">
+                {service.title}
+              </h1>
+              <p className="text-cream/90 text-xl md:text-2xl font-display italic text-shadow-soft">
+                {service.tagline}
+              </p>
+            </div>
           </SectionReveal>
         </div>
       </section>
 
       {/* ── Breadcrumb ───────────────────────────────────────────── */}
       <div className="container-custom pt-6 pb-2">
-        <Link href="/services" className="inline-flex items-center gap-1.5 text-sm text-forest-deep/50 hover:text-forest-mid transition-colors font-body">
+        <Link href="/services" className="inline-flex items-center gap-1.5 text-sm text-primary/50 hover:text-secondary transition-colors font-body">
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
@@ -83,14 +86,14 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-16">
             <div className="lg:col-span-2 space-y-16">
               <SectionReveal>
-                <p className="text-xl md:text-2xl text-forest-deep/80 leading-relaxed font-display">
+                <p className="text-xl md:text-2xl text-primary/80 leading-relaxed font-display">
                   {service.summary}
                 </p>
               </SectionReveal>
 
               {/* What you get */}
               <SectionReveal>
-                <h2 className="heading-section text-forest-deep mb-6">
+                <h2 className="heading-section text-primary mb-6">
                   What you get
                 </h2>
                 <ul className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -102,7 +105,7 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                         </svg>
                       </span>
-                      <span className="text-forest-deep/75 text-sm md:text-base leading-relaxed">{item}</span>
+                      <span className="text-primary/75 text-sm md:text-base leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -110,28 +113,28 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
 
               {/* Why it matters */}
               <SectionReveal>
-                <h2 className="heading-section text-forest-deep mb-6">
+                <h2 className="heading-section text-primary mb-6">
                   Why it matters
                 </h2>
-                <p className="text-forest-deep/75 leading-relaxed text-lg">
+                <p className="text-primary/75 leading-relaxed text-lg">
                   {service.whyItMatters}
                 </p>
               </SectionReveal>
 
               {/* How it works */}
               <SectionReveal>
-                <h2 className="heading-section text-forest-deep mb-6">
+                <h2 className="heading-section text-primary mb-6">
                   How it works
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {service.howItWorks.map((item, i) => (
-                    <div key={i} className="flex gap-4 p-5 rounded-xl bg-forest-deep/4 border border-forest-deep/8">
-                      <div className="w-9 h-9 rounded-full bg-forest-mid/15 border border-forest-mid/25 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <span className="font-display font-bold text-sm text-forest-mid">{String(i + 1).padStart(2, '0')}</span>
+                    <div key={i} className="flex gap-4 p-5 rounded-xl bg-primary/4 border border-card">
+                      <div className="w-9 h-9 rounded-full bg-secondary/15 border border-secondary/25 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <span className="font-display font-bold text-sm text-secondary">{String(i + 1).padStart(2, '0')}</span>
                       </div>
                       <div>
-                        <p className="font-display font-semibold text-forest-deep text-base mb-1">{item.step}</p>
-                        <p className="text-forest-deep/65 text-sm leading-relaxed">{item.detail}</p>
+                        <p className="font-display font-semibold text-primary text-base mb-1">{item.step}</p>
+                        <p className="text-primary/65 text-sm leading-relaxed">{item.detail}</p>
                       </div>
                     </div>
                   ))}
@@ -140,13 +143,13 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
 
               {/* Add-ons */}
               <SectionReveal>
-                <h2 className="font-display font-semibold text-2xl md:text-3xl text-forest-deep mb-6">
+                <h2 className="font-display font-semibold text-2xl md:text-3xl text-primary mb-6">
                   Optional add-ons
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {service.addOns.map((addon, i) => (
-                    <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-forest-deep/6 border border-forest-deep/12 rounded-full text-sm text-forest-deep/75 font-body">
-                      <svg className="w-3.5 h-3.5 text-forest-mid flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 border border-card rounded-full text-sm text-primary/75 font-body">
+                      <svg className="w-3.5 h-3.5 text-secondary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
                       </svg>
                       {addon}
@@ -160,17 +163,17 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
             <div className="lg:col-span-1">
               <SectionReveal delay={0.2}>
                 {/* Sticky only on lg+; on mobile it flows naturally */}
-                <div className="lg:sticky lg:top-28 bg-cream border border-forest-deep/10 rounded-2xl p-5 md:p-8 shadow-sm">
-                  <h3 className="font-display font-semibold text-xl text-forest-deep mb-3">
+                <div className="lg:sticky lg:top-28 bg-page border border-card rounded-2xl p-5 md:p-8 shadow-sm">
+                  <h3 className="font-display font-semibold text-xl text-primary mb-3">
                     {service.ctaLine}
                   </h3>
-                  <p className="text-forest-deep/60 text-sm mb-6 leading-relaxed">
+                  <p className="text-primary/60 text-sm mb-6 leading-relaxed">
                     Book a free initial consultation. We&apos;ll review your requirements and outline a clear next step within 24 hours.
                   </p>
                   <CtaButton href="/contact" size="lg" eventName="cta_click" eventParams={{ location: 'service_sidebar', label: 'Book a Consultation', service: service.title }}>
                     Book a Consultation
                   </CtaButton>
-                  <p className="text-xs text-forest-deep/40 mt-4 text-center">
+                  <p className="text-xs text-primary/40 mt-4 text-center">
                     Free · No obligation · 24 hr response
                   </p>
                 </div>
@@ -181,17 +184,17 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
       </section>
 
       {/* ── Next service ─────────────────────────────────────────── */}
-      <section className="border-t border-forest-deep/10">
+      <section className="border-t border-card">
         <TrackedLink href={`/services/${nextSlug}`} className="group block" eventName="next_service_click" eventParams={{ from: service.title, to: nextService.title, slug: nextSlug }}>
           <div className="container-custom py-10 flex items-center justify-between">
             <div>
-              <p className="text-xs font-body font-medium text-forest-deep/40 uppercase tracking-widest mb-1">Next service</p>
-              <p className="font-display font-semibold text-xl md:text-2xl text-forest-deep group-hover:text-forest-mid transition-colors">
+              <p className="text-xs font-body font-medium text-primary/40 uppercase tracking-widest mb-1">Next service</p>
+              <p className="font-display font-semibold text-xl md:text-2xl text-primary group-hover:text-secondary transition-colors">
                 {nextService.title}
               </p>
             </div>
-            <div className="w-12 h-12 rounded-full border border-forest-deep/20 flex items-center justify-center group-hover:bg-forest-mid group-hover:border-forest-mid transition-all">
-              <svg className="w-5 h-5 text-forest-deep group-hover:text-cream transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="w-12 h-12 rounded-full border border-primary/20 flex items-center justify-center group-hover:bg-secondary group-hover:border-secondary transition-all">
+              <svg className="w-5 h-5 text-primary group-hover:text-cream transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </div>

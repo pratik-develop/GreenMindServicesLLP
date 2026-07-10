@@ -119,10 +119,10 @@ export default function Resources() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <SectionReveal>
               <p className="label-section mb-4">Research &amp; insights</p>
-              <h1 className="heading-display text-forest-deep mb-4 md:mb-6">
+              <h1 className="heading-display text-primary mb-4 md:mb-6">
                 The GreenMind Blog
               </h1>
-              <p className="text-base md:text-xl text-forest-deep/65 max-w-2xl leading-relaxed">
+              <p className="text-base md:text-xl text-primary/65 max-w-2xl leading-relaxed">
                 Practical research and insights on environmental compliance, ESG reporting, and sustainable business strategy — written for Indian industries and institutions.
               </p>
             </SectionReveal>
@@ -157,8 +157,8 @@ export default function Resources() {
                   }}
                   className={`px-4 py-2 rounded-full text-sm font-body font-medium transition-all min-h-[36px] border ${
                     activeCategory === cat
-                      ? 'bg-forest-mid text-cream border-forest-mid shadow-sm'
-                      : 'bg-white/60 text-forest-deep/70 border-forest-deep/15 hover:border-forest-mid hover:text-forest-mid'
+                      ? 'bg-secondary text-cream border-secondary shadow-sm'
+                      : 'bg-card/70 text-primary/70 border-card hover:border-secondary hover:text-secondary'
                   }`}
                 >
                   {cat}
@@ -200,7 +200,7 @@ export default function Resources() {
       <section className="py-10 md:py-12">
         <div className="container-custom">
           <SectionReveal>
-            <div className="rounded-2xl bg-gradient-to-br from-forest-deep to-forest-mid p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
+            <div className="rounded-2xl bg-gradient-to-br from-forest-deep to-secondary p-8 md:p-10 flex flex-col md:flex-row items-center gap-8">
               {/* Left */}
               <div className="flex-1">
                 <p className="text-gold/80 font-body font-semibold text-xs uppercase tracking-wider mb-3">Free Download</p>
@@ -228,7 +228,7 @@ export default function Resources() {
                 <a
                   href="/contact?ref=checklist"
                   onClick={() => trackEvent('lead_magnet_click', { item: 'compliance_checklist' })}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-cream text-forest-deep font-body font-semibold text-sm rounded-xl hover:bg-cream/90 transition-colors min-h-[44px] shadow-lg"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-page text-primary font-body font-semibold text-sm rounded-xl hover:bg-page/90 transition-colors min-h-[44px] shadow-lg"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
@@ -238,7 +238,7 @@ export default function Resources() {
               </div>
               {/* Right — decorative */}
               <div className="hidden md:flex flex-col items-center justify-center w-48 flex-shrink-0">
-                <div className="w-36 h-48 rounded-2xl bg-cream/8 border border-cream/15 flex flex-col items-center justify-center gap-3 shadow-2xl">
+                <div className="w-36 h-48 rounded-2xl bg-page/8 border border-cream/15 flex flex-col items-center justify-center gap-3 shadow-2xl">
                   <svg className="w-12 h-12 text-cream/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.25} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>

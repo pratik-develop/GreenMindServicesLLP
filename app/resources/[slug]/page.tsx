@@ -409,7 +409,7 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
   return (
     <main>
       {/* ── Article Hero ── */}
-      <section className="section-padding pt-32 border-b border-forest-deep/8 relative overflow-hidden">
+      <section className="section-padding pt-32 border-b border-card relative overflow-hidden">
         {/* Category-based hero background */}
         <div className="absolute inset-0 overflow-hidden opacity-20">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -430,7 +430,7 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
           <SectionReveal>
             <Link
               href="/resources"
-              className="inline-flex items-center min-h-[44px] text-forest-mid hover:text-forest-deep mb-8 transition-colors text-sm font-body font-medium gap-1.5"
+              className="inline-flex items-center min-h-[44px] text-secondary hover:text-primary mb-8 transition-colors text-sm font-body font-medium gap-1.5"
             >
               <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -439,18 +439,18 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
             </Link>
 
             <div className="flex items-center gap-3 mb-5">
-              <span className="px-3 py-1 bg-forest-deep/8 text-forest-mid text-xs font-body font-semibold rounded-full">
+              <span className="px-3 py-1 bg-primary/8 text-secondary text-xs font-body font-semibold rounded-full">
                 {article.category}
               </span>
-              <span className="text-forest-deep/40 text-xs font-body">{article.date}</span>
-              <span className="text-forest-deep/35">·</span>
-              <span className="text-forest-deep/50 text-xs font-body">{readingTime} min read</span>
+              <span className="text-primary/40 text-xs font-body">{article.date}</span>
+              <span className="text-primary/35">·</span>
+              <span className="text-primary/50 text-xs font-body">{readingTime} min read</span>
             </div>
 
-            <h1 className="heading-display text-forest-deep mb-4 md:mb-5 max-w-3xl">
+            <h1 className="heading-display text-primary mb-4 md:mb-5 max-w-3xl">
               {article.title}
             </h1>
-            <p className="text-forest-deep/60 text-base md:text-lg max-w-2xl leading-relaxed">
+            <p className="text-primary/60 text-base md:text-lg max-w-2xl leading-relaxed">
               {article.excerpt}
             </p>
           </SectionReveal>
@@ -465,11 +465,11 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
               <SectionReveal key={i} delay={i * 0.05}>
                 <div className="mb-8 md:mb-10">
                   {section.heading && (
-                    <h2 className="font-display font-semibold text-lg md:text-xl text-forest-deep mb-3">
+                    <h2 className="font-display font-semibold text-lg md:text-xl text-primary mb-3">
                       {section.heading}
                     </h2>
                   )}
-                  <p className="text-forest-deep/75 text-base md:text-lg leading-[1.85] font-light">
+                  <p className="text-primary/75 text-base md:text-lg leading-[1.85] font-light">
                     {section.body}
                   </p>
                 </div>
@@ -486,24 +486,24 @@ export default function ResourcePage({ params }: { params: { slug: string } }) {
           .slice(0, 2)
         if (related.length === 0) return null
         return (
-          <section className="section-padding-tight bg-cream/50">
+          <section className="section-padding-tight bg-page/50">
             <div className="container-custom">
               <SectionReveal>
                 <p className="label-section mb-3">Keep reading</p>
-                <h2 className="heading-section text-forest-deep mb-8">Related articles</h2>
+                <h2 className="heading-section text-primary mb-8">Related articles</h2>
               </SectionReveal>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {related.map(([s, a]) => (
                   <SectionReveal key={s} delay={0.1}>
                     <a href={`/resources/${s}`} className="group block card-base card-hover p-6 h-full">
-                      <span className="inline-block px-2.5 py-1 bg-forest-mid/10 text-forest-mid text-xs font-body font-semibold rounded-full border border-forest-mid/20 mb-3">
+                      <span className="inline-block px-2.5 py-1 bg-secondary/10 text-secondary text-xs font-body font-semibold rounded-full border border-secondary/20 mb-3">
                         {a.category}
                       </span>
-                      <h3 className="font-display font-semibold text-lg text-forest-deep mb-2 group-hover:text-forest-mid transition-colors leading-snug">
+                      <h3 className="font-display font-semibold text-lg text-primary mb-2 group-hover:text-secondary transition-colors leading-snug">
                         {a.title}
                       </h3>
-                      <p className="text-forest-deep/55 text-sm leading-relaxed line-clamp-2">{a.excerpt}</p>
-                      <div className="flex items-center text-forest-mid text-sm font-body font-semibold mt-4 group-hover:translate-x-1 transition-transform duration-300">
+                      <p className="text-primary/55 text-sm leading-relaxed line-clamp-2">{a.excerpt}</p>
+                      <div className="flex items-center text-secondary text-sm font-body font-semibold mt-4 group-hover:translate-x-1 transition-transform duration-300">
                         Read article
                         <svg className="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

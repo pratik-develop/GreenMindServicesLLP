@@ -23,7 +23,7 @@ export default function PageCta({
   eventParams,
 }: PageCtaProps) {
   return (
-    <section className="relative z-[1] border-t border-forest-deep/10 py-10 md:py-12" style={{ backgroundColor: '#F2F6F2' }}>
+    <section className="relative z-[1] border-t border-card py-10 md:py-12" >
       <div className="container-custom relative z-10">
         <SectionReveal>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-12">
@@ -33,10 +33,10 @@ export default function PageCta({
               {label && (
                 <p className="label-section mb-2">{label}</p>
               )}
-              <h2 className="heading-section text-forest-deep mb-2">
+              <h2 className="heading-section text-primary mb-2">
                 {title}
               </h2>
-              <p className="text-forest-deep/60 text-sm md:text-base leading-relaxed">
+              <p className="text-primary/60 text-sm md:text-base leading-relaxed">
                 {description}
               </p>
             </div>

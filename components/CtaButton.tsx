@@ -35,9 +35,9 @@ export default function CtaButton({
   // No CSS hover:scale / active:scale — Framer Motion handles transforms exclusively
   // to avoid fighting with the layout system on certain browsers.
   const variantStyles: Record<string, string> = {
-    primary:   "bg-gradient-to-br from-forest-mid to-forest-deep text-cream font-semibold shadow-xl hover:shadow-2xl hover:shadow-forest-deep/40",
-    secondary: "bg-transparent border-2 border-forest-mid text-forest-mid font-semibold hover:bg-forest-mid hover:text-cream hover:border-forest-deep",
-    outline:   "bg-transparent border-2 border-cream/60 text-cream font-semibold hover:bg-forest-mid hover:border-forest-mid hover:text-cream",
+    primary:   "bg-gradient-to-br from-secondary to-forest-deep text-cream font-semibold shadow-xl hover:shadow-2xl hover:shadow-forest-deep/40",
+    secondary: "bg-transparent border-2 border-secondary text-secondary font-semibold hover:bg-secondary hover:text-cream hover:border-primary",
+    outline:   "bg-transparent border-2 border-cream/60 text-cream font-semibold hover:bg-secondary hover:border-secondary hover:text-cream",
   }
 
   const baseStyles = `inline-flex items-center justify-center font-medium transition-shadow duration-300 rounded-xl ${sizeStyles[size]}`

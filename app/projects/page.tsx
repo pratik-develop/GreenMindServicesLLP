@@ -153,44 +153,44 @@ function ProjectCard({ project, featured = false }: { project: SanityProject; fe
             </div>
           </>
         ) : (
-          <div className="h-48 bg-gradient-to-br from-forest-mid/10 to-forest-deep/5 flex items-center justify-center border-b border-forest-deep/8">
-            <svg className="w-16 h-16 text-forest-mid/25" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="h-48 bg-gradient-to-br from-secondary/10 to-primary/5 flex items-center justify-center border-b border-card">
+            <svg className="w-16 h-16 text-secondary/25" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
         )}
         <div className="p-6 md:p-8">
           <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
-            <span className="px-3 py-1 bg-sage/10 text-forest-mid rounded-full text-xs font-body font-semibold">
+            <span className="px-3 py-1 bg-sage/10 text-secondary rounded-full text-xs font-body font-semibold">
               {project.sector}
             </span>
-            <span className="flex items-center text-xs text-forest-deep/50 font-body gap-1">
+            <span className="flex items-center text-xs text-primary/50 font-body gap-1">
               <Calendar className="w-3.5 h-3.5" />{project.date}
             </span>
           </div>
-          <h3 className="heading-card text-forest-deep mb-3">{project.title}</h3>
-          <div className="flex items-center text-sm text-forest-deep/55 font-body mb-4 gap-1.5">
+          <h3 className="heading-card text-primary mb-3">{project.title}</h3>
+          <div className="flex items-center text-sm text-primary/55 font-body mb-4 gap-1.5">
             <MapPin className="w-4 h-4 flex-shrink-0" />
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(project.location || '')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-forest-mid transition-colors hover:underline"
+              className="hover:text-secondary transition-colors hover:underline"
             >
               {project.location}
             </a>
           </div>
-          <p className="text-forest-deep/65 text-sm md:text-base leading-relaxed mb-5">{project.description}</p>
+          <p className="text-primary/65 text-sm md:text-base leading-relaxed mb-5">{project.description}</p>
           {project.outcome?.length > 0 && (
             <ul className="space-y-2 mb-5">
               {project.outcome.slice(0, 3).map((o) => (
-                <li key={o} className="flex items-start gap-2 text-sm text-forest-deep/65">
-                  <CheckCircle className="w-4 h-4 text-forest-mid mt-0.5 flex-shrink-0" />{o}
+                <li key={o} className="flex items-start gap-2 text-sm text-primary/65">
+                  <CheckCircle className="w-4 h-4 text-secondary mt-0.5 flex-shrink-0" />{o}
                 </li>
               ))}
             </ul>
           )}
-          <p className="text-xs text-forest-deep/40 font-body">Client: {clientLabel(project)}</p>
+          <p className="text-xs text-primary/40 font-body">Client: {clientLabel(project)}</p>
         </div>
       </div>
     )
@@ -205,26 +205,26 @@ function ProjectCard({ project, featured = false }: { project: SanityProject; fe
       )}
       <div className="p-5 md:p-6 flex flex-col flex-1">
         <div className="flex items-center justify-between mb-3 flex-wrap gap-1">
-          <span className="px-2 py-0.5 bg-sage/10 text-forest-mid rounded-full text-xs font-body font-semibold">
+          <span className="px-2 py-0.5 bg-sage/10 text-secondary rounded-full text-xs font-body font-semibold">
             {project.sector}
           </span>
-          <span className="flex items-center text-xs text-forest-deep/45 gap-1">
+          <span className="flex items-center text-xs text-primary/45 gap-1">
             <Calendar className="w-3 h-3" />{project.date}
           </span>
         </div>
-        <h3 className="font-display font-semibold text-base md:text-lg text-forest-deep mb-2">{project.title}</h3>
-        <div className="flex items-center text-xs text-forest-deep/50 mb-3 gap-1">
+        <h3 className="font-display font-semibold text-base md:text-lg text-primary mb-2">{project.title}</h3>
+        <div className="flex items-center text-xs text-primary/50 mb-3 gap-1">
           <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
           <a
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(project.location || '')}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-forest-mid transition-colors hover:underline"
+            className="hover:text-secondary transition-colors hover:underline"
           >
             {project.location}
           </a>
         </div>
-        <p className="text-forest-deep/60 text-sm leading-relaxed flex-1">{project.description}</p>
+        <p className="text-primary/60 text-sm leading-relaxed flex-1">{project.description}</p>
       </div>
     </div>
   )
@@ -276,8 +276,8 @@ export default async function Projects() {
             <SectionReveal>
               <div className="mb-10 md:mb-14">
                 <p className="label-section mb-4">Highlighted work</p>
-                <h2 className="heading-section text-forest-deep mb-4">Featured projects</h2>
-                <p className="text-forest-deep/65 max-w-2xl leading-relaxed">
+                <h2 className="heading-section text-primary mb-4">Featured projects</h2>
+                <p className="text-primary/65 max-w-2xl leading-relaxed">
                   Select engagements that reflect the breadth and depth of our consultancy work.
                 </p>
               </div>
@@ -295,16 +295,16 @@ export default async function Projects() {
 
       {/* ── All projects ── */}
       {others.length > 0 && (
-        <section className="section-padding bg-forest-deep/5">
+        <section className="section-padding bg-primary/5">
           <div className="container-custom">
             <SectionReveal>
               <div className="mb-10">
                 <p className="label-section mb-4">Full portfolio</p>
-                <h2 className="heading-section text-forest-deep mb-4">More projects</h2>
+                <h2 className="heading-section text-primary mb-4">More projects</h2>
                 {sectors.length > 0 && (
                   <div className="flex flex-wrap gap-2 mt-6">
                     {sectors.map(s => (
-                      <span key={s} className="px-3 py-1 bg-white border border-forest-deep/10 text-forest-deep/65 rounded-full text-xs font-body">
+                      <span key={s} className="px-3 py-1 bg-page-elevated border border-card text-primary/65 rounded-full text-xs font-body">
                         {s}
                       </span>
                     ))}
