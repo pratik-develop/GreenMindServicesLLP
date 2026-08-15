@@ -23,7 +23,7 @@
 
 A premium, high-performance marketing website for **GreenMind Services LLP**, an environmental consultancy serving Northeast India. Built with a focus on accessibility, performance, and modern UX patterns.
 
-- **Live URL**: [green-mind-services-llp.vercel.app](https://green-mind-services-llp.vercel.app/)
+- **Live URL**: [www.greenmindservices.in](https://www.greenmindservices.in/)
 - **Repository**: [GreenMindServicesLLP](https://github.com/pratik-develop/GreenMindServicesLLP)
 
 ---
@@ -170,7 +170,7 @@ middleware.ts                 # Security headers (HSTS, CSP, etc.)
 
    > **Resend setup**: Verify your sending domain in the Resend dashboard before going live.
    > The default `EMAIL_FROM` currently uses `onboarding@resend.dev` for testing.
-   > Switch it to `noreply@greenmindservices.com` (or your verified domain) once DNS is configured.
+   > Switch it to `noreply@greenmindservices.in` (or your verified domain) once DNS is configured.
 5. **Deploy**
 
 ### Manual Build

@@ -1,5 +1,7 @@
 import { MetadataRoute } from 'next'
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.greenmindservices.in'
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
@@ -9,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/studio/', '/api/'],
       },
     ],
-    sitemap: 'https://www.greenmindservices.com/sitemap.xml',
+    sitemap: `${siteUrl}/sitemap.xml`,
   }
 }

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://www.greenmindservices.com'
+  const base = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.greenmindservices.in'
   const now = new Date()
 
   const staticRoutes = [
@@ -38,6 +38,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'eia-notification-2006-guide',
     'environmental-audit-checklist',
     'carbon-footprinting-for-msmes',
+    'net-zero-strategy-guide',
+    'environmental-compliance-checklist-2025',
+    'esg-disclosure-vs-green-hype',
+    'carbon-footprinting-101',
   ].map(slug => ({
     url: `${base}/resources/${slug}`,
     lastModified: now,

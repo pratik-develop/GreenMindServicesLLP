@@ -366,11 +366,10 @@ export default function Contact() {
                         <label className="form-label">Service of interest</label>
                         <select name="service" value={formData.service} onChange={handleChange} className="form-input bg-page-elevated">
                           <option value="">Select a service…</option>
-                          <option value="eia-compliance">Environmental Impact Survey &amp; Its Compliance</option>
-                          <option value="waste-pollution">Waste &amp; Pollution Management</option>
-                          <option value="monitoring-studies">Environmental Monitoring &amp; Studies</option>
-                          <option value="training-advisory">Training, Advisory &amp; Social Responsibility</option>
-                          <option value="esg-consultancy">ESG Consultancy</option>
+                          <option value="environmental-impact-assessments">Environmental Impact Assessments</option>
+                          <option value="environmental-compliance">Environmental Compliance</option>
+                          <option value="environmental-monitoring">Environmental Monitoring</option>
+                          <option value="esg-disclosure-reporting">ESG Disclosure &amp; Reporting</option>
                           <option value="other">Other / Not Sure</option>
                         </select>
                       </div>

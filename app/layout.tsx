@@ -31,7 +31,7 @@ const jost = Jost({
 })
 
 // Site URL for OG images
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://greenmind.services'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.greenmindservices.in'
 
 export const viewport: Viewport = {
   themeColor: '#152E1C',
